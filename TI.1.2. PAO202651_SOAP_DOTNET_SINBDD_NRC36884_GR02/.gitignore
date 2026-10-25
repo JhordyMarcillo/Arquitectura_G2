@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+.gradle/
+.idea/
+build/
+*.user
+*.suo
+*.tmp
+local.properties

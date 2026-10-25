@@ -1,0 +1,41 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = ec.edu.monster
+build_property.RootNamespace = ec.edu.monster
+build_property.ProjectDir = C:\Users\Acer\Documents\ESPE\9no\Arquitectura G2\TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02\04. CLIWEB\SistemaConversorUI.Web\SistemaConversorUI.Web\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Acer\Documents\ESPE\9no\Arquitectura G2\TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02\04. CLIWEB\SistemaConversorUI.Web\SistemaConversorUI.Web
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/Acer/Documents/ESPE/9no/Arquitectura G2/TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02/04. CLIWEB/SistemaConversorUI.Web/SistemaConversorUI.Web/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Acer/Documents/ESPE/9no/Arquitectura G2/TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02/04. CLIWEB/SistemaConversorUI.Web/SistemaConversorUI.Web/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Acer/Documents/ESPE/9no/Arquitectura G2/TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02/04. CLIWEB/SistemaConversorUI.Web/SistemaConversorUI.Web/Components/Pages/NotFound.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Acer/Documents/ESPE/9no/Arquitectura G2/TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02/04. CLIWEB/SistemaConversorUI.Web/SistemaConversorUI.Web/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Acer/Documents/ESPE/9no/Arquitectura G2/TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02/04. CLIWEB/SistemaConversorUI.Web/SistemaConversorUI.Web/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 

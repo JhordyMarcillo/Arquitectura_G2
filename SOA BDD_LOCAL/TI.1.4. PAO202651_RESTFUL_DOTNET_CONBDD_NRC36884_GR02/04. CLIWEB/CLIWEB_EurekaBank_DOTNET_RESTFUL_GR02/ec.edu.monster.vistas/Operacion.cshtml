@@ -1,0 +1,92 @@
+@page "{tipo}"
+@model PaginaOperacion
+@{
+    ViewData["Title"] = Model.Titulo;
+    ViewData["Subtitulo"] = Model.Subtitulo;
+    bool esTransferencia = Model.Tipo == "transferencia";
+}
+<div class="rejilla-2">
+    <form method="post" class="tarjeta" style="padding:32px">
+        <div class="encabezado-form">
+            <span class="icono-caja azul" style="width:48px;height:48px">@Iconos.Svg(Model.Tipo)</span>
+            <div>
+                <h2>Registrar @Model.Titulo.ToLowerInvariant()</h2>
+                <p>@Model.Descripcion</p>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label for="cuenta">@(esTransferencia ? "Cuenta de origen" : "Cuenta")</label>
+            <input id="cuenta" name="Cuenta" value="@Model.Cuenta" maxlength="8" pattern="\d{8}" title="8 digitos" autofocus required />
+        </div>
+        @if (Model.Tipo != "deposito")
+        {
+            <div class="campo">
+                <label for="clave">Clave de la cuenta</label>
+                <input id="clave" name="Clave" type="password" maxlength="6" required />
+            </div>
+        }
+        @if (esTransferencia)
+        {
+            <div class="campo">
+                <label for="destino">Cuenta de destino</label>
+                <input id="destino" name="CuentaDestino" value="@Model.CuentaDestino" maxlength="8" pattern="\d{8}" title="8 digitos" required />
+            </div>
+        }
+        <div class="campo">
+            <label for="importe">Importe</label>
+            <input id="importe" name="Importe" value="@Model.Importe" inputmode="decimal" placeholder="0.00" class="grande" required />
+        </div>
+        <div class="nota-info">
+            @Iconos.Svg("info")
+            <span>@(esTransferencia
+                ? "Cada cuenta paga el costo por movimiento: S/ 2.00 en soles y US$ 0.60 en dolares."
+                : "Se aplica el costo por movimiento: S/ 2.00 en cuentas en soles y US$ 0.60 en dolares.")</span>
+        </div>
+        <button type="submit" class="boton primario ancho">Registrar @Model.Titulo.ToLowerInvariant()</button>
+    </form>
+
+    <div class="tarjeta" style="padding:32px">
+        @if (Model.Resultado is not null)
+        {
+            var r = Model.Resultado;
+            <div class="comprobante">
+                <div class="circulo exito">@Iconos.Svg("check")</div>
+                <h3>Operacion exitosa</h3>
+                <p>@r.Mensaje</p>
+                <dl class="detalle">
+                    <div><dt>Operacion</dt><dd>@Model.Titulo.ToUpperInvariant()</dd></div>
+                    <div><dt>@(esTransferencia ? "Cuenta de origen" : "Cuenta")</dt><dd>@r.Cuenta</dd></div>
+                    @if (esTransferencia)
+                    {
+                        <div><dt>Cuenta de destino</dt><dd>@Model.CuentaDestino</dd></div>
+                    }
+                    <div><dt>Importe</dt><dd>@Formato.Dinero(Model.Moneda, Model.ImporteRegistrado)</dd></div>
+                    <div><dt>Nuevo saldo</dt><dd class="destacado">@Formato.Dinero(Model.Moneda, r.Saldo)</dd></div>
+                    <div><dt>Empleado</dt><dd>@Model.Usuario.NombreEmpleado</dd></div>
+                    <div><dt>Fecha y hora</dt><dd>@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</dd></div>
+                </dl>
+            </div>
+        }
+        else if (Model.MensajeError is not null)
+        {
+            <div class="comprobante">
+                <div class="circulo error">@Iconos.Svg("x")</div>
+                <h3>Operacion rechazada</h3>
+                <p>@Model.MensajeError</p>
+                @if (Model.CodigoError is not null)
+                {
+                    <dl class="detalle"><div><dt>Codigo</dt><dd>@Model.CodigoError</dd></div></dl>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="vacio">
+                @Iconos.Svg("recibo")
+                <strong>El comprobante aparecera aqui</strong>
+                Complete el formulario y registre la operacion.
+            </div>
+        }
+    </div>
+</div>

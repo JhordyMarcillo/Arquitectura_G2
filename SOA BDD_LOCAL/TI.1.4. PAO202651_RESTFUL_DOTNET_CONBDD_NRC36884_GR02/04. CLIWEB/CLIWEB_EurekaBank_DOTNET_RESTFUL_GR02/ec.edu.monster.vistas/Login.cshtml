@@ -1,0 +1,52 @@
+@page
+@model PaginaLogin
+@{
+    ViewData["Title"] = "Iniciar sesion";
+}
+<div class="acceso">
+    <section class="acceso-panel">
+        <div class="marca" style="padding:0">
+            <img src="~/img/logo.svg" alt="" />
+            <div><strong>EurekaBank</strong><span style="color:#cbd5e1">Sistema de cuentas de ahorro</span></div>
+        </div>
+        <h1>Banca segura,<br />siempre a la mano.</h1>
+        <p>Consulte cuentas y movimientos, y registre depositos, retiros y transferencias en tiempo real.</p>
+        <ul>
+            <li>@Iconos.Svg("check") Operaciones transaccionales con validacion de saldo</li>
+            <li>@Iconos.Svg("check") Sesiones protegidas con token</li>
+            <li>@Iconos.Svg("check") Compatible con cualquier servidor del grupo</li>
+        </ul>
+        <footer>RESTful .NET  ·  GR02</footer>
+    </section>
+
+    <section class="acceso-formulario">
+        <form method="post" class="tarjeta">
+            <h2>Bienvenido</h2>
+            <p class="subtitulo">Ingrese con su usuario de empleado.</p>
+
+            @if (Model.Aviso is not null)
+            {
+                <div class="alerta aviso">@Iconos.Svg("info") <span>@Model.Aviso</span></div>
+            }
+            @if (Model.MensajeError is not null)
+            {
+                <div class="alerta error">@Iconos.Svg("alerta") <span>@Model.MensajeError</span></div>
+            }
+
+            <div class="campo">
+                <label for="usuario">Usuario</label>
+                <input id="usuario" name="Usuario" value="@Model.Usuario" autocomplete="username" autofocus required />
+            </div>
+            <div class="campo">
+                <label for="clave">Clave</label>
+                <input id="clave" name="Clave" type="password" autocomplete="current-password" required />
+            </div>
+            <div class="campo">
+                <label for="servidor">Servidor</label>
+                <input id="servidor" name="UrlServidor" value="@Model.UrlServidor" class="tenue" required />
+            </div>
+            <button type="submit" class="boton primario ancho" style="margin-top:8px">Ingresar</button>
+            <p class="pie-prueba">Usuario de prueba: MONSTER / Monster9</p>
+        </form>
+    </section>
+</div>

@@ -1,5 +1,5 @@
 # EurekaBank - MySQL 8.4 local (TI Java del GR02)
-# Uso:  copiar .env.example a .env, poner la clave de root y ejecutar
+# Uso (el archivo .env con las claves del grupo ya esta incluido):
 #       docker compose up -d
 # Los scripts se ejecutan solo la primera vez (volumen vacio).
 # Para recrear la base desde cero:  docker compose down -v && docker compose up -d

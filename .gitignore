@@ -44,9 +44,10 @@ venv/
 # Node
 node_modules/
 
-# Credenciales locales (SOA BDD_LOCAL/03. BDD): se versiona solo la plantilla
+# Variables de entorno: se ignoran salvo los .env compartidos de la BDD local
+# del grupo (claves de practica, para que todos los TI se conecten igual)
 .env
-!.env.example
+!SOA BDD_LOCAL/**/03. BDD/.env
 
 # Bases de datos locales (SQL Server LocalDB, SQLite, volcados)
 *.mdf

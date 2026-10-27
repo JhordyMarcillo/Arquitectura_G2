@@ -9,12 +9,13 @@ Modelo EurekaBank de 17 tablas traducido a T-SQL desde el script MySQL del Ing. 
 | `Crea_BD.sql` | Crea la base `EUREKABANK`, las 17 tablas y el login de la aplicación `eureka` |
 | `Carga_Datos.sql` | Carga los datos de prueba |
 | `docker-compose.yml` | Levanta SQL Server 2022 y crea y carga la base si no existe |
-| `.env.example` | Plantilla del `.env`, que contiene la clave de `sa` y no se sube al repositorio |
+| `.env` | Claves compartidas del grupo (`sa` del contenedor) y datos de conexión para los servidores (`DB_HOST`, `DB_USER`, `DB_CONNECTION_STRING`...) |
+
+> El `.env` se versiona a propósito para que todos los TI usen la misma configuración. Son claves **solo de práctica**: el repositorio es público, así que no las reutilices en otro sistema.
 
 ## Cómo levantarla
 **Opción A: Docker (recomendada)**
 ```bash
-cp .env.example .env        # editar MSSQL_SA_PASSWORD
 docker compose up -d
 ```
 El contenedor `init` ejecuta los scripts solo si la base no existe. Para empezar de cero: `docker compose down -v`.

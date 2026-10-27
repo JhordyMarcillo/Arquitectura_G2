@@ -7,12 +7,13 @@ Modelo EurekaBank de 17 tablas, basado en el script MySQL del Ing. Eric Coronel 
 | `Crea_BD.sql` | Crea la base `eurekabank`, las 17 tablas y el usuario de la aplicación `eureka` |
 | `Carga_Datos.sql` | Carga los datos de prueba |
 | `docker-compose.yml` | Levanta MySQL 8.4 con la base ya creada y cargada |
-| `.env.example` | Plantilla del `.env`, que contiene la clave de root y no se sube al repositorio |
+| `.env` | Claves compartidas del grupo (root del contenedor) y datos de conexión para los servidores (`DB_HOST`, `DB_USER`, `DB_URL`...) |
+
+> El `.env` se versiona a propósito para que todos los TI usen la misma configuración. Son claves **solo de práctica**: el repositorio es público, así que no las reutilices en otro sistema.
 
 ## Cómo levantarla
 **Opción A: Docker (recomendada)**
 ```bash
-cp .env.example .env        # editar MYSQL_ROOT_PASSWORD
 docker compose up -d
 ```
 Los scripts se ejecutan solo la primera vez. Para empezar de cero: `docker compose down -v`.

@@ -1,5 +1,5 @@
 # EurekaBank - SQL Server 2022 local (TI .NET del GR02)
-# Uso:  copiar .env.example a .env, poner la clave de sa y ejecutar
+# Uso (el archivo .env con las claves del grupo ya esta incluido):
 #       docker compose up -d
 # El servicio "init" crea y carga la base solo si EUREKABANK no existe.
 # Para recrear la base desde cero:  docker compose down -v && docker compose up -d

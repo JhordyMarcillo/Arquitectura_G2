@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>ec.edu.monster</RootNamespace>
+    <!-- La ruta del .exe dentro de "SOA BDD_LOCAL" es muy larga para Windows;
+         sin AppHost, dotnet run ejecuta el .dll directamente -->
+    <UseAppHost>false</UseAppHost>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="WS_EurekaBank_DOTNET_SOAP_GR02.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreWCF.Http" Version="1.9.1" />
+    <PackageReference Include="CoreWCF.Primitives" Version="1.9.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.14" NoWarn="NU1510" /><!-- fija la version parcheada (CoreWCF trae 8.0.3 vulnerable) -->
+  </ItemGroup>
+
+</Project>

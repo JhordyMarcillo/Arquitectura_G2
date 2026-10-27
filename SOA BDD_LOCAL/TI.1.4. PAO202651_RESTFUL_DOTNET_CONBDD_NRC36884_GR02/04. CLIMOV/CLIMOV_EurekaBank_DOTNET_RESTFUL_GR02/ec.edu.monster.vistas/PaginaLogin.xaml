@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ec.edu.monster.vistas.PaginaLogin"
+             BackgroundColor="{StaticResource Fondo}">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*">
+            <!-- Encabezado de marca -->
+            <Border Background="{StaticResource DegradadoPanel}" StrokeThickness="0" Padding="28,56,28,64"
+                    StrokeShape="RoundRectangle 0,0,32,32">
+                <VerticalStackLayout Spacing="18">
+                    <HorizontalStackLayout Spacing="12">
+                        <Image Source="logo.png" WidthRequest="44" HeightRequest="44" />
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label Text="EurekaBank" TextColor="White" FontSize="20" FontFamily="OpenSansSemibold" />
+                            <Label Text="Sistema de cuentas de ahorro" TextColor="#CBD5E1" FontSize="12" />
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                    <Label Text="Banca segura, siempre a la mano." TextColor="White" FontSize="26"
+                           FontFamily="OpenSansSemibold" Margin="0,18,0,0" />
+                    <Label Text="Consulte cuentas y registre depositos, retiros y transferencias."
+                           TextColor="#CBD5E1" FontSize="14" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Formulario -->
+            <Border Grid.Row="1" Style="{StaticResource Tarjeta}" Margin="20,-36,20,24" Padding="24">
+                <VerticalStackLayout>
+                    <Label Text="Bienvenido" Style="{StaticResource Titulo}" />
+                    <Label Text="Ingrese con su usuario de empleado." Style="{StaticResource Secundario}" Margin="0,2,0,22" />
+
+                    <Border x:Name="PanelAviso" BackgroundColor="#FEF3C7" StrokeThickness="0" StrokeShape="RoundRectangle 10"
+                            Padding="12,10" Margin="0,0,0,16" IsVisible="False">
+                        <Label x:Name="TextoAviso" TextColor="#92400E" FontSize="13" />
+                    </Border>
+
+                    <Label Text="USUARIO" Style="{StaticResource Etiqueta}" />
+                    <Border Style="{StaticResource MarcoCampo}">
+                        <Entry x:Name="CampoUsuario" Style="{StaticResource Campo}" Placeholder="Usuario" />
+                    </Border>
+
+                    <Label Text="CLAVE" Style="{StaticResource Etiqueta}" />
+                    <Border Style="{StaticResource MarcoCampo}">
+                        <Entry x:Name="CampoClave" Style="{StaticResource Campo}" IsPassword="True" Placeholder="Clave"
+                               Completed="BotonIngresar_Clicked" />
+                    </Border>
+
+                    <Label Text="SERVIDOR" Style="{StaticResource Etiqueta}" />
+                    <Border Style="{StaticResource MarcoCampo}">
+                        <Entry x:Name="CampoServidor" Style="{StaticResource Campo}" FontSize="12" Keyboard="Url"
+                               TextColor="{StaticResource TextoSecundario}" />
+                    </Border>
+
+                    <Border x:Name="PanelError" BackgroundColor="{StaticResource RojoSuave}" StrokeThickness="0"
+                            StrokeShape="RoundRectangle 10" Padding="12,10" Margin="0,4,0,0" IsVisible="False">
+                        <Label x:Name="TextoError" TextColor="#991B1B" FontSize="13" />
+                    </Border>
+
+                    <Button x:Name="BotonIngresar" Text="Ingresar" Style="{StaticResource BotonPrimario}"
+                            Margin="0,18,0,0" Clicked="BotonIngresar_Clicked" />
+                    <ActivityIndicator x:Name="Cargando" IsRunning="False" IsVisible="False" Color="{StaticResource ColorPrimario}" Margin="0,12,0,0" />
+                    <Label Text="Usuario de prueba: MONSTER / Monster9" Style="{StaticResource Secundario}"
+                           FontSize="12" HorizontalOptions="Center" Margin="0,16,0,0" />
+                    <Label x:Name="TextoTecnologia" Style="{StaticResource Secundario}" FontSize="11"
+                           HorizontalOptions="Center" TextColor="#94A3B8" Margin="0,4,0,0" />
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </ScrollView>
+</ContentPage>

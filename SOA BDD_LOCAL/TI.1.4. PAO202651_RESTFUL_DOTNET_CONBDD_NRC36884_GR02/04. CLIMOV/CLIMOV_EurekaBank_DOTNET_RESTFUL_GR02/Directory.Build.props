@@ -1,0 +1,9 @@
+﻿<Project>
+  <!-- Android (aapt2) no soporta rutas de mas de 260 caracteres y las carpetas de
+       "SOA BDD_LOCAL" son muy profundas: obj y bin se generan en una ruta corta. -->
+  <PropertyGroup>
+    <CarpetaCompilacion>$(LOCALAPPDATA)\EurekaBankGR02\$(MSBuildProjectName)\</CarpetaCompilacion>
+    <BaseIntermediateOutputPath>$(CarpetaCompilacion)obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(CarpetaCompilacion)bin\</BaseOutputPath>
+  </PropertyGroup>
+</Project>

@@ -108,6 +108,8 @@ INSERT INTO Usuario VALUES ('0008',  'csarmiento',   LOWER(CONVERT(VARCHAR(50), 
 INSERT INTO Usuario VALUES ('0009',  'lpachas',      LOWER(CONVERT(VARCHAR(50), HASHBYTES('SHA1', 'gato'), 2)), 'ACTIVO');
 INSERT INTO Usuario VALUES ('0010',  'htello',       LOWER(CONVERT(VARCHAR(50), HASHBYTES('SHA1', 'machupichu'), 2)), 'ACTIVO');
 INSERT INTO Usuario VALUES ('0011',  'pcarrasco',    LOWER(CONVERT(VARCHAR(50), HASHBYTES('SHA1', 'tinajones'), 2)), 'ACTIVO');
+-- Usuario del GR02 para las pruebas de los clientes (clave: Monster9)
+INSERT INTO Usuario VALUES ('0015', 'MONSTER', LOWER(CONVERT(VARCHAR(50), HASHBYTES('SHA1', 'Monster9'), 2)), 'ACTIVO');
 
 GO
 

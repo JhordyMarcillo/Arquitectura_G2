@@ -91,6 +91,8 @@ INSERT INTO Usuario VALUES ('0008',  'csarmiento',   SHA('chinita'), 'ANULADO');
 INSERT INTO Usuario VALUES ('0009',  'lpachas',      SHA('gato'), 'ACTIVO');
 INSERT INTO Usuario VALUES ('0010',  'htello',       SHA('machupichu'), 'ACTIVO');
 INSERT INTO Usuario VALUES ('0011',  'pcarrasco',    SHA('tinajones'), 'ACTIVO');
+-- Usuario del GR02 para las pruebas de los clientes (clave: Monster9)
+INSERT INTO Usuario VALUES ('0015', 'MONSTER', SHA('Monster9'), 'ACTIVO');
 
 -- Tabla: Modulo
 

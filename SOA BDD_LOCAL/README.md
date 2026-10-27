@@ -17,6 +17,25 @@ Los cuatro TI usan **el mismo modelo EurekaBank (17 tablas)** con **los mismos d
 
 Los scripts de un mismo motor son idÃ©nticos en todos los TI. AsÃ­, un mismo cliente (por ejemplo, el usuario `cromero` o la cuenta `00100001`) obtiene el mismo resultado en cualquiera de los cuatro servidores.
 
+## Servidores y clientes
+| TI | Servidor (URL por defecto) | Clientes |
+|---|---|---|
+| TI.1.2 SOAP .NET | CoreWCF: `http://localhost:5090/WSEurekaBank.svc` | Consola (Spectre.Console), escritorio (WPF), web (Razor Pages, puerto 5190) y móvil (.NET MAUI) |
+| TI.1.3 RESTful Java | JAX-RS en Payara: `http://localhost:8080/WS_EurekaBank_JAVA_RESTFUL_GR02/api/eurekabank` | Consola (Java), escritorio (Swing + FlatLaf), web (JSP en Payara) y móvil (Android nativo) |
+| TI.1.4 RESTful .NET | ASP.NET Core: `http://localhost:5080/api/eurekabank` | Consola (Spectre.Console), escritorio (WPF), web (Razor Pages, puerto 5180) y móvil (.NET MAUI) |
+
+- Los dos servidores REST devuelven **exactamente el mismo JSON**, así que cualquier cliente REST (TI.1.3 o TI.1.4) funciona con cualquiera de los dos cambiando la URL en el inicio de sesión.
+- Todos los clientes comparten la identidad visual de EurekaBank y el usuario de prueba **MONSTER / Monster9**.
+
+### Verificación realizada
+| Prueba | Resultado |
+|---|---|
+| Contrato REST contra TI.1.4 y TI.1.3 (`pruebas/test_contrato_rest.py`) | 32/32 en cada servidor |
+| Contrato SOAP contra TI.1.2 (`pruebas/test_contrato_soap.py`) | 20/20 |
+| Clientes web .NET REST, .NET SOAP y Java (`pruebas/test_cliente_web.py`) | 11/11 en cada uno |
+| Consola, escritorio y móvil de cada TI | Recorrido completo (login, cuentas, movimientos, transferencia) con datos reales; móviles en emulador Android |
+| Scripts de base de datos desde cero (MySQL 8.4 y SQL Server 2022) | 17 tablas y datos idénticos en ambos motores |
+
 ## Antes de clonar o hacer pull (Windows)
 Las rutas de los proyectos pasan de 260 caracteres. Hay que activar las rutas largas una sola vez:
 ```bash

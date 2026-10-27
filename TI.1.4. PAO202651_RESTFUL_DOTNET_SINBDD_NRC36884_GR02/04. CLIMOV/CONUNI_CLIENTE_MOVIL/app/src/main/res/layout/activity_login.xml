@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_login"
+    android:padding="24dp">
+
+    <!-- Logo o Icono -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardLogo"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        app:cardCornerRadius="65dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#FFFFFF">
+        
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Logo"
+            android:src="@drawable/logo_login"
+            android:scaleType="centerCrop"
+            android:padding="8dp" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Título Superior -->
+    <TextView
+        android:id="@+id/tvTituloSuperior"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="🎓 MONSTER UNIVERSITY 🎓"
+        android:textColor="#006064"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.05" />
+
+    <!-- Subtítulo -->
+    <TextView
+        android:id="@+id/tvTituloLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTituloSuperior"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="Sistema de Conversión de Unidades"
+        android:textColor="#00695C"
+        android:textSize="13sp"
+        android:textAlignment="center"
+        android:alpha="0.8" />
+
+    <!-- Card con formulario -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTituloLogin"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="#F5F5F5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔐 Iniciar Sesión"
+                android:textColor="#00695C"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"
+                android:layout_gravity="center_horizontal" />
+
+            <!-- Campo Usuario -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:boxStrokeColor="#4DD0E1"
+                app:hintTextColor="#000000"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="👤 Usuario"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Campo Contraseña -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:endIconMode="password_toggle"
+                app:boxStrokeColor="#4DD0E1"
+                app:hintTextColor="#000000"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="🔒 Contraseña"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botón Login -->
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="INGRESAR"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:backgroundTint="#26A69A"
+                app:cornerRadius="28dp"
+                style="@style/Widget.MaterialComponents.Button" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Información adicional -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:text="Usuario: MONSTER\nContraseña: Monster9"
+        android:textAlignment="center"
+        android:textColor="#006064"
+        android:textSize="14sp"
+        android:alpha="0.8" />
+
+</RelativeLayout>

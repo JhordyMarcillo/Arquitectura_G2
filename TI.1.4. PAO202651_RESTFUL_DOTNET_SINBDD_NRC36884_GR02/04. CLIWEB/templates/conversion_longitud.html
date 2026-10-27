@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}Conversión de Longitud{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("{{ url_for('static', filename='imagenes/fondo6.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -2;
+    }
+    
+    .conversion-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+    }
+    
+    .conversion-page {
+        min-height: calc(100vh - 60px);
+        padding: 3rem 0;
+        position: relative;
+    }
+    
+    .conversion-content {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .conversion-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    
+    .page-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #764ba2;
+    }
+    
+    .page-header h2 {
+        font-weight: bold;
+        font-size: 1.8rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .icon-large {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .form-control, .form-select {
+        border-radius: 10px;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.25);
+    }
+    
+    .btn-convert {
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        border: none;
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: white;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .btn-convert:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(118, 75, 162, 0.4);
+    }
+    
+    .btn-back {
+        background: #6c757d;
+        color: white;
+        border-radius: 10px;
+        padding: 12px;
+        transition: all 0.3s;
+    }
+    
+    .btn-back:hover {
+        background: #5a6268;
+        color: white;
+    }
+    
+    .result-card {
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-top: 1rem;
+        animation: fadeIn 0.5s;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .result-card h4 {
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+    
+    .result-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 0.5rem;
+        background: rgba(255,255,255,0.2);
+        border-radius: 8px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="background-image"></div>
+<div class="conversion-overlay"></div>
+
+<div class="conversion-page">
+    <div class="conversion-content">
+        <div class="container">
+            <div class="conversion-container">
+                <div class="page-header">
+                    <div class="icon-large">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h2>Conversión de Longitud</h2>
+                    <p class="text-muted">Milímetro, Centímetro, Metro, Kilómetro, Milla, Pie</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-{% if resultado %}6{% else %}12{% endif %}">
+                        <form method="POST" action="{{ url_for('conversion_longitud') }}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="unidad_origen" class="form-label fw-bold">Unidad de origen</label>
+                            <select class="form-select" id="unidad_origen" name="unidad_origen" required>
+                                <option value="">Seleccione</option>
+                                {% for unidad in unidades %}
+                                <option value="{{ unidad }}" {% if unidad == origen %}selected{% endif %}>{{ unidad|capitalize }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="unidad_destino" class="form-label fw-bold">Unidad de destino</label>
+                            <select class="form-select" id="unidad_destino" name="unidad_destino" required>
+                                <option value="">Seleccione</option>
+                                {% for unidad in unidades %}
+                                <option value="{{ unidad }}" {% if unidad == destino %}selected{% endif %}>{{ unidad|capitalize }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="valor" class="form-label fw-bold">Valor a convertir</label>
+                        <input type="number" step="any" class="form-control" id="valor" name="valor" 
+                               value="{{ request.form.get('valor', '') }}" placeholder="Ingrese el valor" required>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <button type="submit" class="btn btn-convert w-100">
+                                <i class="fas fa-exchange-alt"></i> Convertir
+                            </button>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <a href="{{ url_for('menu') }}" class="btn btn-back w-100">
+                                <i class="fas fa-arrow-left"></i> Volver al Menú
+                            </a>
+                        </div>
+                    </div>
+                </form>
+                </div>
+                
+                {% if resultado %}
+                <div class="col-md-6">
+                    <div class="result-card">
+                        <h4><i class="fas fa-check-circle"></i> Resultado</h4>
+                        <div class="result-value">
+                            {{ resultado.resultado }}
+                        </div>
+                        <div class="text-center mt-2">
+                            <small>{{ resultado.valorOriginal }} {{ resultado.unidadOrigen }} = {{ resultado.valorConvertido }} {{ resultado.unidadDestino }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

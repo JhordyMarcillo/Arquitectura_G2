@@ -1,2 +1,40 @@
-/TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02/04. SERVIDOR/ConversionUnidades/nbproject/private/
-/TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02/04. SERVIDOR/WS_ConUnid_Java_SOAP/target/
+# Java / Maven
+target/
+*.class
+
+# NetBeans
+nbproject/private/
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+.gradle/
+local.properties
+captures/
+
+# Android / Gradle (solo en proyectos de Android)
+**/app/build/
+.externalNativeBuild/
+.cxx/
+
+# .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+TestResults/
+
+# Python (cliente web con Flask)
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Node
+node_modules/
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store

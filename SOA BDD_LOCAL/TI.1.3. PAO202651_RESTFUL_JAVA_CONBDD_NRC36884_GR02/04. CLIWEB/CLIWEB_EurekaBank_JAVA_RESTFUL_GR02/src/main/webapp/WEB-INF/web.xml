@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <display-name>CLIWEB_EurekaBank_JAVA_RESTFUL_GR02</display-name>
+
+    <!-- Servidor REST por defecto (se puede cambiar desde el login) -->
+    <context-param>
+        <param-name>urlServidor</param-name>
+        <param-value>http://localhost:8080/WS_EurekaBank_JAVA_RESTFUL_GR02/api/eurekabank</param-value>
+    </context-param>
+
+    <session-config>
+        <session-timeout>60</session-timeout>
+    </session-config>
+</web-app>

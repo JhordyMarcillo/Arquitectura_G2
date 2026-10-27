@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+
+{% block title %}Menú Principal - Conversiones{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    .background-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("{{ url_for('static', filename='imagenes/fondo6.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -2;
+    }
+    
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
+    }
+    
+    .menu-container {
+        min-height: calc(100vh - 60px);
+        padding: 3rem 0;
+        position: relative;
+    }
+    
+    .menu-content {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .page-title {
+        text-align: center;
+        color: white;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    
+    .page-title h1 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+    }
+    
+    .server-status {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .status-indicator {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+        animation: pulse 2s infinite;
+    }
+    
+    .status-conectado {
+        background-color: #28a745;
+    }
+    
+    .status-desconectado {
+        background-color: #dc3545;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+    }
+    
+    .conversion-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        color: inherit;
+    }
+    
+    .conversion-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+    
+    .conversion-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.8rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .conversion-card h3 {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+        font-size: 1.3rem;
+    }
+    
+    .conversion-card p {
+        color: #666;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    
+    .masa-card { border-left: 4px solid #667eea; }
+    .longitud-card { border-left: 4px solid #764ba2; }
+    .temperatura-card { border-left: 4px solid #f093fb; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="background-image"></div>
+<div class="menu-overlay"></div>
+
+<div class="menu-container">
+    <div class="menu-content">
+        <div class="container">
+            <div class="page-title">
+                <h1><i class="fas fa-calculator"></i> MENÚ DE CONVERSIONES</h1>
+                <p>Seleccione el tipo de conversión que desea realizar</p>
+            </div>
+            
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-8">
+                    <div class="server-status text-center">
+                        <h5>
+                            <span class="status-indicator status-conectado" id="statusIndicator"></span>
+                            Estado del Servidor: <span id="serverStatus">Verificando...</span>
+                        </h5>
+                        <small class="text-muted" id="serverUrl">{{ servidor }}</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                {% if 'MASA' in categorias %}
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ url_for('conversion_masa') }}" class="conversion-card masa-card">
+                        <div class="text-center">
+                            <div class="conversion-icon">
+                                <i class="fas fa-weight-hanging"></i>
+                            </div>
+                            <h3>MASA</h3>
+                            <p>mg | g | kg | lb</p>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if 'LONGITUD' in categorias %}
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ url_for('conversion_longitud') }}" class="conversion-card longitud-card">
+                        <div class="text-center">
+                            <div class="conversion-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <h3>LONGITUD</h3>
+                            <p>mm | cm | m | km | mi | ft</p>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if 'TEMPERATURA' in categorias %}
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <a href="{{ url_for('conversion_temperatura') }}" class="conversion-card temperatura-card">
+                        <div class="text-center">
+                            <div class="conversion-icon">
+                                <i class="fas fa-thermometer-half"></i>
+                            </div>
+                            <h3>TEMPERATURA</h3>
+                            <p>°C | °F | K</p>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Verificar conexión con el servidor al cargar la página
+    function verificarServidor() {
+        fetch("{{ url_for('verificar_servidor') }}")
+            .then(response => response.json())
+            .then(data => {
+                const statusElement = document.getElementById('serverStatus');
+                const indicatorElement = document.getElementById('statusIndicator');
+                const urlElement = document.getElementById('serverUrl');
+                
+                if (data.estado === 'conectado') {
+                    statusElement.textContent = 'Conectado ✓';
+                    statusElement.className = 'text-success fw-bold';
+                    indicatorElement.className = 'status-indicator status-conectado';
+                    // Actualizar la URL del servidor dinámicamente
+                    if (data.url) {
+                        urlElement.textContent = data.url;
+                    }
+                } else {
+                    statusElement.textContent = 'Desconectado ✗';
+                    statusElement.className = 'text-danger fw-bold';
+                    indicatorElement.className = 'status-indicator status-desconectado';
+                    // Mostrar la URL incluso si está desconectado
+                    if (data.url) {
+                        urlElement.textContent = data.url;
+                    }
+                }
+            })
+            .catch(error => {
+                document.getElementById('serverStatus').textContent = 'Error de conexión';
+                document.getElementById('serverStatus').className = 'text-danger fw-bold';
+                document.getElementById('statusIndicator').className = 'status-indicator status-desconectado';
+            });
+    }
+    
+    // Verificar al cargar
+    verificarServidor();
+    
+    // Verificar cada 10 segundos
+    setInterval(verificarServidor, 10000);
+</script>
+{% endblock %}

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_login">
+
+    <!-- 🎨 Barra Superior Profesional -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/gradient_login"
+        android:elevation="12dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- Botón Atrás con Card Circular -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardBtnAtras"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <ImageButton
+                android:id="@+id/btnAtras"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                android:scaleType="centerInside"
+                android:padding="14dp"
+                android:contentDescription="Volver" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Título entre los dos botones; se achica si no cabe -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/cardBtnAtras"
+            android:layout_toStartOf="@+id/cardBtnMenu"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="🔄 Conversión"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="14sp"
+            app:autoSizeMaxTextSize="22sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.02" />
+
+        <!-- Botón Menú con Estilo -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardBtnMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#26A69A">
+
+            <Button
+                android:id="@+id/btnVolver"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="📋 Menú"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:background="@android:color/transparent"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:textAllCaps="false" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <!-- 📜 Contenido Principal con Scroll -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:fillViewport="true"
+        android:paddingTop="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal">
+
+            <!-- 💳 Card Principal de Configuración -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="16dp"
+                app:cardBackgroundColor="#FFFFFF"
+                android:layout_marginBottom="24dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="32dp">
+
+                    <!-- 🎯 Sección: Tipo de Conversión -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="28dp">
+
+                        <!-- Encabezado con Ícono Circular -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="16dp">
+
+                            <!-- Ícono de Categoría con Card Circular -->
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                app:cardCornerRadius="22dp"
+                                app:cardElevation="6dp"
+                                app:cardBackgroundColor="#E8F5E9"
+                                android:layout_marginEnd="14dp">
+
+                                <ImageView
+                                    android:id="@+id/ivIconoCategoria"
+                                    android:layout_width="26dp"
+                                    android:layout_height="26dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_temperature" />
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Unidades"
+                                android:textColor="#000000"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.01" />
+                        </LinearLayout>
+
+                        <!-- Unidad de origen -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:text="Desde"
+                            android:textColor="#757575"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="6dp"
+                            app:cardBackgroundColor="#F8F9FA">
+
+                            <Spinner
+                                android:id="@+id/spinnerOrigen"
+                                android:layout_width="match_parent"
+                                android:layout_height="64dp"
+                                android:background="@android:color/transparent"
+                                android:paddingStart="18dp"
+                                android:paddingEnd="18dp" />
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Unidad de destino -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:layout_marginBottom="6dp"
+                            android:text="Hacia"
+                            android:textColor="#757575"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="6dp"
+                            app:cardBackgroundColor="#F8F9FA">
+
+                            <Spinner
+                                android:id="@+id/spinnerDestino"
+                                android:layout_width="match_parent"
+                                android:layout_height="64dp"
+                                android:background="@android:color/transparent"
+                                android:paddingStart="18dp"
+                                android:paddingEnd="18dp" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                    <!-- 💯 Sección: Valor a Convertir -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="28dp">
+
+                        <!-- Encabezado con Ícono Circular -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="16dp">
+
+                            <!-- Ícono de Valor con Card Circular -->
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                app:cardCornerRadius="22dp"
+                                app:cardElevation="6dp"
+                                app:cardBackgroundColor="#FFF3E0"
+                                android:layout_marginEnd="14dp">
+
+                                <ImageView
+                                    android:layout_width="26dp"
+                                    android:layout_height="26dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_result" />
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Valor a Convertir"
+                                android:textColor="#000000"
+                                android:textSize="19sp"
+                                android:textStyle="bold"
+                                android:letterSpacing="0.01" />
+                        </LinearLayout>
+
+                        <!-- Campo de Texto con Material Design -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="💯 Ingrese el valor (ej: 100)"
+                            app:hintTextColor="#757575"
+                            app:boxBackgroundColor="#F8F9FA"
+                            app:boxCornerRadiusBottomEnd="14dp"
+                            app:boxCornerRadiusBottomStart="14dp"
+                            app:boxCornerRadiusTopEnd="14dp"
+                            app:boxCornerRadiusTopStart="14dp"
+                            app:boxStrokeColor="#26A69A"
+                            app:boxStrokeWidth="2dp"
+                            app:startIconDrawable="@drawable/ic_result"
+                            app:startIconTint="#26A69A">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etValor"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                android:textColor="#000000"
+                                android:textColorHint="#757575"
+                                android:textSize="22sp"
+                                android:padding="22dp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <!-- 🎬 Botones de Acción -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2"
+                        android:gravity="center">
+
+                        <!-- Botón Convertir con Card -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="10dp"
+                            app:cardCornerRadius="32dp"
+                            app:cardElevation="8dp"
+                            app:cardBackgroundColor="#26A69A">
+
+                            <Button
+                                android:id="@+id/btnConvertir"
+                                android:layout_width="match_parent"
+                                android:layout_height="68dp"
+                                android:text="🔄 Convertir"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:background="@android:color/transparent"
+                                android:textAllCaps="false"
+                                android:letterSpacing="0.02" />
+                        </androidx.cardview.widget.CardView>
+
+                        <!-- Botón Limpiar con Card -->
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="10dp"
+                            app:cardCornerRadius="32dp"
+                            app:cardElevation="8dp"
+                            app:cardBackgroundColor="#FF9800">
+
+                            <Button
+                                android:id="@+id/btnLimpiar"
+                                android:layout_width="match_parent"
+                                android:layout_height="68dp"
+                                android:text="🧹 Limpiar"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="17sp"
+                                android:background="@android:color/transparent"
+                                android:textAllCaps="false"
+                                android:letterSpacing="0.02" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ✨ Card de Resultado con Diseño Premium -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="16dp"
+                app:cardBackgroundColor="#E8F5E9">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="32dp"
+                    android:gravity="center">
+
+                    <!-- Título del Resultado -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✨ Resultado de la Conversión ✨"
+                        android:textColor="#2E7D32"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.02"
+                        android:layout_marginBottom="24dp" />
+
+                    <!-- Ícono Grande con Card Circular -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        app:cardCornerRadius="55dp"
+                        app:cardElevation="10dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        android:layout_marginBottom="24dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconoResultado"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_result" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Card Interno del Resultado -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="18dp"
+                        app:cardElevation="8dp"
+                        app:cardBackgroundColor="#FFFFFF">
+
+                        <TextView
+                            android:id="@+id/tvResultado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="⏳ Esperando conversión..."
+                            android:textColor="#000000"
+                            android:textSize="19sp"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:padding="28dp"
+                            android:lineSpacingExtra="6dp" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ProgressBar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:indeterminateTint="#26A69A"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

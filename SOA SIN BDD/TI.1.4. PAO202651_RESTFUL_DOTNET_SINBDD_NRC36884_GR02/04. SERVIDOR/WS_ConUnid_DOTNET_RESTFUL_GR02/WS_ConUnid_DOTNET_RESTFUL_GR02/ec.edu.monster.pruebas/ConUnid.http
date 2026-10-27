@@ -1,0 +1,112 @@
+@Servidor = http://localhost:5014
+
+### CU-01 Autenticarse (guarda el token en la variable "login")
+# @name login
+POST {{Servidor}}/api/conversor/login
+Content-Type: application/json
+
+{
+  "usuario": "MONSTER",
+  "contrasenia": "Monster9"
+}
+
+### CU-01 Credenciales incorrectas (AUTH-003)
+POST {{Servidor}}/api/conversor/login
+Content-Type: application/json
+
+{
+  "usuario": "MONSTER",
+  "contrasenia": "incorrecta"
+}
+
+### CU-02 Consultar catalogo de categorias
+GET {{Servidor}}/api/conversor/categorias
+Authorization: Bearer {{login.response.body.$.token}}
+
+### CU-03 Consultar unidades por categoria
+GET {{Servidor}}/api/conversor/categorias/LONGITUD/unidades
+Authorization: Bearer {{login.response.body.$.token}}
+
+### CU-04 Realizar conversion (LONGITUD)
+POST {{Servidor}}/api/conversor/convertir
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+  "categoria": "LONGITUD",
+  "unidadOrigen": "KILOMETRO",
+  "unidadDestino": "METRO",
+  "valor": 5
+}
+
+### CU-04 Realizar conversion (MASA)
+POST {{Servidor}}/api/conversor/convertir
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+  "categoria": "MASA",
+  "unidadOrigen": "KILOGRAMO",
+  "unidadDestino": "LIBRA",
+  "valor": 1
+}
+
+### CU-04 Realizar conversion (TEMPERATURA)
+POST {{Servidor}}/api/conversor/convertir
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+  "categoria": "TEMPERATURA",
+  "unidadOrigen": "CELSIUS",
+  "unidadDestino": "FAHRENHEIT",
+  "valor": 100
+}
+
+### CU-08 Token invalido (AUTH-001)
+POST {{Servidor}}/api/conversor/convertir
+Content-Type: application/json
+Authorization: Bearer token-falso
+
+{
+  "categoria": "LONGITUD",
+  "unidadOrigen": "KILOMETRO",
+  "unidadDestino": "METRO",
+  "valor": 5
+}
+
+### CU-10 Unidad no soportada (UNIT-001)
+POST {{Servidor}}/api/conversor/convertir
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+  "categoria": "LONGITUD",
+  "unidadOrigen": "XYZ",
+  "unidadDestino": "METRO",
+  "valor": 5
+}
+
+### CU-11 Datos inconsistentes: categorias incompatibles (DATA-001)
+POST {{Servidor}}/api/conversor/convertir
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+  "categoria": "LONGITUD",
+  "unidadOrigen": "METRO",
+  "unidadDestino": "CELSIUS",
+  "valor": 5
+}
+
+### CU-11 Datos inconsistentes: valor no numerico (DATA-001)
+POST {{Servidor}}/api/conversor/convertir
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.$.token}}
+
+{
+  "categoria": "LONGITUD",
+  "unidadOrigen": "METRO",
+  "unidadDestino": "KILOMETRO",
+  "valor": "ABC"
+}

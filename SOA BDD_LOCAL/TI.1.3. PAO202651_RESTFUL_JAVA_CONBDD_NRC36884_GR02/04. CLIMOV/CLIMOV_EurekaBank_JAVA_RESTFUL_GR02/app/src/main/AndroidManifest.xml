@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- usesCleartextTraffic: los servidores del grupo se publican por HTTP en la red local -->
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_logo"
+        android:roundIcon="@drawable/ic_logo"
+        android:label="EurekaBank"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.EurekaBank"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".vistas.ActividadLogin"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".vistas.ActividadPrincipal"
+            android:windowSoftInputMode="adjustResize" />
+    </application>
+</manifest>

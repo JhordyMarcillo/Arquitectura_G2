@@ -17,6 +17,17 @@ Los cuatro TI usan **el mismo modelo EurekaBank (17 tablas)** con **los mismos d
 
 Los scripts de un mismo motor son idÃ©nticos en todos los TI. AsÃ­, un mismo cliente (por ejemplo, el usuario `cromero` o la cuenta `00100001`) obtiene el mismo resultado en cualquiera de los cuatro servidores.
 
+## Antes de clonar o hacer pull (Windows)
+Las rutas de los proyectos pasan de 260 caracteres. Hay que activar las rutas largas una sola vez:
+```bash
+git config --global core.longpaths true
+```
+Windows también debe tenerlas habilitadas: clave `HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled = 1`.
+
+## Contrato y pruebas
+- [`CONTRATO_EUREKABANK_GR02.md`](CONTRATO_EUREKABANK_GR02.md): operaciones, reglas de negocio, códigos de error y API REST/SOAP comunes a los cuatro servidores.
+- [`pruebas/test_contrato_rest.py`](pruebas/test_contrato_rest.py): verifica cualquier servidor REST contra el contrato con `python pruebas/test_contrato_rest.py <URL base>`.
+
 ## Configuración compartida (`.env`)
 Cada `03. BDD` incluye un `.env` **versionado a propósito**, con los mismos valores para todo el grupo:
 

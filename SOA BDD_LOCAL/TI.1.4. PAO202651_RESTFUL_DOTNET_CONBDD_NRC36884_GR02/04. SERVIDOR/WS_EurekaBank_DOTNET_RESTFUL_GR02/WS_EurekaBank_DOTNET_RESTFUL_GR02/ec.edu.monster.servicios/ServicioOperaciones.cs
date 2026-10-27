@@ -3,6 +3,7 @@ using ec.edu.monster.modelos.utilidades;
 using ec.edu.monster.modelos.utilidades.enums;
 using ec.edu.monster.modelos.utilidades.mapeadores;
 using Microsoft.Data.SqlClient;
+using System.Globalization;
 
 namespace ec.edu.monster.servicios
 {
@@ -128,8 +129,8 @@ namespace ec.edu.monster.servicios
         {
             if (cuenta.Saldo < importe + cuenta.CostoMovimiento)
             {
-                throw new ExcepcionNegocio(CodigosRespuesta.SALDO_INSUFICIENTE,
-                        $"Saldo insuficiente: disponible {cuenta.Saldo:0.00}, requerido {importe + cuenta.CostoMovimiento:0.00} (incluye costo de {cuenta.CostoMovimiento:0.00})",
+                throw new ExcepcionNegocio(CodigosRespuesta.SALDO_INSUFICIENTE, string.Create(CultureInfo.InvariantCulture,
+                        $"Saldo insuficiente: disponible {cuenta.Saldo:0.00}, requerido {importe + cuenta.CostoMovimiento:0.00} (incluye costo de {cuenta.CostoMovimiento:0.00})"),
                         StatusCodes.Status409Conflict);
             }
         }

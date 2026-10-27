@@ -13,6 +13,9 @@ namespace ec.edu.monster.servicios
 
         Task<RespuestaAutenticacion> IniciarSesionAsync(string usuario, string clave);
         void CerrarSesion();
+
+        /// <summary>Retoma una sesion guardada (por ejemplo, en la sesion web del navegador).</summary>
+        void RestaurarSesion(RespuestaAutenticacion sesion);
         Task<RespuestaCuentas> ListarCuentasAsync();
         Task<RespuestaMovimientos> ConsultarMovimientosAsync(string cuenta);
         Task<RespuestaOperacion> DepositarAsync(string cuenta, decimal importe);

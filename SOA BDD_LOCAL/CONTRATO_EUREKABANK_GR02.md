@@ -97,6 +97,7 @@ En SOAP, los errores de negocio **no lanzan fault**: se devuelven en la respuest
 
 | Usuario | Clave | Estado |
 |---|---|---|
+| `MONSTER` | `Monster9` | ACTIVO (usuario del GR02, empleado 0015) |
 | `cromero` | `chicho` | ACTIVO |
 | `lcastro` | `flaca` | ACTIVO |
 | `creyes` | `linda` | ANULADO (no puede entrar) |

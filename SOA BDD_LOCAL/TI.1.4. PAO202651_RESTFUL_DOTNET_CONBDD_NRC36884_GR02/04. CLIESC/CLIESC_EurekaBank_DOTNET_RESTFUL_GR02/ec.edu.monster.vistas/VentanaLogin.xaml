@@ -74,7 +74,7 @@
 
                 <Button x:Name="BotonIngresar" Content="Ingresar" Style="{StaticResource BotonPrimario}"
                         Margin="0,22,0,0" Click="BotonIngresar_Click" IsDefault="True" />
-                <TextBlock Text="Usuario de prueba: cromero / chicho" Style="{StaticResource TextoSubtitulo}"
+                <TextBlock Text="Usuario de prueba: MONSTER / Monster9" Style="{StaticResource TextoSubtitulo}"
                            HorizontalAlignment="Center" Margin="0,16,0,0" FontSize="12" />
             </StackPanel>
         </Border>

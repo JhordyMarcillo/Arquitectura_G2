@@ -31,6 +31,6 @@ El contenedor `init` ejecuta los scripts solo si la base no existe. Para empezar
 | Cadena .NET | `Server=localhost,1433;Database=EUREKABANK;User Id=eureka;Password=admin;TrustServerCertificate=True;` |
 
 ## Datos de prueba
-- **Usuarios** (tabla `Usuario`, clave guardada con `SHA1` en hexadecimal, igual que en MySQL): `cromero / chicho`, `lcastro / flaca`, `aramos / china`, `internet / internet`. `creyes` y `ediaz` están `ANULADO`.
+- **Usuarios** (tabla `Usuario`, clave guardada con `SHA1` en hexadecimal, igual que en MySQL): `MONSTER / Monster9` (usuario del GR02), `cromero / chicho`, `lcastro / flaca`, `aramos / china`, `internet / internet`. `creyes` y `ediaz` están `ANULADO`.
 - **Cuentas:** `00100001`, `00100002`, `00200001`, `00200002`, `00200003` (activas) y `00300001` (cancelada). Clave de cuenta: `123456`.
 - **Tipos de movimiento:** `003` depósito, `004` retiro, `008` / `009` transferencia (ingreso / salida), `010` cargo por movimiento.

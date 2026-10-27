@@ -34,6 +34,8 @@ namespace ec.edu.monster.servicios
 
         public void CerrarSesion() => Sesion = null;
 
+        public void RestaurarSesion(RespuestaAutenticacion sesion) => Sesion = sesion;
+
         public Task<RespuestaCuentas> ListarCuentasAsync() =>
                 EnviarAsync<RespuestaCuentas>(HttpMethod.Get, "/cuentas");
 

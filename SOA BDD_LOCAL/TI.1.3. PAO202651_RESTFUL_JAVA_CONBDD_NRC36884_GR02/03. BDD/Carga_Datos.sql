@@ -74,6 +74,8 @@ INSERT INTO Empleado VALUES ('0011', 'Carrasco', 'Vargas', 'Pedro Hugo', 'Chicla
 INSERT INTO Empleado VALUES ('0012', 'Mendoza', 'Jara', 'Monica Valeria', 'Lima', 'Calle Las Toronjas 450');
 INSERT INTO Empleado VALUES ('0013', 'Espinoza', 'Melgar', 'Victor Eduardo', 'Huancayo', 'Av. San Martin 6734 Dpto. 508 ');
 INSERT INTO Empleado VALUES ('0014', 'Hidalgo', 'Sandoval', 'Milagros Leonor', 'Chiclayo', 'Av. Luis Gonzales 1230');
+-- Empleado del GR02 para las pruebas de los clientes
+INSERT INTO Empleado VALUES ('0015', 'Monster', 'GR02', 'Usuario', 'Quito', 'ESPE - Sangolqui');
 
 -- Tabla: Usuario
 
@@ -156,6 +158,14 @@ INSERT INTO Permiso VALUES ('0007', 3, 'ACTIVO');
 INSERT INTO Permiso VALUES ('0007', 4, 'CANCELADO');
 INSERT INTO Permiso VALUES ('0007', 5, 'ACTIVO');
 INSERT INTO Permiso VALUES ('0007', 6, 'CANCELADO');
+
+-- Usuario: 0015 (MONSTER, GR02)
+INSERT INTO Permiso VALUES ('0015', 1, 'ACTIVO');
+INSERT INTO Permiso VALUES ('0015', 2, 'ACTIVO');
+INSERT INTO Permiso VALUES ('0015', 3, 'ACTIVO');
+INSERT INTO Permiso VALUES ('0015', 4, 'ACTIVO');
+INSERT INTO Permiso VALUES ('0015', 5, 'ACTIVO');
+INSERT INTO Permiso VALUES ('0015', 6, 'ACTIVO');
 
 -- Tabla: Asignado
 
@@ -259,7 +269,7 @@ INSERT INTO Movimiento VALUES ('00300001',03,'20080125','0002','002',7000,null);
 INSERT INTO Contador VALUES ('Moneda', 2, 2);
 INSERT INTO Contador VALUES ('TipoMovimiento', 10, 3);
 INSERT INTO Contador VALUES ('Sucursal', 7, 3);
-INSERT INTO Contador VALUES ('Empleado', 14, 4);
+INSERT INTO Contador VALUES ('Empleado', 15, 4);
 INSERT INTO Contador VALUES ('Asignado', 11, 6);
 INSERT INTO Contador VALUES ('Parametro', 2, 3);
 INSERT INTO Contador VALUES ('Cliente', 20, 5);

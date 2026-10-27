@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="marino">#0F172A</color>
+    <color name="marino_claro">#1E293B</color>
+    <color name="primario">#1D4ED8</color>
+    <color name="primario_oscuro">#1E3A8A</color>
+    <color name="primario_suave">#DBEAFE</color>
+    <color name="fondo">#F1F5F9</color>
+    <color name="borde">#E2E8F0</color>
+    <color name="borde_campo">#CBD5E1</color>
+    <color name="texto">#0F172A</color>
+    <color name="texto_secundario">#64748B</color>
+    <color name="texto_claro">#CBD5E1</color>
+    <color name="azul_claro">#BFDBFE</color>
+    <color name="verde">#059669</color>
+    <color name="verde_suave">#D1FAE5</color>
+    <color name="rojo">#DC2626</color>
+    <color name="rojo_suave">#FEE2E2</color>
+    <color name="rojo_texto">#991B1B</color>
+    <color name="ambar_suave">#FEF3C7</color>
+    <color name="ambar_texto">#92400E</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="gris_inactivo">#94A3B8</color>
+</resources>

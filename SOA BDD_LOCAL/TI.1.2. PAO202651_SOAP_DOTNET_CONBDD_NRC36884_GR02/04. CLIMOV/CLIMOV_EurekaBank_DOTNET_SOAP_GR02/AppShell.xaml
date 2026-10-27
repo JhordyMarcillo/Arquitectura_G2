@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="ec.edu.monster.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:vistas="clr-namespace:ec.edu.monster.vistas"
+       Shell.NavBarIsVisible="False"
+       Shell.TabBarBackgroundColor="White"
+       Shell.TabBarForegroundColor="{StaticResource ColorPrimario}"
+       Shell.TabBarTitleColor="{StaticResource ColorPrimario}"
+       Shell.TabBarUnselectedColor="#94A3B8">
+    <TabBar>
+        <ShellContent Title="Cuentas" Icon="icono_cuentas.png" Route="cuentas"
+                      ContentTemplate="{DataTemplate vistas:PaginaCuentas}" />
+        <ShellContent Title="Movimientos" Icon="icono_historial.png" Route="movimientos"
+                      ContentTemplate="{DataTemplate vistas:PaginaMovimientos}" />
+        <ShellContent Title="Operar" Icon="icono_operar.png" Route="operar"
+                      ContentTemplate="{DataTemplate vistas:PaginaOperaciones}" />
+    </TabBar>
+</Shell>

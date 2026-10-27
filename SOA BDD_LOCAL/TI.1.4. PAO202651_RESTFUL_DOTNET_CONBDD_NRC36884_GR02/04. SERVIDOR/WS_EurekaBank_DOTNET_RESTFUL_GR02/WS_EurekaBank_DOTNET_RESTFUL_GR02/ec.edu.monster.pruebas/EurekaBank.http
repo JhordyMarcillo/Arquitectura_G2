@@ -1,0 +1,51 @@
+### Pruebas manuales del servidor REST EurekaBank (Visual Studio o la extension REST Client de VS Code)
+@base = http://localhost:5080/api/eurekabank
+
+### 1. Iniciar sesion (copiar el token de la respuesta en @token)
+# @name login
+POST {{base}}/login
+Content-Type: application/json
+
+{ "usuario": "cromero", "clave": "chicho" }
+
+###
+@token = {{login.response.body.token}}
+
+### 2. Listar cuentas
+GET {{base}}/cuentas
+Authorization: Bearer {{token}}
+
+### 3. Movimientos de una cuenta
+GET {{base}}/cuentas/00100001/movimientos
+Authorization: Bearer {{token}}
+
+### 4. Deposito
+POST {{base}}/depositos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "cuenta": "00100001", "importe": 100.00 }
+
+### 5. Retiro
+POST {{base}}/retiros
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "cuenta": "00100001", "clave": "123456", "importe": 50.00 }
+
+### 6. Transferencia
+POST {{base}}/transferencias
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "cuentaOrigen": "00100001", "claveOrigen": "123456", "cuentaDestino": "00200001", "importe": 25.00 }
+
+### 7. Error: saldo insuficiente (CTA-004)
+POST {{base}}/retiros
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ "cuenta": "00100001", "clave": "123456", "importe": 999999.00 }
+
+### 8. Error: sin token (AUTH-001)
+GET {{base}}/cuentas

@@ -1,0 +1,82 @@
+<Window x:Class="ec.edu.monster.vistas.VentanaLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EurekaBank - Iniciar sesion" Width="980" Height="620" MinWidth="860" MinHeight="560"
+        WindowStartupLocation="CenterScreen" Background="{StaticResource Fondo}"
+        FontFamily="{StaticResource Fuente}" Icon="{StaticResource Logo}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="6*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Panel institucional -->
+        <Border Background="{StaticResource DegradadoPanel}">
+            <Grid Margin="48">
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                    <Image Source="{StaticResource Logo}" Width="44" Height="44" />
+                    <StackPanel Margin="14,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="EurekaBank" Foreground="White" FontSize="22" FontWeight="SemiBold" />
+                        <TextBlock Text="Sistema de cuentas de ahorro" Foreground="{StaticResource TextoClaro}" FontSize="12" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Banca segura,&#x0a;siempre a la mano." Foreground="White" FontSize="34"
+                               FontWeight="SemiBold" LineHeight="44" />
+                    <TextBlock Margin="0,18,0,0" Foreground="{StaticResource TextoClaro}" FontSize="14" TextWrapping="Wrap"
+                               Text="Consulte cuentas y movimientos, y registre depositos, retiros y transferencias en tiempo real." />
+                    <StackPanel Margin="0,28,0,0">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" Foreground="#93C5FD" VerticalAlignment="Center" />
+                            <TextBlock Text="  Operaciones transaccionales con validacion de saldo" Foreground="{StaticResource TextoClaro}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" Foreground="#93C5FD" VerticalAlignment="Center" />
+                            <TextBlock Text="  Sesiones protegidas con token" Foreground="{StaticResource TextoClaro}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" Foreground="#93C5FD" VerticalAlignment="Center" />
+                            <TextBlock Text="  Compatible con cualquier servidor del grupo" Foreground="{StaticResource TextoClaro}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock VerticalAlignment="Bottom" Foreground="#64748B" FontSize="12">
+                    <Run Text="{x:Static local:App.SUBTITULO}" xmlns:local="clr-namespace:ec.edu.monster" />
+                </TextBlock>
+            </Grid>
+        </Border>
+
+        <!-- Formulario -->
+        <Border Grid.Column="1" Style="{StaticResource Tarjeta}" Width="400" VerticalAlignment="Center" Padding="36">
+            <StackPanel>
+                <TextBlock Text="Bienvenido" Style="{StaticResource TextoTitulo}" />
+                <TextBlock Text="Ingrese con su usuario de empleado." Style="{StaticResource TextoSubtitulo}" Margin="0,4,0,26" />
+
+                <TextBlock Text="USUARIO" Style="{StaticResource TextoEtiqueta}" />
+                <TextBox x:Name="CampoUsuario" Margin="0,0,0,16" />
+
+                <TextBlock Text="CLAVE" Style="{StaticResource TextoEtiqueta}" />
+                <PasswordBox x:Name="CampoClave" Margin="0,0,0,16" />
+
+                <TextBlock Text="SERVIDOR" Style="{StaticResource TextoEtiqueta}" />
+                <TextBox x:Name="CampoServidor" FontSize="12" Foreground="{StaticResource TextoSecundario}" />
+
+                <Border x:Name="PanelError" Background="{StaticResource RojoSuave}" CornerRadius="8" Padding="12,10"
+                        Margin="0,18,0,0" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE783;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource Rojo}"
+                                   VerticalAlignment="Top" Margin="0,2,10,0" />
+                        <TextBlock x:Name="TextoError" Foreground="#991B1B" TextWrapping="Wrap" MaxWidth="290" />
+                    </StackPanel>
+                </Border>
+
+                <Button x:Name="BotonIngresar" Content="Ingresar" Style="{StaticResource BotonPrimario}"
+                        Margin="0,22,0,0" Click="BotonIngresar_Click" IsDefault="True" />
+                <TextBlock Text="Usuario de prueba: MONSTER / Monster9" Style="{StaticResource TextoSubtitulo}"
+                           HorizontalAlignment="Center" Margin="0,16,0,0" FontSize="12" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

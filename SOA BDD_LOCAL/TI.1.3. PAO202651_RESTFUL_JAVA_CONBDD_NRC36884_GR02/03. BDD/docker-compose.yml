@@ -1,0 +1,30 @@
+# EurekaBank - MySQL 8.4 local (TI Java del GR02)
+# Uso (el archivo .env con las claves del grupo ya esta incluido):
+#       docker compose up -d
+# Los scripts se ejecutan solo la primera vez (volumen vacio).
+# Para recrear la base desde cero:  docker compose down -v && docker compose up -d
+
+name: eurekabank-mysql
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: eurekabank-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Define MYSQL_ROOT_PASSWORD en el archivo .env}
+      TZ: America/Guayaquil
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - ./Crea_BD.sql:/docker-entrypoint-initdb.d/01_Crea_BD.sql:ro
+      - ./Carga_Datos.sql:/docker-entrypoint-initdb.d/02_Carga_Datos.sql:ro
+      - eurekabank-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -ueureka -padmin"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+
+volumes:
+  eurekabank-mysql-data:

@@ -1,0 +1,77 @@
+@page
+@model PaginaMovimientos
+@{
+    ViewData["Title"] = "Movimientos";
+    ViewData["Subtitulo"] = "Historial de movimientos y saldo de una cuenta.";
+}
+<form method="get" class="tarjeta busqueda" style="margin-bottom:24px">
+    <div class="campo">
+        <label for="cuenta">Numero de cuenta</label>
+        <input id="cuenta" name="cuenta" value="@Model.Cuenta" maxlength="8" pattern="\d{8}" title="8 digitos" autofocus required />
+    </div>
+    <button type="submit" class="boton primario">@Iconos.Svg("buscar") Consultar</button>
+</form>
+
+@if (Model.MensajeError is not null)
+{
+    <div class="alerta error">@Iconos.Svg("alerta") <span>@Model.MensajeError</span></div>
+}
+
+@if (Model.Datos is null)
+{
+    <div class="tarjeta vacio">
+        @Iconos.Svg("historial")
+        <strong>Ingrese una cuenta para ver su historial</strong>
+        Por ejemplo 00100001 o 00200001.
+    </div>
+}
+else
+{
+    var d = Model.Datos;
+    var ingresos = d.Movimientos.Where(m => m.EsIngreso).ToList();
+    var salidas = d.Movimientos.Where(m => !m.EsIngreso).ToList();
+    <div class="rejilla-3">
+        <div class="tarjeta indicador destacada">
+            <div>
+                <div class="etiqueta">Cuenta @d.Cuenta · @d.Moneda</div>
+                <div class="valor">@Formato.Dinero(d.Moneda, d.Saldo)</div>
+                <div class="nota">Saldo disponible</div>
+            </div>
+        </div>
+        <div class="tarjeta indicador">
+            <div>
+                <div class="etiqueta">Total ingresos</div>
+                <div class="valor ingreso">@Formato.Dinero(d.Moneda, ingresos.Sum(m => m.Importe))</div>
+                <div class="nota">@ingresos.Count movimientos</div>
+            </div>
+        </div>
+        <div class="tarjeta indicador">
+            <div>
+                <div class="etiqueta">Total salidas</div>
+                <div class="valor salida">@Formato.Dinero(d.Moneda, salidas.Sum(m => m.Importe))</div>
+                <div class="nota">@salidas.Count movimientos</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tarjeta sin-relleno">
+        <table class="datos">
+            <thead>
+                <tr><th>N°</th><th>FECHA</th><th>DESCRIPCION</th><th>REFERENCIA</th><th class="derecha">IMPORTE</th></tr>
+            </thead>
+            <tbody>
+            @foreach (DatosMovimiento m in d.Movimientos.OrderByDescending(m => m.Numero))
+            {
+                string clase = m.EsIngreso ? "ingreso" : "salida";
+                <tr>
+                    <td class="secundario">@m.Numero</td>
+                    <td>@m.Fecha</td>
+                    <td><span class="flecha @clase">@Iconos.Svg(m.EsIngreso ? "arriba" : "abajo")</span>@m.Descripcion</td>
+                    <td class="secundario">@(m.CuentaReferencia ?? "-")</td>
+                    <td class="derecha @clase">@(m.EsIngreso ? "+" : "-") @Formato.Dinero(d.Moneda, m.Importe)</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

@@ -146,7 +146,8 @@ namespace ec.edu.monster.vistas
             // Lleva la vista al comprobante
             if (Content is ScrollView desplazamiento)
             {
-                await desplazamiento.ScrollToAsync(PanelComprobante, ScrollToPosition.Start, true);
+                await Task.Delay(100);
+                await desplazamiento.ScrollToAsync(0, desplazamiento.ContentSize.Height, true);
             }
         }
     }

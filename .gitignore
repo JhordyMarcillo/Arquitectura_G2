@@ -2,8 +2,16 @@
 target/
 *.class
 
-# NetBeans
+# NetBeans (proyectos Maven y Ant)
 nbproject/private/
+**/nbproject/build/
+dist/
+!**/wwwroot/**/dist/
+*.war
+*.ear
+
+# Payara / GlassFish
+*.log
 
 # IntelliJ / Android Studio
 .idea/
@@ -16,6 +24,8 @@ captures/
 **/app/build/
 .externalNativeBuild/
 .cxx/
+*.apk
+*.aab
 
 # .NET / Visual Studio
 bin/
@@ -33,6 +43,20 @@ venv/
 
 # Node
 node_modules/
+
+# Credenciales locales (SOA BDD_LOCAL/03. BDD): se versiona solo la plantilla
+.env
+!.env.example
+
+# Bases de datos locales (SQL Server LocalDB, SQLite, volcados)
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# Temporales de Office y PowerDesigner
+~$*
+*.bak
 
 # Sistema operativo
 Thumbs.db

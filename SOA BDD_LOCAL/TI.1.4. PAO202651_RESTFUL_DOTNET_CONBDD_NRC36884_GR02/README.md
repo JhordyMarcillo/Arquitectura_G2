@@ -6,7 +6,7 @@
 | TecnologÃ­a | RESTful, C# (.NET) |
 | Base de datos | SQL Server, local (ver `03. BDD`) |
 | Responsable | German Caceres |
-| Estado | En desarrollo |
+| Estado | Completo: servidor y 4 clientes probados contra la base |
 
 ## Contenido
 | Carpeta | QuÃ© contiene |

@@ -6,7 +6,7 @@
 | TecnologÃ­a | RESTful, Java |
 | Base de datos | MySQL, local (ver `03. BDD`) |
 | Responsable | German Caceres |
-| Estado | En desarrollo |
+| Estado | Completo: servidor y 4 clientes probados contra la base |
 
 ## Contenido
 | Carpeta | QuÃ© contiene |

@@ -1,0 +1,8 @@
+target/
+build/
+.gradle/
+.idea/
+*.iml
+local.properties
+dependency-reduced-pom.xml
+nbproject/private/

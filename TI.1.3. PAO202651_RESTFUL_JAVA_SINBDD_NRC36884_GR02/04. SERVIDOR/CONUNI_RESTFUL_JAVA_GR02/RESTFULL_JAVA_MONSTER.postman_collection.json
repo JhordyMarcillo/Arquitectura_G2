@@ -1,0 +1,1239 @@
+{
+	"info": {
+		"_postman_id": "monster-restful-api",
+		"name": "RESTFUL JAVA MONSTER",
+		"description": "Colección completa de endpoints para el servicio RESTful de conversiones Monsters Inc.\n\nPowered by Sullivan's Energy\n\nIncluye todos los endpoints de conversión:\n- Temperatura (Celsius, Fahrenheit, Kelvin)\n- Longitud (Metros, Pies, Pulgadas, Kilómetros, Millas)\n- Peso/Masa (Kilogramos, Libras, Gramos, Onzas)\n- Volumen (Litros, Galones, Mililitros, Onzas fluidas)\n- Área (Metros cuadrados, Pies cuadrados, Hectáreas, Acres)\n- Endpoint genérico para conversiones personalizadas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "🏠 Información del Servicio",
+			"item": [
+				{
+					"name": "Información Base",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								""
+							]
+						},
+						"description": "Obtiene información básica del servicio RESTful"
+					},
+					"response": []
+				},
+				{
+					"name": "Info del Servicio",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"info"
+							]
+						},
+						"description": "Obtiene información detallada del servicio"
+					},
+					"response": []
+				},
+				{
+					"name": "Lista de Endpoints",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/endpoints",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"endpoints"
+							]
+						},
+						"description": "Obtiene la lista completa de endpoints disponibles en formato JSON"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para obtener información sobre el servicio"
+		},
+		{
+			"name": "🌡️ Conversiones de Temperatura",
+			"item": [
+				{
+					"name": "Celsius a Fahrenheit",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/temperatura/celsius-to-fahrenheit?celsius={{celsius_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"temperatura",
+								"celsius-to-fahrenheit"
+							],
+							"query": [
+								{
+									"key": "celsius",
+									"value": "{{celsius_value}}",
+									"description": "Valor en Celsius a convertir"
+								}
+							]
+						},
+						"description": "Convierte temperatura de Celsius a Fahrenheit"
+					},
+					"response": []
+				},
+				{
+					"name": "Fahrenheit a Celsius",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/temperatura/fahrenheit-to-celsius?fahrenheit={{fahrenheit_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"temperatura",
+								"fahrenheit-to-celsius"
+							],
+							"query": [
+								{
+									"key": "fahrenheit",
+									"value": "{{fahrenheit_value}}",
+									"description": "Valor en Fahrenheit a convertir"
+								}
+							]
+						},
+						"description": "Convierte temperatura de Fahrenheit a Celsius"
+					},
+					"response": []
+				},
+				{
+					"name": "Celsius a Kelvin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/temperatura/celsius-to-kelvin?celsius={{celsius_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"temperatura",
+								"celsius-to-kelvin"
+							],
+							"query": [
+								{
+									"key": "celsius",
+									"value": "{{celsius_value}}",
+									"description": "Valor en Celsius a convertir"
+								}
+							]
+						},
+						"description": "Convierte temperatura de Celsius a Kelvin"
+					},
+					"response": []
+				},
+				{
+					"name": "Kelvin a Celsius",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/temperatura/kelvin-to-celsius?kelvin={{kelvin_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"temperatura",
+								"kelvin-to-celsius"
+							],
+							"query": [
+								{
+									"key": "kelvin",
+									"value": "{{kelvin_value}}",
+									"description": "Valor en Kelvin a convertir"
+								}
+							]
+						},
+						"description": "Convierte temperatura de Kelvin a Celsius"
+					},
+					"response": []
+				},
+				{
+					"name": "Fahrenheit a Kelvin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/temperatura/fahrenheit-to-kelvin?fahrenheit={{fahrenheit_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"temperatura",
+								"fahrenheit-to-kelvin"
+							],
+							"query": [
+								{
+									"key": "fahrenheit",
+									"value": "{{fahrenheit_value}}",
+									"description": "Valor en Fahrenheit a convertir"
+								}
+							]
+						},
+						"description": "Convierte temperatura de Fahrenheit a Kelvin"
+					},
+					"response": []
+				},
+				{
+					"name": "Kelvin a Fahrenheit",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/temperatura/kelvin-to-fahrenheit?kelvin={{kelvin_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"temperatura",
+								"kelvin-to-fahrenheit"
+							],
+							"query": [
+								{
+									"key": "kelvin",
+									"value": "{{kelvin_value}}",
+									"description": "Valor en Kelvin a convertir"
+								}
+							]
+						},
+						"description": "Convierte temperatura de Kelvin a Fahrenheit"
+					},
+					"response": []
+				}
+			],
+			"description": "Conversiones entre Celsius, Fahrenheit y Kelvin"
+		},
+		{
+			"name": "📏 Conversiones de Longitud",
+			"item": [
+				{
+					"name": "Metros a Pies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/longitud/metros-to-pies?metros={{metros_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"longitud",
+								"metros-to-pies"
+							],
+							"query": [
+								{
+									"key": "metros",
+									"value": "{{metros_value}}",
+									"description": "Valor en metros a convertir"
+								}
+							]
+						},
+						"description": "Convierte metros a pies"
+					},
+					"response": []
+				},
+				{
+					"name": "Pies a Metros",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/longitud/pies-to-metros?pies={{pies_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"longitud",
+								"pies-to-metros"
+							],
+							"query": [
+								{
+									"key": "pies",
+									"value": "{{pies_value}}",
+									"description": "Valor en pies a convertir"
+								}
+							]
+						},
+						"description": "Convierte pies a metros"
+					},
+					"response": []
+				},
+				{
+					"name": "Metros a Pulgadas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/longitud/metros-to-pulgadas?metros={{metros_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"longitud",
+								"metros-to-pulgadas"
+							],
+							"query": [
+								{
+									"key": "metros",
+									"value": "{{metros_value}}",
+									"description": "Valor en metros a convertir"
+								}
+							]
+						},
+						"description": "Convierte metros a pulgadas"
+					},
+					"response": []
+				},
+				{
+					"name": "Pulgadas a Metros",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/longitud/pulgadas-to-metros?pulgadas={{pulgadas_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"longitud",
+								"pulgadas-to-metros"
+							],
+							"query": [
+								{
+									"key": "pulgadas",
+									"value": "{{pulgadas_value}}",
+									"description": "Valor en pulgadas a convertir"
+								}
+							]
+						},
+						"description": "Convierte pulgadas a metros"
+					},
+					"response": []
+				},
+				{
+					"name": "Kilómetros a Millas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/longitud/kilometros-to-millas?kilometros={{kilometros_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"longitud",
+								"kilometros-to-millas"
+							],
+							"query": [
+								{
+									"key": "kilometros",
+									"value": "{{kilometros_value}}",
+									"description": "Valor en kilómetros a convertir"
+								}
+							]
+						},
+						"description": "Convierte kilómetros a millas"
+					},
+					"response": []
+				},
+				{
+					"name": "Millas a Kilómetros",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/longitud/millas-to-kilometros?millas={{millas_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"longitud",
+								"millas-to-kilometros"
+							],
+							"query": [
+								{
+									"key": "millas",
+									"value": "{{millas_value}}",
+									"description": "Valor en millas a convertir"
+								}
+							]
+						},
+						"description": "Convierte millas a kilómetros"
+					},
+					"response": []
+				}
+			],
+			"description": "Conversiones entre metros, pies, pulgadas, kilómetros y millas"
+		},
+		{
+			"name": "⚖️ Conversiones de Peso/Masa",
+			"item": [
+				{
+					"name": "Kilogramos a Libras",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/peso/kilogramos-to-libras?kilogramos={{kilogramos_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"peso",
+								"kilogramos-to-libras"
+							],
+							"query": [
+								{
+									"key": "kilogramos",
+									"value": "{{kilogramos_value}}",
+									"description": "Valor en kilogramos a convertir"
+								}
+							]
+						},
+						"description": "Convierte kilogramos a libras"
+					},
+					"response": []
+				},
+				{
+					"name": "Libras a Kilogramos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/peso/libras-to-kilogramos?libras={{libras_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"peso",
+								"libras-to-kilogramos"
+							],
+							"query": [
+								{
+									"key": "libras",
+									"value": "{{libras_value}}",
+									"description": "Valor en libras a convertir"
+								}
+							]
+						},
+						"description": "Convierte libras a kilogramos"
+					},
+					"response": []
+				},
+				{
+					"name": "Gramos a Onzas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/peso/gramos-to-onzas?gramos={{gramos_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"peso",
+								"gramos-to-onzas"
+							],
+							"query": [
+								{
+									"key": "gramos",
+									"value": "{{gramos_value}}",
+									"description": "Valor en gramos a convertir"
+								}
+							]
+						},
+						"description": "Convierte gramos a onzas"
+					},
+					"response": []
+				},
+				{
+					"name": "Onzas a Gramos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/peso/onzas-to-gramos?onzas={{onzas_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"peso",
+								"onzas-to-gramos"
+							],
+							"query": [
+								{
+									"key": "onzas",
+									"value": "{{onzas_value}}",
+									"description": "Valor en onzas a convertir"
+								}
+							]
+						},
+						"description": "Convierte onzas a gramos"
+					},
+					"response": []
+				}
+			],
+			"description": "Conversiones entre kilogramos, libras, gramos y onzas"
+		},
+		{
+			"name": "🧪 Conversiones de Volumen",
+			"item": [
+				{
+					"name": "Litros a Galones",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/volumen/litros-to-galones?litros={{litros_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"volumen",
+								"litros-to-galones"
+							],
+							"query": [
+								{
+									"key": "litros",
+									"value": "{{litros_value}}",
+									"description": "Valor en litros a convertir"
+								}
+							]
+						},
+						"description": "Convierte litros a galones"
+					},
+					"response": []
+				},
+				{
+					"name": "Galones a Litros",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/volumen/galones-to-litros?galones={{galones_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"volumen",
+								"galones-to-litros"
+							],
+							"query": [
+								{
+									"key": "galones",
+									"value": "{{galones_value}}",
+									"description": "Valor en galones a convertir"
+								}
+							]
+						},
+						"description": "Convierte galones a litros"
+					},
+					"response": []
+				},
+				{
+					"name": "Mililitros a Onzas Fluidas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/volumen/mililitros-to-onzas-fluidas?mililitros={{mililitros_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"volumen",
+								"mililitros-to-onzas-fluidas"
+							],
+							"query": [
+								{
+									"key": "mililitros",
+									"value": "{{mililitros_value}}",
+									"description": "Valor en mililitros a convertir"
+								}
+							]
+						},
+						"description": "Convierte mililitros a onzas fluidas"
+					},
+					"response": []
+				},
+				{
+					"name": "Onzas Fluidas a Mililitros",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/volumen/onzas-fluidas-to-mililitros?onzasFluidas={{onzasFluidas_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"volumen",
+								"onzas-fluidas-to-mililitros"
+							],
+							"query": [
+								{
+									"key": "onzasFluidas",
+									"value": "{{onzasFluidas_value}}",
+									"description": "Valor en onzas fluidas a convertir"
+								}
+							]
+						},
+						"description": "Convierte onzas fluidas a mililitros"
+					},
+					"response": []
+				}
+			],
+			"description": "Conversiones entre litros, galones, mililitros y onzas fluidas"
+		},
+		{
+			"name": "📐 Conversiones de Área",
+			"item": [
+				{
+					"name": "Metros Cuadrados a Pies Cuadrados",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/area/metros-cuadrados-to-pies-cuadrados?metrosCuadrados={{metrosCuadrados_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"area",
+								"metros-cuadrados-to-pies-cuadrados"
+							],
+							"query": [
+								{
+									"key": "metrosCuadrados",
+									"value": "{{metrosCuadrados_value}}",
+									"description": "Valor en metros cuadrados a convertir"
+								}
+							]
+						},
+						"description": "Convierte metros cuadrados a pies cuadrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Pies Cuadrados a Metros Cuadrados",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/area/pies-cuadrados-to-metros-cuadrados?piesCuadrados={{piesCuadrados_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"area",
+								"pies-cuadrados-to-metros-cuadrados"
+							],
+							"query": [
+								{
+									"key": "piesCuadrados",
+									"value": "{{piesCuadrados_value}}",
+									"description": "Valor en pies cuadrados a convertir"
+								}
+							]
+						},
+						"description": "Convierte pies cuadrados a metros cuadrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Hectáreas a Acres",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/area/hectareas-to-acres?hectareas={{hectareas_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"area",
+								"hectareas-to-acres"
+							],
+							"query": [
+								{
+									"key": "hectareas",
+									"value": "{{hectareas_value}}",
+									"description": "Valor en hectáreas a convertir"
+								}
+							]
+						},
+						"description": "Convierte hectáreas a acres"
+					},
+					"response": []
+				},
+				{
+					"name": "Acres a Hectáreas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/area/acres-to-hectareas?acres={{acres_value}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"area",
+								"acres-to-hectareas"
+							],
+							"query": [
+								{
+									"key": "acres",
+									"value": "{{acres_value}}",
+									"description": "Valor en acres a convertir"
+								}
+							]
+						},
+						"description": "Convierte acres a hectáreas"
+					},
+					"response": []
+				}
+			],
+			"description": "Conversiones entre metros cuadrados, pies cuadrados, hectáreas y acres"
+		},
+		{
+			"name": "🔄 Conversión Genérica",
+			"item": [
+				{
+					"name": "Conversión Personalizada",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"valor\": {{valor}},\n  \"unidadOrigen\": \"{{unidadOrigen}}\",\n  \"unidadDestino\": \"{{unidadDestino}}\",\n  \"categoria\": \"{{categoria}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/conversion/convertir",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"convertir"
+							]
+						},
+						"description": "Endpoint genérico para conversiones personalizadas usando JSON"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoint genérico para conversiones personalizadas"
+		},
+		{
+			"name": "🧪 Ejemplos de Prueba",
+			"item": [
+				{
+					"name": "Ejemplo: 100°C a Fahrenheit",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"temperatura",
+								"celsius-to-fahrenheit"
+							],
+							"query": [
+								{
+									"key": "celsius",
+									"value": "100"
+								}
+							]
+						},
+						"description": "Ejemplo: Convierte 100°C a Fahrenheit (debería dar 212°F)"
+					},
+					"response": []
+				},
+				{
+					"name": "Ejemplo: 1 metro a pies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/conversion/longitud/metros-to-pies?metros=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"longitud",
+								"metros-to-pies"
+							],
+							"query": [
+								{
+									"key": "metros",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Ejemplo: Convierte 1 metro a pies (debería dar ~3.28 pies)"
+					},
+					"response": []
+				},
+				{
+					"name": "Ejemplo: Conversión genérica",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"valor\": 25,\n  \"unidadOrigen\": \"celsius\",\n  \"unidadDestino\": \"fahrenheit\",\n  \"categoria\": \"temperatura\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/conversion/convertir",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"conversion",
+								"convertir"
+							]
+						},
+						"description": "Ejemplo: Convierte 25°C a Fahrenheit usando el endpoint genérico"
+					},
+					"response": []
+				}
+			],
+			"description": "Ejemplos listos para probar con valores específicos"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080/CONUNI_RESTFUL_JAVA_GR09",
+			"type": "string",
+			"description": "URL base del servicio RESTful"
+		},
+		{
+			"key": "celsius_value",
+			"value": "100",
+			"type": "string",
+			"description": "Valor en Celsius para pruebas"
+		},
+		{
+			"key": "fahrenheit_value",
+			"value": "212",
+			"type": "string",
+			"description": "Valor en Fahrenheit para pruebas"
+		},
+		{
+			"key": "kelvin_value",
+			"value": "273.15",
+			"type": "string",
+			"description": "Valor en Kelvin para pruebas"
+		},
+		{
+			"key": "metros_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en metros para pruebas"
+		},
+		{
+			"key": "pies_value",
+			"value": "3.28084",
+			"type": "string",
+			"description": "Valor en pies para pruebas"
+		},
+		{
+			"key": "pulgadas_value",
+			"value": "39.3701",
+			"type": "string",
+			"description": "Valor en pulgadas para pruebas"
+		},
+		{
+			"key": "kilometros_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en kilómetros para pruebas"
+		},
+		{
+			"key": "millas_value",
+			"value": "0.621371",
+			"type": "string",
+			"description": "Valor en millas para pruebas"
+		},
+		{
+			"key": "kilogramos_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en kilogramos para pruebas"
+		},
+		{
+			"key": "libras_value",
+			"value": "2.20462",
+			"type": "string",
+			"description": "Valor en libras para pruebas"
+		},
+		{
+			"key": "gramos_value",
+			"value": "28.3495",
+			"type": "string",
+			"description": "Valor en gramos para pruebas"
+		},
+		{
+			"key": "onzas_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en onzas para pruebas"
+		},
+		{
+			"key": "litros_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en litros para pruebas"
+		},
+		{
+			"key": "galones_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en galones para pruebas"
+		},
+		{
+			"key": "mililitros_value",
+			"value": "29.5735",
+			"type": "string",
+			"description": "Valor en mililitros para pruebas"
+		},
+		{
+			"key": "onzasFluidas_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en onzas fluidas para pruebas"
+		},
+		{
+			"key": "metrosCuadrados_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en metros cuadrados para pruebas"
+		},
+		{
+			"key": "piesCuadrados_value",
+			"value": "10.7639",
+			"type": "string",
+			"description": "Valor en pies cuadrados para pruebas"
+		},
+		{
+			"key": "hectareas_value",
+			"value": "1",
+			"type": "string",
+			"description": "Valor en hectáreas para pruebas"
+		},
+		{
+			"key": "acres_value",
+			"value": "2.47105",
+			"type": "string",
+			"description": "Valor en acres para pruebas"
+		},
+		{
+			"key": "valor",
+			"value": "100",
+			"type": "string",
+			"description": "Valor genérico para conversiones"
+		},
+		{
+			"key": "unidadOrigen",
+			"value": "celsius",
+			"type": "string",
+			"description": "Unidad de origen para conversión genérica"
+		},
+		{
+			"key": "unidadDestino",
+			"value": "fahrenheit",
+			"type": "string",
+			"description": "Unidad de destino para conversión genérica"
+		},
+		{
+			"key": "categoria",
+			"value": "temperatura",
+			"type": "string",
+			"description": "Categoría para conversión genérica"
+		}
+	]
+}
+
+

@@ -94,7 +94,7 @@ mvn compile exec:java -Dexec.mainClass=ec.edu.monster.Main -Dws.base.url=http://
    dotnet run --urls http://localhost:5240
    ```
 3. Abrir `http://localhost:5240`.
-4. Dejar el entorno **JavaSoap**, escribir `MONSTER9` en usuario y contraseña (¡el formulario trae `Monster` por defecto, no sirve!) → *Iniciar sesión*.
+4. Dejar el entorno **JavaSoap**; el formulario ya trae `MONSTER9` / `MONSTER9` → *Iniciar sesión*.
 5. Elegir tipo, valor y unidades → *Convertir*. El resultado y el historial aparecen a la derecha.
 
 ### C) Cliente Escritorio / Móvil (`04. CLIMOV`, MAUI)
@@ -105,6 +105,18 @@ mvn compile exec:java -Dexec.mainClass=ec.edu.monster.Main -Dws.base.url=http://
    - **Windows Machine** → corre como app de escritorio (`IP_WEB_SERVICES` puede ser `localhost` si el servidor está en la misma PC).
    - **Android Emulator / dispositivo físico** → `IP_WEB_SERVICES` **debe ser la IP del servidor** (no `localhost`; en el celular `localhost` es el propio celular). El celular debe estar en la misma Wi-Fi.
 4. Ejecutar (F5), entorno **JavaSoap**, login `MONSTER9` / `MONSTER9` y convertir.
+
+**Por terminal** (desde `04. CLIMOV/SistemaConversorUI.Maui`):
+```bash
+dotnet build -t:Run -f net10.0-windows10.0.19041.0
+```
+Para Android, la ruta del proyecto es demasiado larga para `aapt2` (error `APT2261 … failed to open file`). Compilar desde una unidad corta que apunte a la carpeta del TI (así se conserva la ruta a `04. CLIESC`):
+```powershell
+subst X: "<ruta>\TI.1.1. PAO202651_SOAP_JAVA_SINBDD_NRC36884_GR02"
+cd "X:\04. CLIMOV\SistemaConversorUI.Maui"
+dotnet build -f net10.0-android
+subst X: /D
+```
 
 ---
 
@@ -117,5 +129,7 @@ mvn compile exec:java -Dexec.mainClass=ec.edu.monster.Main -Dws.base.url=http://
 | "Credenciales incorrectas" | Usuario y contraseña deben ser exactamente `MONSTER9` (mayúsculas) |
 | "Token invalido o sesion expirada" | El token dura 5 min: cerrar sesión e iniciar de nuevo |
 | "Unidad ... no soportada" | Usar solo las unidades listadas arriba (ya no existen YARDA, ONZA, TONELADA, RANKINE) |
+| MAUI en Windows: "the following workloads must be installed: ios" | Ya corregido: iOS y Mac Catalyst solo se incluyen al compilar en macOS |
+| MAUI Android: `APT2261 ... failed to open file` | Ruta mayor a 260 caracteres: compilar desde una unidad `subst` (ver sección C) |
 | Web: error de rutas al abrir la solución | Verificar que las carpetas se llamen `04. CLIESC`, `04. CLIWEB`, `04. CLIMOV` (con espacio) |
 | Pantalla "Cambiar contraseña" da error | Es normal: este servidor no tiene esa operación |

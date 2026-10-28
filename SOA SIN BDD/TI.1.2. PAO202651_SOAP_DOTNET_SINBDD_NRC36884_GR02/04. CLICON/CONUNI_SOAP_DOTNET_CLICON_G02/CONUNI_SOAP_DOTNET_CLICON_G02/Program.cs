@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using ec.edu.monster.servicios;
 
-namespace CONUNI_SOAP_DOTNET_CLICON_G09
+namespace CONUNI_SOAP_DOTNET_CLICON_G02
 {
     class Program
     {

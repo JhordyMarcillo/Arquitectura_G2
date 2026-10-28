@@ -28,7 +28,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // Middleware para capturar excepciones de SOAP
-app.UseMiddleware<CONUNI_SOAP_DOTNET_CLIWEB_G09.Middleware.ExceptionHandlingMiddleware>();
+app.UseMiddleware<CONUNI_SOAP_DOTNET_CLIWEB_G02.Middleware.ExceptionHandlingMiddleware>();
 
 app.UseSession();
 

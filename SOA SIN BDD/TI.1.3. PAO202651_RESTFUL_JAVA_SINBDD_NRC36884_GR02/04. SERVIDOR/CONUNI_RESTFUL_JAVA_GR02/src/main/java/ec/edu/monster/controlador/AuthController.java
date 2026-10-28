@@ -18,7 +18,7 @@ import jakarta.ws.rs.core.Response;
  * <p>Body JSON: {@code { "usuario": "...", "contrasena": "..." }}</p>
  * <p>Respuesta: {@code { "autenticado": true/false, "mensaje": "..." }}</p>
  *
- * @author GR09 - Arquitectura de Software
+ * @author GR02 - Arquitectura de Software
  */
 @Path("/auth")
 @Produces(MediaType.APPLICATION_JSON)

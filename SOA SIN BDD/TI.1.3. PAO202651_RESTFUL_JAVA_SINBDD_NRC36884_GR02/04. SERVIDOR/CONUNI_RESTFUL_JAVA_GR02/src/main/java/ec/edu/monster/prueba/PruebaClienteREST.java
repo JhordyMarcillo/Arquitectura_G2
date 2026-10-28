@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.Response;
  */
 public class PruebaClienteREST {
     
-    private static final String BASE_URL = "http://localhost:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion";
+    private static final String BASE_URL = "http://localhost:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion";
     private Client client;
     private WebTarget target;
     

@@ -8,9 +8,9 @@ $ErrorActionPreference = 'Stop'
 $proyecto = Join-Path $PSScriptRoot 'CONUNI_SOAP_DOTNET_GR02'
 $msbuild  = 'C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe'
 $iis      = 'C:\Program Files\IIS Express\iisexpress.exe'
-$esAdmin  = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole('Administrator')
+$esAdmin  = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
-& $msbuild (Join-Path $proyecto 'CONUNI_SOAP_DOTNET_GR09.csproj') -t:Build -p:Configuration=Debug -v:minimal -nologo
+& $msbuild (Join-Path $proyecto 'CONUNI_SOAP_DOTNET_GR02.csproj') -t:Build -p:Configuration=Debug -v:minimal -nologo
 if ($LASTEXITCODE -ne 0) { throw 'Fallo la compilacion del servidor' }
 
 if ($esAdmin) {

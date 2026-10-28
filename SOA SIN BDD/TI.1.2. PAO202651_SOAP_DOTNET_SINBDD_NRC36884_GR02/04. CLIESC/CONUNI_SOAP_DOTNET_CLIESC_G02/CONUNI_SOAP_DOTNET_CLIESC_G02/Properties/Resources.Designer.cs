@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09.Properties
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace CONUNI_SOAP_DOTNET_CLIESC_G09.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CONUNI_SOAP_DOTNET_CLIESC_G09.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CONUNI_SOAP_DOTNET_CLIESC_G02.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

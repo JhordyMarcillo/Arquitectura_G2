@@ -1,6 +1,6 @@
 using System;
 
-namespace CONUNI_SOAP_DOTNET_GR09
+namespace CONUNI_SOAP_DOTNET_GR02
 {
     /// <summary>
     /// Servicio de autenticación centralizado en el servidor.

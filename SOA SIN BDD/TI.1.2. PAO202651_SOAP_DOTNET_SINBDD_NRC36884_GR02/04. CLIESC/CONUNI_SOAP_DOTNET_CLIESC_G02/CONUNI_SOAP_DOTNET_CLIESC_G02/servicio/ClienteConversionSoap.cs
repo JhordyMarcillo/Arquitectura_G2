@@ -1,9 +1,9 @@
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using CONUNI_SOAP_DOTNET_CLIESC_G09.modelo;
+using CONUNI_SOAP_DOTNET_CLIESC_G02.modelo;
 
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09.servicio
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02.servicio
 {
     /// <summary>
     /// Cliente para consumir el servicio SOAP WCF de conversión

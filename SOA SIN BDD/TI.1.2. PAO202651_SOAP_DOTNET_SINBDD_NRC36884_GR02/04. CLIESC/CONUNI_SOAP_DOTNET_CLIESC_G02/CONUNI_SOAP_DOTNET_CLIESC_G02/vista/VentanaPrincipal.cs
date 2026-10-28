@@ -1,9 +1,9 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using CONUNI_SOAP_DOTNET_CLIESC_G09.servicio;
+using CONUNI_SOAP_DOTNET_CLIESC_G02.servicio;
 
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09.vista
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02.vista
 {
     /// <summary>
     /// Ventana principal profesional de Monsters Inc. Converter

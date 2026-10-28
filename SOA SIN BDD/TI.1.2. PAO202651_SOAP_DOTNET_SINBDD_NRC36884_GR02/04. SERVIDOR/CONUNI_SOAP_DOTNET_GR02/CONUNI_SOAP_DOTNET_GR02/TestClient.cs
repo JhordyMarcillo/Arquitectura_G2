@@ -1,8 +1,8 @@
 using System;
 using System.ServiceModel;
-using CONUNI_SOAP_DOTNET_GR09;
+using CONUNI_SOAP_DOTNET_GR02;
 
-namespace CONUNI_SOAP_DOTNET_GR09
+namespace CONUNI_SOAP_DOTNET_GR02
 {
     /// <summary>
     /// Cliente de prueba para el servicio WSConversion

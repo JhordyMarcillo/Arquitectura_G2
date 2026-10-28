@@ -12,6 +12,6 @@ public class ApplicationConfig extends Application {
     
     // Esta clase configura automáticamente JAX-RS
     // El path "/api" será el prefijo para todos los endpoints
-    // Ejemplo: http://localhost:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/...
+    // Ejemplo: http://localhost:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/...
     
 }

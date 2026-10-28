@@ -25,8 +25,8 @@
     <serviceHostingEnvironment aspNetCompatibilityEnabled="true" multipleSiteBindingsEnabled="true" />
     
     <services>
-      <service name="CONUNI_SOAP_DOTNET_GR09.WSConversion" behaviorConfiguration="">
-        <endpoint address="" binding="basicHttpBinding" contract="CONUNI_SOAP_DOTNET_GR09.IWSConversion" />
+      <service name="CONUNI_SOAP_DOTNET_GR02.WSConversion" behaviorConfiguration="">
+        <endpoint address="" binding="basicHttpBinding" contract="CONUNI_SOAP_DOTNET_GR02.IWSConversion" />
         <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
       </service>
     </services>

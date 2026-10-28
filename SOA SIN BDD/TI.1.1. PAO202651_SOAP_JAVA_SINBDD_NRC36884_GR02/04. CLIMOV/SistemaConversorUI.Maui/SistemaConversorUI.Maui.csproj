@@ -3,7 +3,8 @@
     <PropertyGroup>
         <TargetFrameworks>net10.0-android</TargetFrameworks>
 		<RootNamespace>ec.edu.monster</RootNamespace>
-        <TargetFrameworks Condition="!$([MSBuild]::IsOSPlatform('linux'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+        <!-- iOS y Mac Catalyst solo se compilan en macOS (en Windows exigirían el workload de iOS) -->
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('osx'))">$(TargetFrameworks);net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net10.0-windows10.0.19041.0</TargetFrameworks>
 
         <!-- Note for MacCatalyst:

@@ -9,7 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
-    // Base path: /CONUNI_RESTFUL_JAVA_GR09/api/conversion
+    // Base path: /CONUNI_RESTFUL_JAVA_GR02/api/conversion
     @POST("/CONUNI_RESTFUL_JAVA_GR02/api/conversion/convertir")
     suspend fun convertir(@Body body: ConversionRequest): Response<ConversionResponse>
 

@@ -1,8 +1,8 @@
 using System.Drawing;
-using CONUNI_SOAP_DOTNET_CLIESC_G09.modelo;
-using CONUNI_SOAP_DOTNET_CLIESC_G09.servicio;
+using CONUNI_SOAP_DOTNET_CLIESC_G02.modelo;
+using CONUNI_SOAP_DOTNET_CLIESC_G02.servicio;
 
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09.vista
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02.vista
 {
     /// <summary>Panel de conversiones de longitud (Monsters Inc.).</summary>
     public class PanelLongitud : PanelConversionBase

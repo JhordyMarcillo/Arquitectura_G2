@@ -5,6 +5,11 @@
         public MainPage()
         {
             InitializeComponent();
+            blazorWebView.RootComponents.Add(new Microsoft.AspNetCore.Components.WebView.Maui.RootComponent
+            {
+                Selector = "#app",
+                ComponentType = typeof(Components.Routes)
+            });
         }
     }
 }

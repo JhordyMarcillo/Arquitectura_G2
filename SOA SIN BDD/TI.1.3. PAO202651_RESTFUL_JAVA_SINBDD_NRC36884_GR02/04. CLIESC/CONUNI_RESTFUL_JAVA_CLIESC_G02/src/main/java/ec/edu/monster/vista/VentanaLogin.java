@@ -164,7 +164,7 @@ public class VentanaLogin extends JFrame {
     }
 
     private void configurarVentana() {
-        setTitle("Monsters Inc. Conversiones pepas");
+        setTitle("Monsters Inc. Conversiones");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 800);
         setLocationRelativeTo(null);

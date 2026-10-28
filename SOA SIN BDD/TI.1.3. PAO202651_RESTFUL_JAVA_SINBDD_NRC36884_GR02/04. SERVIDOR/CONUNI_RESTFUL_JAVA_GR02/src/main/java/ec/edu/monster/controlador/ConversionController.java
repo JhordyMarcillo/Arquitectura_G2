@@ -95,7 +95,7 @@ public class ConversionController {
             String endpoints = "{\n" +
                 "  \"servicio\": \"Monsters Inc. Converter RESTful API\",\n" +
                 "  \"version\": \"1.0\",\n" +
-                "  \"baseUrl\": \"http://localhost:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion\",\n" +
+                "  \"baseUrl\": \"http://localhost:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion\",\n" +
                 "  \"endpoints\": {\n" +
                 "    \"temperatura\": [\n" +
                 "      \"GET /temperatura/celsius-to-fahrenheit?celsius=100\",\n" +

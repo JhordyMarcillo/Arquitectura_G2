@@ -61,7 +61,7 @@ Colección completa de Postman para probar el servicio RESTful de conversiones *
 
 | Variable | Valor | Descripción |
 |----------|-------|-------------|
-| `base_url` | `http://localhost:8080/CONUNI_RESTFUL_JAVA_GR09` | URL base del servicio |
+| `base_url` | `http://localhost:8080/CONUNI_RESTFUL_JAVA_GR02` | URL base del servicio |
 | `celsius_value` | `100` | Valor en Celsius para pruebas |
 | `fahrenheit_value` | `212` | Valor en Fahrenheit para pruebas |
 | `metros_value` | `1` | Valor en metros para pruebas |

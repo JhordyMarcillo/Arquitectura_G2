@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using CONUNI_SOAP_DOTNET_CLIESC_G09.vista;
+using CONUNI_SOAP_DOTNET_CLIESC_G02.vista;
 
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02
 {
     internal static class Program
     {

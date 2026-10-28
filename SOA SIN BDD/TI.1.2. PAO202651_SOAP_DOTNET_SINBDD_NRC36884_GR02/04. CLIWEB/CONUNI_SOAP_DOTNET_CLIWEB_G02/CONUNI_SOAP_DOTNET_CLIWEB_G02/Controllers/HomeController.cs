@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using CONUNI_SOAP_DOTNET_CLIWEB_G09.Models;
+using CONUNI_SOAP_DOTNET_CLIWEB_G02.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CONUNI_SOAP_DOTNET_CLIWEB_G09.Controllers
+namespace CONUNI_SOAP_DOTNET_CLIWEB_G02.Controllers
 {
     public class HomeController : Controller
     {

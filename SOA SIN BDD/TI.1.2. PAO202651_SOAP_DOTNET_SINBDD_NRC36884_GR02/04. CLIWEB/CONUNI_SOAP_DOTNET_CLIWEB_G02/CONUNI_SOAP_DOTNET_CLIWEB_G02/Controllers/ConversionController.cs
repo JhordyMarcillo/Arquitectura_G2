@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using CONUNI_SOAP_DOTNET_CLIWEB_G09.servicio;
-using CONUNI_SOAP_DOTNET_CLIWEB_G09.Models;
+using CONUNI_SOAP_DOTNET_CLIWEB_G02.servicio;
+using CONUNI_SOAP_DOTNET_CLIWEB_G02.Models;
 
-namespace CONUNI_SOAP_DOTNET_CLIWEB_G09.Controllers
+namespace CONUNI_SOAP_DOTNET_CLIWEB_G02.Controllers
 {
     public class ConversionController : Controller
     {

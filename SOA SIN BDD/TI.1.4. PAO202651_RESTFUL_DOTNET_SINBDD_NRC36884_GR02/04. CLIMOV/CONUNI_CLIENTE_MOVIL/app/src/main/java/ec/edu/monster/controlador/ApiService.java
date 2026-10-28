@@ -30,7 +30,7 @@ public class ApiService {
     // Para Universidad: http://10.40.17.85:5014/api/conversor
     // Para red compartida: http://192.168.137.1:5014/api/conversor
 
-    private static final String BASE_URL = "http://192.168.137.1:5014/api/conversor"; // Red compartida
+    private static final String BASE_URL = "http://192.168.0.90:5014/api/conversor"; // Red compartida
     private static final int TIMEOUT = 5000; // 5 segundos
 
     // Codigos que devuelve el servidor (tabla 4 de 04. SERVIDOR/CONTRATO_GR02.md)

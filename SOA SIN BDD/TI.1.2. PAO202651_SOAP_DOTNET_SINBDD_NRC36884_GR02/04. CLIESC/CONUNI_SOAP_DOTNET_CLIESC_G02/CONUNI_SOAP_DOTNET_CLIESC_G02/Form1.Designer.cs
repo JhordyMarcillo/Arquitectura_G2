@@ -1,4 +1,4 @@
-﻿namespace CONUNI_SOAP_DOTNET_CLIESC_G09
+﻿namespace CONUNI_SOAP_DOTNET_CLIESC_G02
 {
     partial class Form1
     {

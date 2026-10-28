@@ -23,6 +23,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CONUNI_SOAP_JAVA_CLIMOV_G09"
+rootProject.name = "CONUNI_SOAP_JAVA_CLIMOV_G02"
 include(":app")
  

@@ -250,4 +250,5 @@ def verificar_servidor():
 if __name__ == '__main__':
     import urllib3
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-    app.run(debug=True, port=3000)
+    # 0.0.0.0: accesible desde otros equipos y el celular de la misma red
+    app.run(debug=True, host='0.0.0.0', port=3000)

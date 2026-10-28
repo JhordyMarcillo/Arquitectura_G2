@@ -1,8 +1,8 @@
 using System;
 using System.ServiceModel;
-using CONUNI_SOAP_DOTNET_CLIWEB_G09.Models;
+using CONUNI_SOAP_DOTNET_CLIWEB_G02.Models;
 
-namespace CONUNI_SOAP_DOTNET_CLIWEB_G09.servicio
+namespace CONUNI_SOAP_DOTNET_CLIWEB_G02.servicio
 {
     [ServiceContract(Name = "WSConversion", Namespace = "http://tempuri.org/")]
     public interface IWSConversionClient

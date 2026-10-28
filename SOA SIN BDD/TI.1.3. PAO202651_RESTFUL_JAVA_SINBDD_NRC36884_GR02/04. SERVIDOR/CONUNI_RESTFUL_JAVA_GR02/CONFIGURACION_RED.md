@@ -15,18 +15,18 @@ ipconfig
 
 #### **🏠 Desarrollo Local:**
 ```
-http://localhost:8080/CONUNI_RESTFUL_JAVA_GR09
+http://localhost:8080/CONUNI_RESTFUL_JAVA_GR02
 ```
 
 #### **🏢 Red Local (otras computadoras):**
 ```
-http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09
+http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02
 ```
 *Cambia `192.168.1.100` por tu IP real*
 
 #### **🌍 Internet (si tienes IP pública):**
 ```
-http://TU_IP_PUBLICA:8080/CONUNI_RESTFUL_JAVA_GR09
+http://TU_IP_PUBLICA:8080/CONUNI_RESTFUL_JAVA_GR02
 ```
 
 ## 📱 **CLIENTES QUE PUEDEN CONSUMIR EL SERVICIO:**
@@ -34,7 +34,7 @@ http://TU_IP_PUBLICA:8080/CONUNI_RESTFUL_JAVA_GR09
 ### **💻 Aplicaciones Web (JavaScript/HTML):**
 ```javascript
 // Ejemplo de consumo desde una página web
-fetch('http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100')
+fetch('http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100')
   .then(response => response.json())
   .then(data => console.log(data));
 ```
@@ -42,25 +42,25 @@ fetch('http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/tempera
 ### **📱 Aplicaciones Móviles (Android/iOS):**
 ```java
 // Android - Java
-String url = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100";
+String url = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100";
 // Usar OkHttp, Retrofit, etc.
 ```
 
 ```swift
 // iOS - Swift
-let url = URL(string: "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100")!
+let url = URL(string: "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100")!
 // Usar URLSession, Alamofire, etc.
 ```
 
 ### **🖥️ Aplicaciones Desktop (Java, C#, Python, etc.):**
 ```java
 // Java Desktop
-String url = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100";
+String url = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100";
 ```
 
 ```csharp
 // C# Desktop
-string url = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100";
+string url = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/temperatura/celsius-to-fahrenheit?celsius=100";
 ```
 
 ## 🔧 **CONFIGURACIÓN DE PAYARA:**
@@ -92,8 +92,8 @@ netstat -an | findstr :8080
 ## 📋 **NOMBRES DEL SERVICIO:**
 
 ### **✅ El nombre del servicio SÍ importa:**
-- **Nombre del proyecto**: `CONUNI_RESTFUL_JAVA_GR09`
-- **URL completa**: `http://IP:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/...`
+- **Nombre del proyecto**: `CONUNI_RESTFUL_JAVA_GR02`
+- **URL completa**: `http://IP:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/...`
 - **Los clientes DEBEN usar el nombre completo**
 
 ### **🔄 Si cambias el nombre del proyecto:**
@@ -106,7 +106,7 @@ netstat -an | findstr :8080
 ### **📱 App Móvil Android:**
 ```java
 public class ConversionService {
-    private static final String BASE_URL = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion";
+    private static final String BASE_URL = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion";
     
     public void convertCelsiusToFahrenheit(double celsius, Callback callback) {
         String url = BASE_URL + "/temperatura/celsius-to-fahrenheit?celsius=" + celsius;
@@ -119,7 +119,7 @@ public class ConversionService {
 ```javascript
 class MonsterConverter {
     constructor(baseUrl) {
-        this.baseUrl = baseUrl || 'http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion';
+        this.baseUrl = baseUrl || 'http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion';
     }
     
     async celsiusToFahrenheit(celsius) {
@@ -132,7 +132,7 @@ class MonsterConverter {
 ### **🖥️ App Desktop (Java Swing):**
 ```java
 public class ConversionClient {
-    private static final String BASE_URL = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion";
+    private static final String BASE_URL = "http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion";
     
     public ConversionResponse convertTemperature(double value, String from, String to) {
         String url = BASE_URL + "/temperatura/" + from + "-to-" + to + "?" + from + "=" + value;
@@ -149,12 +149,12 @@ public class ConversionClient {
 ping 192.168.1.100
 
 # Probar el servicio
-curl http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/info
+curl http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/info
 ```
 
 ### **2. Desde móvil (misma red WiFi):**
 - Abrir navegador
-- Ir a: `http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR09/api/conversion/info`
+- Ir a: `http://192.168.1.100:8080/CONUNI_RESTFUL_JAVA_GR02/api/conversion/info`
 
 ## ⚠️ **CONSIDERACIONES IMPORTANTES:**
 

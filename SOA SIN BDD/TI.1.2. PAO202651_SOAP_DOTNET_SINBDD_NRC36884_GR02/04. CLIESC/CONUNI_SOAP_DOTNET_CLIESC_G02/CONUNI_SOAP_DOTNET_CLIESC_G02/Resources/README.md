@@ -27,7 +27,7 @@ El código de `VentanaLogin.cs` buscará automáticamente el logo en esta ubicac
 ## 📂 Estructura esperada:
 
 ```
-CONUNI_SOAP_DOTNET_CLIESC_G09/
+CONUNI_SOAP_DOTNET_CLIESC_G02/
   └── Resources/
       └── logo.png  ← **PON TU LOGO AQUÍ**
 ```

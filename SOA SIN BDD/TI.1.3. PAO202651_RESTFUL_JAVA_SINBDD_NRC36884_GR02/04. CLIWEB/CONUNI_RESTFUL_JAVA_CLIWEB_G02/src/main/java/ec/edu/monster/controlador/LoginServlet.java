@@ -20,7 +20,7 @@ import java.nio.charset.StandardCharsets;
  * {@code POST /api/auth/login}.
  * </p>
  *
- * @author GR09 - Arquitectura de Software
+ * @author GR02 - Arquitectura de Software
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {

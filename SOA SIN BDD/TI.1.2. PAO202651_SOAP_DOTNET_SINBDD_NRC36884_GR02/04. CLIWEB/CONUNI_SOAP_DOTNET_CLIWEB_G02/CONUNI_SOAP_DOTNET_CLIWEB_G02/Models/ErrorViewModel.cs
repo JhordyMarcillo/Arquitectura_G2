@@ -1,4 +1,4 @@
-namespace CONUNI_SOAP_DOTNET_CLIWEB_G09.Models
+namespace CONUNI_SOAP_DOTNET_CLIWEB_G02.Models
 {
     public class ErrorViewModel
     {

@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CONUNI_SOAP_DOTNET_CLIESC_G09.modelo;
+using CONUNI_SOAP_DOTNET_CLIESC_G02.modelo;
 
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09.vista
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02.vista
 {
     /// <summary>
     /// Panel base de conversión (tema Monsters Inc.): tarjeta centrada con valor, tipo de conversión,

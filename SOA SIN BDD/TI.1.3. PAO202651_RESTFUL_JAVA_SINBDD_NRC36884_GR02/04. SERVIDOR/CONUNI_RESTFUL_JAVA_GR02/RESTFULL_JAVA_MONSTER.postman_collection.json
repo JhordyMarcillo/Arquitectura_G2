@@ -1085,7 +1085,7 @@
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:8080/CONUNI_RESTFUL_JAVA_GR09",
+			"value": "http://localhost:8080/CONUNI_RESTFUL_JAVA_GR02",
 			"type": "string",
 			"description": "URL base del servicio RESTful"
 		},

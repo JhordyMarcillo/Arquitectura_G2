@@ -9,8 +9,8 @@
 ### 1. Abrir el Proyecto del Servidor
 
 1. Abre Visual Studio
-2. Abre el archivo de solución: `CONUNI_SOAP_DOTNET_GR09.sln`
-   - Ubicación: `TI1.2 SOAP_DOTNET_SINBDD_GR09\01.SERVIDOR\CONUNI_SOAP_DOTNET_GR09\`
+2. Abre el archivo de solución: `CONUNI_SOAP_DOTNET_GR02.sln`
+   - Ubicación: `TI1.2 SOAP_DOTNET_SINBDD_GR02\01.SERVIDOR\CONUNI_SOAP_DOTNET_GR02\`
 
 ### 2. Configurar el Proyecto
 
@@ -37,7 +37,7 @@ Si ves estos archivos XML, el servidor está funcionando correctamente.
 
 **Solo después** de que el servidor SOAP esté ejecutándose:
 
-1. Abre el proyecto cliente web: `CONUNI_SOAP_DOTNET_CLIWEB_G09`
+1. Abre el proyecto cliente web: `CONUNI_SOAP_DOTNET_CLIWEB_G02`
 2. Ejecuta el proyecto cliente (F5)
 3. Ingresa con usuario: `MONSTER` y contraseña: `MONSTER9`
 4. Ahora deberías poder hacer conversiones sin errores
@@ -65,7 +65,7 @@ Si ves estos archivos XML, el servidor está funcionando correctamente.
 
 Si necesitas cambiar el puerto:
 
-1. **En el servidor** (`CONUNI_SOAP_DOTNET_GR09.csproj`):
+1. **En el servidor** (`CONUNI_SOAP_DOTNET_GR02.csproj`):
    - Busca `<DevelopmentServerPort>62533</DevelopmentServerPort>`
    - Cambia el puerto
 

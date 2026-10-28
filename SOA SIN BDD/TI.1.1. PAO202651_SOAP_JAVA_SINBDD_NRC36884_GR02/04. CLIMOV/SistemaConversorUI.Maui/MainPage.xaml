@@ -2,13 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:SistemaConversorUI.Maui"
-             xmlns:components="clr-namespace:SistemaConversorUI.Maui.Components"
              x:Class="SistemaConversorUI.Maui.MainPage">
 
-    <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
-        <BlazorWebView.RootComponents>
-            <RootComponent Selector="#app" ComponentType="{x:Type components:Routes}" />
-        </BlazorWebView.RootComponents>
-    </BlazorWebView>
+    <!-- El componente raíz (Routes) se registra en MainPage.xaml.cs: el generador de XAML
+         de .NET 10 no ve los tipos generados por Razor y fallaba con {x:Type components:Routes}. -->
+    <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html" />
+
 
 </ContentPage>

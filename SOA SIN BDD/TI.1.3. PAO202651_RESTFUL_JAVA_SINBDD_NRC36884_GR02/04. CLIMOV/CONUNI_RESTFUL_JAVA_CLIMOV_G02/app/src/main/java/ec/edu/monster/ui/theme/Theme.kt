@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun CONUNI_RESTFUL_JAVA_CLIMOV_G09Theme(
+fun CONUNI_RESTFUL_JAVA_CLIMOV_G02Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

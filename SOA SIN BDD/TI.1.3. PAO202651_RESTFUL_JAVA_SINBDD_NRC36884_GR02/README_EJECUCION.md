@@ -28,7 +28,7 @@ Formato de `api.base.url`: `http://192.168.0.90:8080/CONUNI_RESTFUL_JAVA_GR02/ap
 
 ## 3. Ejecutar clientes
 
-- Consola: `mvn -q package` y luego `java -jar target/CONUNI_RESTFUL_JAVA_CLICON_G09-1.0-SNAPSHOT.jar`
+- Consola: `mvn -q package` y luego `java -jar target/CONUNI_RESTFUL_JAVA_CLICON_G02-1.0-SNAPSHOT.jar`
 - Escritorio: `mvn -q compile exec:java`
 - Web: la despliega el script del servidor → `http://localhost:8080/CONUNI_RESTFUL_JAVA_CLIWEB_G02`
 - Móvil: abrir en Android Studio y ejecutar (celular en la misma red Wi-Fi que el servidor).

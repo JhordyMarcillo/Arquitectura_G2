@@ -1,4 +1,4 @@
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09.modelo
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02.modelo
 {
     /// <summary>
     /// Modelo para las respuestas de conversión

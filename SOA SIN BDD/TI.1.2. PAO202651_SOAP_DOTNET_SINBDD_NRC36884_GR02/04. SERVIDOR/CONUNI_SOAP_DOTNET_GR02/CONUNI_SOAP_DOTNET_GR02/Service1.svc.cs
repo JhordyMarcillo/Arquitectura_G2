@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 
-namespace CONUNI_SOAP_DOTNET_GR09
+namespace CONUNI_SOAP_DOTNET_GR02
 {
     /// <summary>
     /// Servicio de conversiones de unidades - Replicado desde Java

@@ -1,6 +1,6 @@
 using System.ServiceModel;
 
-namespace CONUNI_SOAP_DOTNET_CLIESC_G09.servicio
+namespace CONUNI_SOAP_DOTNET_CLIESC_G02.servicio
 {
     /// <summary>
     /// Interfaz del servicio SOAP WCF para conversiones

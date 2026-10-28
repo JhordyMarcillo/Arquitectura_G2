@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">10.40.17.85</domain>
-        <domain includeSubdomains="true">192.168.10.104</domain>
-        <domain includeSubdomains="true">192.168.137.1</domain>
-        <domain includeSubdomains="true">localhost</domain>
-        <domain includeSubdomains="true">10.0.2.2</domain>
-    </domain-config>
+    <!-- Se permite HTTP sin cifrar hacia cualquier IP: la IP del servidor cambia segun la red
+         (Wi-Fi de la universidad, hotspot del celular, cable USB con adb reverse). -->
+    <base-config cleartextTrafficPermitted="true" />
 </network-security-config>

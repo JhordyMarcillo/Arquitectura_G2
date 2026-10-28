@@ -26,7 +26,7 @@ if (-not (Get-NetTCPConnection -LocalPort 4848 -State Listen -ErrorAction Silent
 Desplegar $servidor 'CONUNI_RESTFUL_JAVA_GR02'
 Desplegar $cliweb   'CONUNI_RESTFUL_JAVA_CLIWEB_G02'
 
-$esAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole('Administrator')
+$esAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 if ($esAdmin) {
     if (-not (Get-NetFirewallRule -DisplayName 'Payara 8080' -ErrorAction SilentlyContinue)) {
         New-NetFirewallRule -DisplayName 'Payara 8080' -Direction Inbound -Protocol TCP -LocalPort 8080 -Action Allow -Profile Any | Out-Null

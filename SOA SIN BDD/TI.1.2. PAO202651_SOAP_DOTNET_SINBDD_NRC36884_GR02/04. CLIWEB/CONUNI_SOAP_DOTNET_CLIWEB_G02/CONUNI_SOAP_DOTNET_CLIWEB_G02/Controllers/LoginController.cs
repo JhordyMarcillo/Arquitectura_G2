@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
-using CONUNI_SOAP_DOTNET_CLIWEB_G09.servicio;
+using CONUNI_SOAP_DOTNET_CLIWEB_G02.servicio;
 using System.Threading.Tasks;
 
-namespace CONUNI_SOAP_DOTNET_CLIWEB_G09.Controllers
+namespace CONUNI_SOAP_DOTNET_CLIWEB_G02.Controllers
 {
     /// <summary>
     /// Controlador de login de la aplicación web cliente SOAP.

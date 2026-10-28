@@ -1,8 +1,8 @@
 using System.Net;
 using System.Text.Json;
-using CONUNI_SOAP_DOTNET_CLIWEB_G09.Models;
+using CONUNI_SOAP_DOTNET_CLIWEB_G02.Models;
 
-namespace CONUNI_SOAP_DOTNET_CLIWEB_G09.Middleware
+namespace CONUNI_SOAP_DOTNET_CLIWEB_G02.Middleware
 {
     public class ExceptionHandlingMiddleware
     {

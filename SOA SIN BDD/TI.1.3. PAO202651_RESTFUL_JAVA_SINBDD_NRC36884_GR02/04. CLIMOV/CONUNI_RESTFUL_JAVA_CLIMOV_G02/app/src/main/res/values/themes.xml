@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CONUNI_RESTFUL_JAVA_CLIMOV_G09" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/monster_blue</item>
+        <item name="colorPrimaryDark">@color/monster_bg_blue</item>
+        <item name="colorAccent">@color/monster_blue</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,2 @@
+No aplica: el Sistema de Conversión de Unidades no utiliza base de datos (ERS 7.6 - Base de Datos Nula).
+Toda la lógica y las credenciales (MONSTER / MONSTER9) residen en memoria del servidor REST, por lo que no existen modelos entidad-relación (conceptual, lógico ni físico).

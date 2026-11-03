@@ -138,8 +138,10 @@ table.datos tr.enlace { cursor: pointer; }
 
 /* ----------------------------------------------------------------- acceso */
 .acceso { display: grid; grid-template-columns: 5fr 6fr; min-height: 100vh; }
-.acceso-panel { background: linear-gradient(160deg, #0f172a 0%, #1e3a8a 100%); color: #fff; padding: 48px; display: flex; flex-direction: column; }
+.acceso-panel { background: linear-gradient(160deg, rgba(15, 23, 42, .86) 0%, rgba(30, 58, 138, .76) 100%), url("../img/pelaje.jpg") center / cover; color: #fff; padding: 48px; display: flex; flex-direction: column; }
 .acceso-panel h1 { font-size: 36px; line-height: 1.25; font-weight: 600; margin: auto 0 18px; }
+.acceso-panel .sully { width: 112px; height: 112px; border-radius: 50%; margin: auto 0 22px; box-shadow: 0 8px 24px rgba(0, 0, 0, .35); }
+.acceso-panel .sully + h1 { margin-top: 0; }
 .acceso-panel > p { color: #cbd5e1; max-width: 420px; line-height: 1.6; margin: 0; }
 .acceso-panel ul { list-style: none; padding: 0; margin: 28px 0 auto; color: #cbd5e1; }
 .acceso-panel li { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }

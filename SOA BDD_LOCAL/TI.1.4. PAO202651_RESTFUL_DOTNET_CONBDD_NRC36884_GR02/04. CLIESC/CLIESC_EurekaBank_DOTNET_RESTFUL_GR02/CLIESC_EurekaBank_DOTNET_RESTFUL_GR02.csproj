@@ -10,4 +10,9 @@
     <AssemblyName>EurekaBankEscritorio</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Resource Include="Recursos\sully.png" />
+    <Resource Include="Recursos\pelaje.jpg" />
+  </ItemGroup>
+
 </Project>

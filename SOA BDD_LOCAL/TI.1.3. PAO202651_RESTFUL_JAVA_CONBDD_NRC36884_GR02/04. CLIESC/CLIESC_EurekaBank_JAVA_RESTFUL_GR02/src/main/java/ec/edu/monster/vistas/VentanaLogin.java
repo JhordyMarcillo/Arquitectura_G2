@@ -2,16 +2,25 @@ package ec.edu.monster.vistas;
 
 import ec.edu.monster.Principal;
 import ec.edu.monster.controladores.TareaServicio;
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,6 +31,10 @@ import javax.swing.WindowConstants;
 
 /** Ventana de inicio de sesion: panel institucional a la izquierda y formulario en tarjeta a la derecha. */
 public class VentanaLogin extends JFrame {
+
+    /** Pelaje de Sully para la textura del panel institucional (null si no se encuentra). */
+    private static final BufferedImage PELAJE = leerImagen("/imagenes/pelaje.jpg");
+    private static final BufferedImage SULLY = leerImagen("/imagenes/sully.png");
 
     private final JTextField campoUsuario = Tema.campo("Usuario");
     private final JPasswordField campoClave = Tema.campoClave("Clave");
@@ -51,7 +64,24 @@ public class VentanaLogin extends JFrame {
     }
 
     private JPanel panelInstitucional() {
-        JPanel panel = new Tema.PanelDegradado(Tema.MARINO, Tema.PRIMARIO_OSCURO, 0);
+        JPanel panel = new Tema.PanelDegradado(Tema.MARINO, Tema.PRIMARIO_OSCURO, 0) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                if (PELAJE == null) {
+                    return;
+                }
+                // textura tenue que cubre todo el panel sin deformarse
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.22f));
+                g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+                double escala = Math.max(getWidth() / (double) PELAJE.getWidth(), getHeight() / (double) PELAJE.getHeight());
+                int ancho = (int) Math.ceil(PELAJE.getWidth() * escala);
+                int alto = (int) Math.ceil(PELAJE.getHeight() * escala);
+                g2.drawImage(PELAJE, (getWidth() - ancho) / 2, (getHeight() - alto) / 2, ancho, alto, null);
+                g2.dispose();
+            }
+        };
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(44, 44, 32, 44));
 
@@ -61,6 +91,11 @@ public class VentanaLogin extends JFrame {
         marca.setIconTextGap(14);
         panel.add(marca);
         panel.add(Box.createVerticalGlue());
+        if (SULLY != null) {
+            JLabel sully = new JLabel(new ImageIcon(SULLY.getScaledInstance(112, 112, Image.SCALE_SMOOTH)));
+            sully.setBorder(BorderFactory.createEmptyBorder(0, 0, 22, 0));
+            panel.add(sully);
+        }
         panel.add(Tema.etiqueta("<html>Banca segura,<br>siempre a la mano.</html>", 32, Font.BOLD, Color.WHITE));
         panel.add(Box.createVerticalStrut(16));
         panel.add(Tema.etiqueta("<html><div style='width:300px'>Consulte cuentas y movimientos, y registre depositos, "
@@ -77,6 +112,15 @@ public class VentanaLogin extends JFrame {
         panel.add(Box.createVerticalGlue());
         panel.add(Tema.etiqueta(Principal.SUBTITULO, 12, Font.PLAIN, Tema.TEXTO_SECUNDARIO));
         return panel;
+    }
+
+    private static BufferedImage leerImagen(String ruta) {
+        try (InputStream entrada = VentanaLogin.class.getResourceAsStream(ruta)) {
+            return entrada == null ? null : ImageIO.read(entrada);
+        } catch (IOException e) {
+            // sin la imagen el login sigue funcionando con el degradado solo
+            return null;
+        }
     }
 
     private JPanel panelFormulario() {

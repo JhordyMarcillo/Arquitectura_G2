@@ -16,6 +16,7 @@
             <img src="${pageContext.request.contextPath}/recursos/img/logo.svg" alt="" />
             <div><strong>EurekaBank</strong><span style="color:#cbd5e1">Sistema de cuentas de ahorro</span></div>
         </div>
+        <img class="sully" src="${pageContext.request.contextPath}/recursos/img/sully.png" alt="Sully" />
         <h1>Banca segura,<br />siempre a la mano.</h1>
         <p>Consulte cuentas y movimientos, y registre depositos, retiros y transferencias en tiempo real.</p>
         <ul>

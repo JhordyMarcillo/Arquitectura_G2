@@ -6,9 +6,15 @@
     <ScrollView>
         <Grid RowDefinitions="Auto,*">
             <!-- Encabezado de marca -->
-            <Border Background="{StaticResource DegradadoPanel}" StrokeThickness="0" Padding="28,56,28,64"
+            <Border Background="{StaticResource DegradadoPanel}" StrokeThickness="0" Padding="0"
                     StrokeShape="RoundRectangle 0,0,32,32">
-                <VerticalStackLayout Spacing="18">
+                <Grid>
+                <!-- Pelaje de Sully como textura tenue sobre el degradado -->
+                <!-- toma el tamano del contenido para no estirar el encabezado con su alto natural -->
+                <Image Source="pelaje.jpg" Aspect="AspectFill" Opacity="0.22"
+                       HeightRequest="{Binding Height, Source={x:Reference ContenidoEncabezado}}"
+                       WidthRequest="{Binding Width, Source={x:Reference ContenidoEncabezado}}" />
+                <VerticalStackLayout x:Name="ContenidoEncabezado" Spacing="18" Padding="28,56,28,64" VerticalOptions="Start">
                     <HorizontalStackLayout Spacing="12">
                         <Image Source="logo.png" WidthRequest="44" HeightRequest="44" />
                         <VerticalStackLayout VerticalOptions="Center">
@@ -16,11 +22,13 @@
                             <Label Text="Sistema de cuentas de ahorro" TextColor="#CBD5E1" FontSize="12" />
                         </VerticalStackLayout>
                     </HorizontalStackLayout>
+                    <Image Source="sully.png" WidthRequest="88" HeightRequest="88" HorizontalOptions="Start" Margin="0,10,0,0" />
                     <Label Text="Banca segura, siempre a la mano." TextColor="White" FontSize="26"
-                           FontFamily="OpenSansSemibold" Margin="0,18,0,0" />
+                           FontFamily="OpenSansSemibold" />
                     <Label Text="Consulte cuentas y registre depositos, retiros y transferencias."
                            TextColor="#CBD5E1" FontSize="14" />
                 </VerticalStackLayout>
+                </Grid>
             </Border>
 
             <!-- Formulario -->

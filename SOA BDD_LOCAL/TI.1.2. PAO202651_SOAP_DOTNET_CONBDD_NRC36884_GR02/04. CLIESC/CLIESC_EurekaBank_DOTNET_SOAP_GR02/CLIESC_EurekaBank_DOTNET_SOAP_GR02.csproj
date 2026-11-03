@@ -14,4 +14,9 @@
     <PackageReference Include="System.ServiceModel.Http" Version="10.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="Recursos\sully.png" />
+    <Resource Include="Recursos\pelaje.jpg" />
+  </ItemGroup>
+
 </Project>

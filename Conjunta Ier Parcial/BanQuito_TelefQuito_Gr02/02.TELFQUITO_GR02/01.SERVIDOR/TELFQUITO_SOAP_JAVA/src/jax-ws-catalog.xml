@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/BANQUITO_SOAP_JAVA/WSGenerarTabla?wsdl" uri="wsdl/localhost_8080/BANQUITO_SOAP_JAVA/WSGenerarTabla.wsdl"/>
+    <system systemId="http://localhost:8080/BANQUITO_SOAP_JAVA/WSGenerarTabla?xsd=1" uri="wsdl/localhost_8080/BANQUITO_SOAP_JAVA/WSGenerarTabla.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/BANQUITO_SOAP_JAVA/WSMontoMáximo?wsdl" uri="wsdl/localhost_8080/BANQUITO_SOAP_JAVA/WSMontoMáximo.wsdl"/>
+    <system systemId="http://localhost:8080/BANQUITO_SOAP_JAVA/WSMontoMáximo?xsd=1" uri="wsdl/localhost_8080/BANQUITO_SOAP_JAVA/WSMontoMáximo.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/BANQUITO_SOAP_JAVA/WSSujetoCredito?wsdl" uri="wsdl/localhost_8080/BANQUITO_SOAP_JAVA/WSSujetoCredito.wsdl"/>
+    <system systemId="http://localhost:8080/BANQUITO_SOAP_JAVA/WSSujetoCredito?xsd=1" uri="wsdl/localhost_8080/BANQUITO_SOAP_JAVA/WSSujetoCredito.xsd_1.xsd"/>
+</catalog>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EurekaBank - Login</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-card">
+            <img src="/images/logo_login.png" alt="Logo" class="logo">
+            <h2>¡Bienvenido!</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+    <div id="modal-container"></div> <!-- Container for modal -->
+    <script>
+        fetch('/modal.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('modal-container').innerHTML = html;
+                const modalOkButton = document.getElementById('modal-ok-button');
+                if (modalOkButton) {
+                    modalOkButton.addEventListener('click', closeModal);
+                }
+            });
+    </script>
+    <script type="module" src="/controller/modal.js"></script>
+    <script type="module" src="/controller/login.js"></script>
+</body>
+
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Comprar Teléfono</title>
+  </head>
+
+  <body class="login-body">
+    <div class="login-container">
+      <div class="login-card" style="margin-bottom: 25px">
+        <div class="row">
+          <div class="col">
+            <img src="/images/protasp.png" alt="Logo" width="90px" />
+          </div>
+          <div class="col">
+            TelfQuito la mejor tienda de celulares del país.
+          </div>
+        </div>
+      </div>
+      <div class="login-card">
+        <h2 id="form-title">Comprar Teléfono</h2>
+        <form id="compraForm">
+          <input type="hidden" id="telefonoId" />
+          <select id="tipoCompra" required>
+            <option value="" disabled selected>
+              Seleccione tipo de compra
+            </option>
+            <option value="efectivo">Efectivo</option>
+            <option value="credito">Crédito</option>
+          </select>
+          <input type="text" id="cedula" placeholder="Cédula" />
+          <div id="telefonoInfo" class="gridCentrao grid3columns">
+            <div class="gridCentrao grid2rows">
+              <strong>Nombre:</strong>
+              <span id="nombre"></span>
+            </div>
+            <div class="gridCentrao grid2rows">
+              <strong>Precio: </strong>
+              <span id="precio"></span>
+            </div>
+            <div class="gridCentrao grid2rows">
+              <strong>Marca:</strong>
+              <span id="marca"></span>
+            </div>
+          </div>
+          <div id="compraEfectivo" class="compra-opcion hidden">
+            <div id="descuentoInfo" class="gridCentrao grid3columns">
+              <div class="gridCentrao grid2rows">
+                <strong>Precio Original:</strong>
+                <span id="precioOriginal"></span>
+              </div>
+              <div class="gridCentrao grid2rows">
+                <strong>Descuento (42%):</strong>
+                <span id="descuento"></span>
+              </div>
+              <div class="gridCentrao grid2rows">
+                <strong>Precio Final:</strong>
+                <span id="precioFinal"></span>
+              </div>
+            </div>
+          </div>
+          <div id="compraCredito" class="compra-opcion hidden">
+            <input type="number" id="plazoMeses" placeholder="Plazo en meses" />
+            <input type="text" id="cedulaCredito" placeholder="Cédula" />
+          </div>
+
+          <button type="submit" class="btn-primary" id="submitButton">
+            Comprar
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="modal-container"></div>
+    <!-- Container for modal -->
+    <script>
+      fetch("/modal.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("modal-container").innerHTML = html;
+          const modalOkButton = document.getElementById("modal-ok-button");
+          if (modalOkButton) {
+            modalOkButton.addEventListener("click", closeModal);
+          }
+        });
+    </script>
+    <script type="module" src="/controller/modal.js"></script>
+    <script type="module" src="/controller/comprarController.js"></script>
+  </body>
+</html>

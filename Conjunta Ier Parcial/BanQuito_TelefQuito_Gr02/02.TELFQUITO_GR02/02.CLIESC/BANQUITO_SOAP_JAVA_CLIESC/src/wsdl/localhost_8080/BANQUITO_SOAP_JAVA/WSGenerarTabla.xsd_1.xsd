@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by XML-WS Runtime (https://github.com/eclipse-ee4j/metro-jax-ws). Runtime's version is Eclipse Metro/4.0.3.payara-p1 (metro-4.0.3.payara-maintenance-004e4e3; 2023-11-08T12:59:53+0000) XMLWS-Impl/4.0.2 XMLWS-API/4.0.1 XMLB-Impl/4.0.4 XMLB-API/4.0.1 git-revision#004e4e3. --><xs:schema xmlns:tns="http://ws.monster.edu.ec/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.monster.edu.ec/">
+
+<xs:element name="consultarCreditosPorCedula" type="tns:consultarCreditosPorCedula"/>
+
+<xs:element name="consultarCreditosPorCedulaResponse" type="tns:consultarCreditosPorCedulaResponse"/>
+
+<xs:element name="consultarTablaAmortizacion" type="tns:consultarTablaAmortizacion"/>
+
+<xs:element name="consultarTablaAmortizacionResponse" type="tns:consultarTablaAmortizacionResponse"/>
+
+<xs:element name="crearCreditoYTablaAmortizacion" type="tns:crearCreditoYTablaAmortizacion"/>
+
+<xs:element name="crearCreditoYTablaAmortizacionResponse" type="tns:crearCreditoYTablaAmortizacionResponse"/>
+
+<xs:complexType name="crearCreditoYTablaAmortizacion">
+<xs:sequence>
+<xs:element name="codCliente" type="xs:int"/>
+<xs:element name="monto" type="xs:double"/>
+<xs:element name="plazoMeses" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearCreditoYTablaAmortizacionResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultarTablaAmortizacion">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultarTablaAmortizacionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tabla" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tabla">
+<xs:sequence>
+<xs:element name="capitalPagado" type="xs:double"/>
+<xs:element name="codCredito" type="xs:int"/>
+<xs:element name="cuota" type="xs:int"/>
+<xs:element name="interesPagado" type="xs:double"/>
+<xs:element name="saldo" type="xs:double"/>
+<xs:element name="valorCuota" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultarCreditosPorCedula">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultarCreditosPorCedulaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:credito" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="credito">
+<xs:sequence>
+<xs:element name="activo" type="xs:int"/>
+<xs:element name="codCliente" type="xs:int"/>
+<xs:element name="codCredito" type="xs:int"/>
+<xs:element name="fechaInicio" type="xs:string" minOccurs="0"/>
+<xs:element name="monto" type="xs:double"/>
+<xs:element name="plazoMeses" type="xs:int"/>
+<xs:element name="tasaInteres" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

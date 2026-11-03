@@ -1,0 +1,26 @@
+{
+    "name": "TELFQUITO_SOAP_JAVA_CLIWEB",
+    "version": "1.0.0",
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "GR02",
+    "contributors": [],
+    "dependencies": {
+        "body-parser": "^1.20.3",
+        "crypto": "^1.0.1",
+        "express": "^4.21.2",
+        "nodemon": "^3.1.9",
+        "path": "^0.12.7",
+        "soap": "^1.1.7"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js",
+        "serve": "http-server ./views"
+    }
+}

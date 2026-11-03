@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TELFQUITO</string>
+
+    <string-array name="pago_options">
+        <item>Efectivo</item>
+        <item>Crédito</item>
+    </string-array>
+</resources>

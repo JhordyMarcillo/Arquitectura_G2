@@ -1,0 +1,75 @@
+:root {
+  --primary-color: #0d6efc;
+  --background-color: #f0f2f5;
+  --card-background: #efefef;
+}
+
+body {
+  font-family: "Fredoka", Arial, sans-serif;
+}
+
+.login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("/images/fondo2.png");
+  background-size: cover;
+  font-family: "Fredoka", Arial, sans-serif;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-card {
+  background-color: var(--card-background);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.logo {
+  width: 15vw;
+}
+
+.login-card input {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  font-family: "Fredoka", Arial, sans-serif;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Fredoka", Arial, sans-serif;
+  font-weight: bold;
+}
+
+.login-card select {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  font-family: "Fredoka", Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  appearance: none; /* Para eliminar el estilo por defecto del navegador */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}

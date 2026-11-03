@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Factura</title>
+  </head>
+  <body class="login-body">
+    <div class="login-container">
+      <div class="login-card" style="margin-bottom: 25px">
+        <div class="row">
+          <div class="col">
+            <img src="/images/protasp.png" alt="Logo" width="90px" />
+          </div>
+          <div class="col">
+            TelfQuito la mejor tienda de celulares del país.
+          </div>
+        </div>
+      </div>
+      <div class="factura-container">
+        <h2 class="factura-title">Factura</h2>
+        <div class="factura-columns">
+          <!-- Columna izquierda: Detalles del producto -->
+          <div class="factura-column">
+            <h3>Detalles del Producto</h3>
+            <div class="factura-grid">
+              <div>
+                <strong>Marca del Teléfono:</strong>
+                <span id="marcaTelefono"></span>
+              </div>
+              <div>
+                <strong>Nombre del Teléfono:</strong>
+                <span id="nombreTelefono"></span>
+              </div>
+              <div>
+                <strong>Descuento:</strong> $<span id="descuento"></span>
+              </div>
+              <div>
+                <strong>Precio Final:</strong> $<span id="preciofinal"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna derecha: Información del cliente -->
+          <div class="factura-column">
+            <h3>Información del Cliente</h3>
+            <div class="factura-grid">
+              <div>
+                <strong>Código de Compra:</strong> <span id="codCompra"></span>
+              </div>
+              <div>
+                <strong>Cédula del Cliente:</strong>
+                <span id="cedulaCliente"></span>
+              </div>
+              <div>
+                <strong>Nombre del Cliente:</strong>
+                <span id="nombreCliente"></span>
+              </div>
+              <div>
+                <strong>Forma de Pago:</strong> <span id="formaPago"></span>
+              </div>
+              <div><strong>Fecha:</strong> <span id="fecha"></span></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="window.location.href='/telefonos'">
+          Volver
+        </button>
+      </div>
+    </div>
+    <div id="modal-container"></div>
+    <!-- Container for modal -->
+    <script>
+      fetch("/modal.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("modal-container").innerHTML = html;
+          const modalOkButton = document.getElementById("modal-ok-button");
+          if (modalOkButton) {
+            modalOkButton.addEventListener("click", closeModal);
+          }
+        });
+    </script>
+    <script type="module" src="/controller/modal.js"></script>
+    <script type="module" src="/controller/facturaController.js"></script>
+  </body>
+</html>

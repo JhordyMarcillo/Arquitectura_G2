@@ -1,2 +1,2 @@
 # 02. LOGICO
-Modelo lÃ³gico de datos (`.ldm`).
+Modelo lógico de datos (`MODELO_LOGICO_EUREKABANK.ldm`) y su imagen.

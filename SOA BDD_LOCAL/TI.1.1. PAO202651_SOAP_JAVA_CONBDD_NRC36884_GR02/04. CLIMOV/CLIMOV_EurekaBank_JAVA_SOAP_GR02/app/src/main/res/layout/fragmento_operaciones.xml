@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/desplazamiento" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/fondo">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+        android:paddingStart="20dp" android:paddingTop="28dp" android:paddingEnd="20dp" android:paddingBottom="24dp">
+
+        <TextView style="@style/TextoTitulo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Operaciones" />
+        <TextView android:id="@+id/texto_descripcion" style="@style/TextoSecundario" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginBottom="16dp" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/selector" android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:checkedButton="@+id/opcion_deposito" app:selectionRequired="true" app:singleSelection="true">
+            <com.google.android.material.button.MaterialButton android:id="@+id/opcion_deposito"
+                style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Deposito" android:textSize="12sp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/opcion_retiro"
+                style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Retiro" android:textSize="12sp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/opcion_transferencia"
+                style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1.4" android:text="Transferencia" android:textSize="12sp" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"
+            android:background="@drawable/fondo_tarjeta" android:elevation="2dp" android:orientation="vertical" android:padding="20dp">
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/marco_cuenta" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:hint="Cuenta">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/campo_cuenta" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:inputType="number" android:maxLength="8" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/marco_clave" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="10dp" android:hint="Clave de la cuenta" app:endIconMode="password_toggle">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/campo_clave" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:inputType="numberPassword" android:maxLength="6" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/marco_destino" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="10dp" android:hint="Cuenta de destino">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/campo_destino" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:inputType="number" android:maxLength="8" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" android:hint="Importe">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/campo_importe" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:inputType="numberDecimal" android:textSize="18sp" android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView android:id="@+id/texto_nota" style="@style/TextoSecundario" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="14dp" android:background="@drawable/fondo_nota"
+                android:padding="12dp" android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton android:id="@+id/boton_registrar" style="@style/BotonPrimario"
+                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" />
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/panel_comprobante" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="18dp" android:background="@drawable/fondo_tarjeta" android:elevation="2dp"
+            android:gravity="center_horizontal" android:orientation="vertical" android:padding="22dp" android:visibility="gone">
+            <ImageView android:id="@+id/icono_resultado" android:layout_width="60dp" android:layout_height="60dp" android:contentDescription="Resultado" />
+            <TextView android:id="@+id/texto_resultado" style="@style/TextoValor" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textSize="18sp" />
+            <TextView android:id="@+id/texto_mensaje" style="@style/TextoSecundario" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:gravity="center" />
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" android:background="@color/borde" />
+            <LinearLayout android:id="@+id/lista_detalle" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

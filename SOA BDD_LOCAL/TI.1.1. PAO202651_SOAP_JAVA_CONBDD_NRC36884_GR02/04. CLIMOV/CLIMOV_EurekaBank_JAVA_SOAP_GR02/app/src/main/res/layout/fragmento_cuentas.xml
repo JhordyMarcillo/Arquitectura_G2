@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refrescar" android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:background="@drawable/fondo_panel" android:orientation="vertical"
+                android:paddingStart="22dp" android:paddingTop="26dp" android:paddingEnd="22dp" android:paddingBottom="24dp">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:gravity="center_vertical" android:orientation="horizontal">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hola,"
+                            android:textColor="@color/texto_claro" android:textSize="13sp" />
+                        <TextView android:id="@+id/texto_empleado" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="@color/blanco" android:textSize="20sp" android:textStyle="bold" />
+                    </LinearLayout>
+                    <ImageButton android:id="@+id/boton_salir" android:layout_width="44dp" android:layout_height="44dp"
+                        android:background="@drawable/fondo_salir" android:contentDescription="Cerrar sesion"
+                        android:padding="11dp" android:scaleType="fitCenter" android:src="@drawable/ic_salir" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp" android:orientation="horizontal">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginEnd="6dp"
+                        android:layout_weight="1" android:background="@drawable/fondo_saldo" android:orientation="vertical" android:padding="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total en soles"
+                            android:textColor="@color/gris_inactivo" android:textSize="12sp" />
+                        <TextView android:id="@+id/texto_soles" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="@color/blanco" android:textSize="17sp" android:textStyle="bold" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="6dp"
+                        android:layout_weight="1" android:background="@drawable/fondo_saldo" android:orientation="vertical" android:padding="14dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total en dolares"
+                            android:textColor="@color/gris_inactivo" android:textSize="12sp" />
+                        <TextView android:id="@+id/texto_dolares" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textColor="@color/blanco" android:textSize="17sp" android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:paddingStart="20dp" android:paddingTop="22dp" android:paddingEnd="20dp" android:paddingBottom="6dp">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Cuentas"
+                    android:textColor="@color/texto" android:textSize="18sp" android:textStyle="bold" />
+                <TextView android:id="@+id/texto_activas" style="@style/TextoSecundario" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView android:id="@+id/texto_error" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginStart="20dp" android:layout_marginEnd="20dp" android:background="@drawable/fondo_error"
+                android:padding="12dp" android:textColor="@color/rojo_texto" android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/lista_cuentas" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:nestedScrollingEnabled="false" android:paddingBottom="8dp" />
+
+            <TextView style="@style/TextoSecundario" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp" android:gravity="center" android:text="Toque una cuenta para ver sus movimientos."
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

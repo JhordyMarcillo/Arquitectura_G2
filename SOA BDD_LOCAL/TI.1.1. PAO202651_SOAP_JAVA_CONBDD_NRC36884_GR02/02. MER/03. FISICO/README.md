@@ -1,2 +1,2 @@
 # 03. FISICO
-Modelo fÃ­sico de datos (`.pdm`) para MySQL.
+Modelo físico de datos para MySQL (`MODELO_FISICO_EUREKABANK_MYSQL.pdm`) y su imagen.

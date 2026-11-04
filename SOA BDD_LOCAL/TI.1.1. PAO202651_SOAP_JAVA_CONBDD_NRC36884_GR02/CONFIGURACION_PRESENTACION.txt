@@ -1,0 +1,22 @@
+# ==================================================================
+#  CONFIGURACION PARA LA PRESENTACION DE LA TI.1.1 (unico archivo a editar)
+# ==================================================================
+#
+#  IP de ESTA computadora (la que hace de servidor).
+#    AUTO -> se detecta sola (la de la red Wi-Fi / hotspot / cable conectado).
+#    Para fijarla, escribe la IP, por ejemplo:  IP=192.168.43.120
+#    (Para verla: abre CMD y escribe  ipconfig  -> "Direccion IPv4")
+IP=AUTO
+
+#  Como se conecta el celular Android al servidor:
+#    RED -> por Wi-Fi: el celular y la PC en la misma red (o la PC conectada
+#           al hotspot del celular). Usa la IP de arriba.
+#    USB -> por el cable USB (adb reverse). Funciona aunque la red no deje
+#           comunicarse a los equipos (por ejemplo, la Wi-Fi de la ESPE).
+#    (En el emulador de Android siempre se usa 10.0.2.2.)
+CELULAR=RED
+
+#  Carpeta de Payara Server 7.
+#    AUTO -> se busca en PAYARA_HOME, %USERPROFILE%\Payara_Server, Documents\payara7 y C:\payara7.
+#    Para fijarla:  PAYARA=C:\payara7
+PAYARA=AUTO

@@ -309,6 +309,54 @@ public class CompraService {
         }.execute();
     }
 
+    /**
+     * Compra de 1 a 3 telefonos en UNA factura. codTelefonos = "1,2,3".
+     * Llama a comprarCreditoMultiple o comprarEfectivoMultiple del servidor.
+     */
+    @SuppressLint("StaticFieldLeak")
+    public void comprarVarios(final boolean credito, final String codTelefonos, final String cedula,
+                              final int plazoMeses, final SoapCallback<String> callback) {
+        new AsyncTask<Void, Void, AsyncTaskResult<String>>() {
+            @Override
+            protected AsyncTaskResult<String> doInBackground(Void... voids) {
+                try {
+                    SoapObject request = new SoapObject(NAMESPACE,
+                            credito ? "comprarCreditoMultiple" : "comprarEfectivoMultiple");
+                    request.addProperty("codTelefonos", codTelefonos);
+                    request.addProperty("cedula", cedula);
+                    if (credito) {
+                        PropertyInfo plazo = new PropertyInfo();
+                        plazo.setName("plazoMeses");
+                        plazo.setValue(plazoMeses);
+                        plazo.setType(Integer.class);
+                        request.addProperty(plazo);
+                    }
+                    SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+                    envelope.setOutputSoapObject(request);
+                    envelope.dotNet = false;
+                    HttpTransportSE transport = new HttpTransportSE(URL, TIMEOUT);
+                    transport.call("", envelope);
+                    Object response = envelope.getResponse();
+                    if (response == null) {
+                        return new AsyncTaskResult<>(new Exception("Empty response received"));
+                    }
+                    return new AsyncTaskResult<>(response.toString());
+                } catch (Exception e) {
+                    return new AsyncTaskResult<>(e);
+                }
+            }
+
+            @Override
+            protected void onPostExecute(AsyncTaskResult<String> result) {
+                if (result.getError() != null) {
+                    callback.onError("Error: " + result.getError().getMessage());
+                } else {
+                    callback.onSuccess(result.getResult());
+                }
+            }
+        }.execute();
+    }
+
     private static class AsyncTaskResult<T> {
         private T result;
         private Exception error;

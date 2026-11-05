@@ -58,6 +58,24 @@ class CompraService {
     }
   }
 
+  async comprarVarios(tipo, codTelefonos, cedula, plazoMeses) {
+    const soapClient = new SoapClient(this.wsdlUrl);
+    const client = await soapClient.createClient();
+    const operacion =
+      tipo === "credito" ? "comprarCreditoMultiple" : "comprarEfectivoMultiple";
+    const args = { codTelefonos, cedula };
+    if (tipo === "credito") args.plazoMeses = plazoMeses;
+    return new Promise((resolve, reject) => {
+      client[operacion](args, (err, result) => {
+        if (err) {
+          console.error("SOAP Request Error:", err);
+          return reject(err);
+        }
+        resolve(result.return);
+      });
+    });
+  }
+
   async obtenerFactura(cedula) {
     try {
       const soapClient = new SoapClient(this.wsdlUrl);

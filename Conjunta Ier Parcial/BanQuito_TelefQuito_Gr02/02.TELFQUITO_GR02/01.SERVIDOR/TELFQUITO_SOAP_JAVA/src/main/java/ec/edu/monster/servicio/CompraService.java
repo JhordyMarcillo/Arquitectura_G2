@@ -33,68 +33,93 @@ public class CompraService {
         this.generarTablaService = generarTablaService;
     }
 
+    public static final int MAX_PRODUCTOS = 3;
+
     public String realizarCompraEfectivo(int codTelefono, String codCedula, String formaPago) throws Exception {
-        Telefonos telefono = telefonoDAO.getTelefonoById(codTelefono);
-        if (telefono == null) {
-            return "No se encontró el teléfono";
-        }
-        double precioOriginal = telefono.getPrecio();
-        double descuento = precioOriginal * 0.42;
-        double precioFinal = precioOriginal - descuento;
-        int idCliente = clientecDAO.getCodClienteByCedula(codCedula);
-        if (idCliente == -1) {
-            return "No se encontró el cliente";
-        }
-
-        Compras compra = new Compras();
-        compra.setCodTelefono(codTelefono);
-        compra.setCodcCliente(idCliente);
-        compra.setFormaPago(formaPago);
-        compra.setFecha(LocalDate.now().toString());
-        compra.setDescuento(descuento);
-        compra.setPreciofinal(precioFinal);
-
-        if (compraDAO.createCompraEfectivo(compra)) {
-            return ("Compra en efectivo exitosa!!");
-        } else {
-            return ("Compra en efectivo fallida");
-        }
+        return realizarCompraEfectivoMultiple(String.valueOf(codTelefono), codCedula);
     }
 
     public String realizarCompraCredito(int codTelefono, String cedula, String formaPago, int plazoMeses)
             throws Exception {
-        Telefonos telefono = telefonoDAO.getTelefonoById(codTelefono);
-        double precioTelefono = telefono.getPrecio();
+        return realizarCompraCreditoMultiple(String.valueOf(codTelefono), cedula, plazoMeses);
+    }
 
+    /** Convierte "1,2,3" en los telefonos del catalogo (maximo 3, deben existir y estar a la venta). */
+    private List<Telefonos> resolverItems(String codsTelefono) throws Exception {
+        List<Telefonos> items = new java.util.ArrayList<>();
+        if (codsTelefono == null || codsTelefono.trim().isEmpty()) {
+            throw new IllegalArgumentException("Seleccione al menos un teléfono.");
+        }
+        for (String c : codsTelefono.split(",")) {
+            if (c.trim().isEmpty()) {
+                continue;
+            }
+            Telefonos t = telefonoDAO.getTelefonoById(Integer.parseInt(c.trim()));
+            if (t == null) {
+                throw new IllegalArgumentException("No se encontró el teléfono " + c.trim() + ".");
+            }
+            if (t.getDisponible() != 1) {
+                throw new IllegalArgumentException("El teléfono " + t.getNombre() + " no está a la venta.");
+            }
+            items.add(t);
+        }
+        if (items.isEmpty()) {
+            throw new IllegalArgumentException("Seleccione al menos un teléfono.");
+        }
+        if (items.size() > MAX_PRODUCTOS) {
+            throw new IllegalArgumentException("Una factura admite máximo " + MAX_PRODUCTOS + " productos.");
+        }
+        return items;
+    }
+
+    public String realizarCompraEfectivoMultiple(String codsTelefono, String cedula) throws Exception {
+        List<Telefonos> items;
+        try {
+            items = resolverItems(codsTelefono);
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+        int idCliente = clientecDAO.getCodClienteByCedula(cedula);
+        if (idCliente == -1) {
+            return "No se encontró el cliente";
+        }
+        int factura = compraDAO.crearFactura("Efectivo", LocalDate.now().toString(), idCliente, items, 0.42);
+        if (factura > 0) {
+            return "Compra en efectivo exitosa!! Factura No. " + factura;
+        }
+        return "Compra en efectivo fallida";
+    }
+
+    public String realizarCompraCreditoMultiple(String codsTelefono, String cedula, int plazoMeses) throws Exception {
+        List<Telefonos> items;
+        try {
+            items = resolverItems(codsTelefono);
+        } catch (IllegalArgumentException e) {
+            return e.getMessage();
+        }
+        double total = 0;
+        for (Telefonos t : items) {
+            total += t.getPrecio();
+        }
         int esSujetoCredito = sujetoCreditoService.verifica(cedula);
         if (esSujetoCredito == 0) {
             return ("El cliente no es sujeto de crédito.");
         }
-
         double montoMaximo = montoMaximoService.montoMaximo(esSujetoCredito);
-        System.out.println(montoMaximo);
-        if (precioTelefono > montoMaximo) {
-            return ("El precio del teléfono excede el monto máximo de crédito aprobado.");
+        if (total > montoMaximo) {
+            return String.format(java.util.Locale.US,
+                    "El total de la compra ($%.2f) excede el monto máximo de crédito aprobado ($%.2f).", total, montoMaximo);
         }
-
-        String resultado = generarTablaService.crearCreditoYTablaAmortizacion(esSujetoCredito, precioTelefono,
-                plazoMeses);
+        String resultado = generarTablaService.crearCreditoYTablaAmortizacion(esSujetoCredito, total, plazoMeses);
         if (!resultado.equals("Crédito y tabla de amortización creados exitosamente.")) {
-            return ("Error al crear la tabla de amortización.");
+            return ("Error al crear la tabla de amortización: " + resultado);
         }
-
-        Compras compra = new Compras();
-        compra.setCodTelefono(codTelefono);
-        compra.setCodcCliente(clientecDAO.getCodClienteByCedula(cedula));
-        compra.setFormaPago(formaPago);
-        compra.setFecha(LocalDate.now().toString());
-        compra.setPreciofinal(precioTelefono);
-
-        if (compraDAO.createCompraCredito(compra)) {
-            return ("Compra exitosa a credito!!");
-        } else {
-            return ("Compra fallida!!");
+        int factura = compraDAO.crearFactura("Crédito Directo", LocalDate.now().toString(),
+                clientecDAO.getCodClienteByCedula(cedula), items, 0);
+        if (factura > 0) {
+            return "Compra exitosa a credito!! Factura No. " + factura;
         }
+        return "Compra fallida!!";
     }
 
     public List<Factura> obtenerFactura(String cedula) {

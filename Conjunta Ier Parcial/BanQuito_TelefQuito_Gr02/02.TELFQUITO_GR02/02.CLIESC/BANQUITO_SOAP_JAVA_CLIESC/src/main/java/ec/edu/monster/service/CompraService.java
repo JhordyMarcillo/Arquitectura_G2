@@ -36,6 +36,16 @@ public class CompraService {
         return port.comprarCredito(codTelefono, cedula, plazoMeses);
     }
 
+    /** Compra de 1 a 3 teléfonos ("1,2,3") en efectivo. Devuelve la factura. */
+    public String comprarEfectivoMultiple(String codTelefonos, String cedula) {
+        return port.comprarEfectivoMultiple(codTelefonos, cedula);
+    }
+
+    /** Compra de 1 a 3 teléfonos ("1,2,3") a crédito. Devuelve la factura. */
+    public String comprarCreditoMultiple(String codTelefonos, String cedula, int plazoMeses) {
+        return port.comprarCreditoMultiple(codTelefonos, cedula, plazoMeses);
+    }
+
     /**
      * Obtiene la lista de facturas de un usuario por su cédula.
      * @param cedula Cédula del usuario

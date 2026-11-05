@@ -45,6 +45,9 @@ public class TelefonosActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        findViewById(R.id.btnComprarVarios).setOnClickListener(v ->
+                startActivity(new Intent(TelefonosActivity.this, CarritoActivity.class)));
+
         findViewById(R.id.btnConsultarCreditos).setOnClickListener(v -> {
             Intent intent = new Intent(TelefonosActivity.this, TablaActivity.class);
             startActivity(intent);

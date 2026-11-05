@@ -26,17 +26,28 @@ CREATE TABLE telefonos (
 ) ENGINE=InnoDB;
 
 CREATE TABLE compras (
-  cod_compra   INT NOT NULL AUTO_INCREMENT,
+  cod_compra   INT NOT NULL AUTO_INCREMENT COMMENT 'Numero de factura',
   forma_pago   VARCHAR(45) NOT NULL COMMENT 'Efectivo | Credito Directo',
   fecha        DATE NOT NULL,
-  cod_telefono INT NOT NULL,
   codc_cliente INT NOT NULL,
-  descuento    DECIMAL(10,2) DEFAULT NULL COMMENT '42% solo en efectivo',
-  precio_final DECIMAL(10,2) NOT NULL,
+  subtotal     DECIMAL(10,2) NOT NULL,
+  descuento    DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT '42% solo en efectivo',
+  precio_final DECIMAL(10,2) NOT NULL COMMENT 'Total de la factura',
   PRIMARY KEY (cod_compra),
-  CONSTRAINT cod_telefono FOREIGN KEY (cod_telefono) REFERENCES telefonos (cod_telefono),
   CONSTRAINT codc_cliente FOREIGN KEY (codc_cliente) REFERENCES cliente_comercializadora (codc_cliente)
 ) ENGINE=InnoDB;
+
+CREATE TABLE detalle_compra (
+  cod_detalle  INT NOT NULL AUTO_INCREMENT,
+  cod_compra   INT NOT NULL,
+  cod_telefono INT NOT NULL,
+  precio       DECIMAL(10,2) NOT NULL,
+  descuento    DECIMAL(10,2) NOT NULL DEFAULT 0,
+  precio_final DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (cod_detalle),
+  CONSTRAINT fk_detalle_compra   FOREIGN KEY (cod_compra)   REFERENCES compras (cod_compra),
+  CONSTRAINT fk_detalle_telefono FOREIGN KEY (cod_telefono) REFERENCES telefonos (cod_telefono)
+) ENGINE=InnoDB COMMENT 'Lineas de la factura (maximo 3 telefonos por factura)';
 
 INSERT INTO cliente_comercializadora (codc_cliente, cedula, nombre, genero, fecha_nacimiento) VALUES
 (1,'0102030405','Juan Carlos Pérez','M','1990-05-14'),

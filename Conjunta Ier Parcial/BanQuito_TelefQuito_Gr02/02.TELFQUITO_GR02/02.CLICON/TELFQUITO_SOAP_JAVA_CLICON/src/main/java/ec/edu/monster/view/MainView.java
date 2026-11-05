@@ -67,11 +67,15 @@ public class MainView {
       System.out.println("1. Comprar Efectivo");
       System.out.println("2. Comprar Crédito");
       System.out.println("3. Regresar");
+      System.out.println("4. Comprar hasta 3 productos (factura)");
 
       int choice = scanner.nextInt();
       scanner.nextLine(); // consume newline
 
       switch (choice) {
+        case 4:
+          comprarVarios(scanner);
+          break;
         case 1:
               List<Telefonos> telefonos = telefonoServicio.getAllTelefonos();
                       StringBuilder resultado = new StringBuilder();
@@ -125,6 +129,36 @@ public class MainView {
         default:
           System.out.println("Opción no válida.");
       }
+    }
+  }
+
+  private static void comprarVarios(Scanner scanner) {
+    List<Telefonos> telefonos = telefonoServicio.getAllTelefonos();
+    System.out.println("\n===== LISTA DE TELÉFONOS =====");
+    System.out.println(String.format("%-12s %-24s %-10s %-14s %-10s",
+        "CodTelefono", "Nombre", "Precio", "Marca", "Disponible"));
+    for (Telefonos t : telefonos) {
+      System.out.println(String.format("%-12d %-24s %-10.2f %-14s %-10d",
+          t.getCodTelefono(), t.getNombre(), t.getPrecio(), t.getMarca(), t.getDisponible()));
+    }
+    System.out.println("Ingrese de 1 a 3 códigos separados por coma (ej. 1,2,3):");
+    String codigos = scanner.nextLine().trim();
+    if (codigos.split(",").length > 3) {
+      System.out.println("Solo se pueden comprar hasta 3 productos.");
+      return;
+    }
+    System.out.println("Ingrese la cédula:");
+    String cedula = scanner.nextLine();
+    System.out.println("Forma de pago: 1. Efectivo  2. Crédito");
+    int forma = scanner.nextInt();
+    scanner.nextLine();
+    if (forma == 2) {
+      System.out.println("Ingrese el plazo en meses (3 a 18):");
+      int plazo = scanner.nextInt();
+      scanner.nextLine();
+      System.out.println(compraServicio.comprarCreditoMultiple(codigos, cedula, plazo));
+    } else {
+      System.out.println(compraServicio.comprarEfectivoMultiple(codigos, cedula));
     }
   }
 

@@ -35,7 +35,19 @@ public final class CatalogoView extends javax.swing.JFrame {
     public CatalogoView() {
         controller = new TelefonoController();
         initComponents();
+        agregarMenuCarrito();
         cargarCatalogo();
+    }
+
+    /** Menú "Comprar > Hasta 3 productos (factura)". Se agrega fuera del código generado. */
+    private void agregarMenuCarrito() {
+        javax.swing.JMenuBar barra = new javax.swing.JMenuBar();
+        javax.swing.JMenu menu = new javax.swing.JMenu("Comprar");
+        javax.swing.JMenuItem item = new javax.swing.JMenuItem("Hasta 3 productos (factura)");
+        item.addActionListener(e -> new CarritoView().setVisible(true));
+        menu.add(item);
+        barra.add(menu);
+        setJMenuBar(barra);
     }
 
     /**

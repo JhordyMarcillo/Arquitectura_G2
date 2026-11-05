@@ -69,6 +69,29 @@ app.post("/comprarEfectivo", async (req, res) => {
     });
   }
 });
+app.get("/carrito", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "carrito.html"));
+});
+
+app.post("/comprarVarios", async (req, res) => {
+  const { tipo, codTelefonos, cedula, plazoMeses } = req.body;
+  try {
+    const result = await compraService.comprarVarios(
+      tipo,
+      codTelefonos,
+      cedula,
+      plazoMeses
+    );
+    res.json({ success: true, result });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Compra de varios productos error",
+      error: error.message,
+    });
+  }
+});
+
 app.get("/factura", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "factura.html"));
 });

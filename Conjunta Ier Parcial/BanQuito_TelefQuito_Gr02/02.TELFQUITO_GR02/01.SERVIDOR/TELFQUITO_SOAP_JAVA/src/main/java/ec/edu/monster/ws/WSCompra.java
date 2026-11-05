@@ -66,6 +66,36 @@ public class WSCompra {
     }
 
     /**
+     * Compra de 1 a 3 telefonos en efectivo. codTelefonos = "1,2,3". Devuelve la factura.
+     */
+    @WebMethod(operationName = "comprarEfectivoMultiple")
+    public String comprarEfectivoMultiple(@WebParam(name = "codTelefonos") String codTelefonos,
+            @WebParam(name = "cedula") String cedula) {
+        try {
+            return compraService.realizarCompraEfectivoMultiple(codTelefonos, cedula);
+        } catch (IllegalArgumentException e) {
+            return "Error: " + e.getMessage();
+        } catch (Exception e) {
+            return "Error al realizar la compra en efectivo: " + e.getMessage();
+        }
+    }
+
+    /**
+     * Compra de 1 a 3 telefonos a credito. codTelefonos = "1,2,3". Devuelve la factura.
+     */
+    @WebMethod(operationName = "comprarCreditoMultiple")
+    public String comprarCreditoMultiple(@WebParam(name = "codTelefonos") String codTelefonos,
+            @WebParam(name = "cedula") String cedula, @WebParam(name = "plazoMeses") int plazoMeses) {
+        try {
+            return compraService.realizarCompraCreditoMultiple(codTelefonos, cedula, plazoMeses);
+        } catch (IllegalArgumentException e) {
+            return "Error: " + e.getMessage();
+        } catch (Exception e) {
+            return "Error al realizar la compra con crédito: " + e.getMessage();
+        }
+    }
+
+    /**
      * Web service operation factura
      * 
      * @param cedula

@@ -36,12 +36,15 @@ public class CompraService {
     public static final int MAX_PRODUCTOS = 3;
 
     public String realizarCompraEfectivo(int codTelefono, String codCedula, String formaPago) throws Exception {
-        return realizarCompraEfectivoMultiple(String.valueOf(codTelefono), codCedula);
+        String r = realizarCompraEfectivoMultiple(String.valueOf(codTelefono), codCedula);
+        // Los clientes de compra simple comparan este texto exacto
+        return r.startsWith("FACTURA") ? "Compra en efectivo exitosa!!" : r;
     }
 
     public String realizarCompraCredito(int codTelefono, String cedula, String formaPago, int plazoMeses)
             throws Exception {
-        return realizarCompraCreditoMultiple(String.valueOf(codTelefono), cedula, plazoMeses);
+        String r = realizarCompraCreditoMultiple(String.valueOf(codTelefono), cedula, plazoMeses);
+        return r.startsWith("FACTURA") ? "Compra exitosa a credito!!" : r;
     }
 
     /** Convierte "1,2,3" en los telefonos del catalogo (maximo 3, deben existir y estar a la venta). */
@@ -85,7 +88,7 @@ public class CompraService {
         }
         int factura = compraDAO.crearFactura("Efectivo", LocalDate.now().toString(), idCliente, items, 0.42);
         if (factura > 0) {
-            return "Compra en efectivo exitosa!! Factura No. " + factura;
+            return armarFactura(factura, cedula, 0);
         }
         return "Compra en efectivo fallida";
     }
@@ -117,9 +120,66 @@ public class CompraService {
         int factura = compraDAO.crearFactura("Crédito Directo", LocalDate.now().toString(),
                 clientecDAO.getCodClienteByCedula(cedula), items, 0);
         if (factura > 0) {
-            return "Compra exitosa a credito!! Factura No. " + factura;
+            return armarFactura(factura, cedula, plazoMeses);
         }
         return "Compra fallida!!";
+    }
+
+    private static String dinero(double v) {
+        return String.format(java.util.Locale.US, "$%,.2f", v);
+    }
+
+    /** Factura en texto: encabezado, lineas, subtotal, descuento y total (y cuota si es a credito). */
+    private String armarFactura(int codCompra, String cedula, int plazoMeses) {
+        List<Factura> lineas = new java.util.ArrayList<>();
+        for (Factura f : compraDAO.obtenerFactura(cedula)) {
+            if (f.getCodCompra() == codCompra) {
+                lineas.add(f);
+            }
+        }
+        if (lineas.isEmpty()) {
+            return "FACTURA No. " + codCompra;
+        }
+        Factura c = lineas.get(0);
+        boolean efectivo = "Efectivo".equalsIgnoreCase(c.getFormaPago());
+        double subtotal = 0, descuento = 0, total = 0;
+        for (Factura f : lineas) {
+            descuento += f.getDescuento();
+            total += f.getPreciofinal();
+            subtotal += f.getPreciofinal() + f.getDescuento();
+        }
+        String barra = "------------------------------------------------------------\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("FACTURA No. ").append(codCompra).append("  -  TELFQUITO\n");
+        sb.append(barra);
+        sb.append("Fecha         : ").append(c.getFecha()).append('\n');
+        sb.append("Cliente       : ").append(c.getNombreCliente()).append('\n');
+        sb.append("Cédula        : ").append(cedula).append('\n');
+        sb.append("Forma de pago : ").append(c.getFormaPago()).append('\n');
+        sb.append(barra);
+        sb.append(String.format("%-3s %-30s %10s %10s%n", "#", "Producto", "Precio", "Total"));
+        int n = 1;
+        for (Factura f : lineas) {
+            String prod = f.getNombreTelefono() + " (" + f.getMarcaTelefono() + ")";
+            if (prod.length() > 30) {
+                prod = prod.substring(0, 29) + "…";
+            }
+            sb.append(String.format("%-3d %-30s %10s %10s%n", n++, prod,
+                    dinero(f.getPreciofinal() + f.getDescuento()), dinero(f.getPreciofinal())));
+        }
+        sb.append(barra);
+        sb.append(String.format("%-20s %s%n", "Subtotal", dinero(subtotal)));
+        if (efectivo) {
+            sb.append(String.format("%-20s -%s%n", "Descuento (42%)", dinero(descuento)));
+        }
+        sb.append(String.format("%-20s %s%n", "TOTAL A PAGAR", dinero(total)));
+        if (!efectivo && plazoMeses > 0) {
+            double r = 0.165 / 12;
+            double cuota = total * r / (1 - Math.pow(1 + r, -plazoMeses));
+            sb.append(barra);
+            sb.append(String.format("Crédito directo: %d cuotas mensuales de %s (16.5%% anual)%n", plazoMeses, dinero(cuota)));
+        }
+        return sb.toString().trim();
     }
 
     public List<Factura> obtenerFactura(String cedula) {

@@ -126,7 +126,7 @@ exit /b 0
 call :buscar_celular
 if not defined CELULAR (echo Movil: no hay celular ni emulador conectado, se omite. & exit /b 0)
 echo Movil: compilando e instalando en una ventana aparte (tarda varios minutos) ...
-start "EurekaBank TI 1.3 - Movil" /D "%BASE%\04. CLIMOV\CLIMOV_EurekaBank_%SUFIJO%" cmd /k "gradlew.bat installDebug && "%ADB%" shell monkey -p ec.edu.monster.eurekabank.restjava -c android.intent.category.LAUNCHER 1"
+start "EurekaBank TI 1.3 - Movil" /D "%BASE%\04. CLIMOV\CLIMOV_EurekaBank_%SUFIJO%" cmd /k ".\gradlew.bat installDebug && "%ADB%" shell monkey -p ec.edu.monster.eurekabank.restjava -c android.intent.category.LAUNCHER 1"
 exit /b 0
 
 :error

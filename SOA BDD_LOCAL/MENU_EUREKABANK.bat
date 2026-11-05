@@ -2,6 +2,8 @@
 REM Menu de EurekaBank: se elige el proyecto (TI) y luego que levantar.
 REM Uso: doble clic, o directo:  MENU_EUREKABANK.bat 1.2 servidor
 REM      Opciones directas: servidor consola escritorio web movil clientes todo
+REM      Clientes contra otro equipo:  MENU_EUREKABANK.bat 1.2 consola 192.168.1.20
+REM      El servidor muestra la IP de este equipo; los clientes piden la IP del servidor.
 REM      Todos los servidores (TI.1.2, TI.1.3 y TI.1.4):  MENU_EUREKABANK.bat servidores
 REM      Detener:  MENU_EUREKABANK.bat detener 1.2   o   MENU_EUREKABANK.bat detener todos
 setlocal
@@ -10,9 +12,12 @@ set "DIRECTO="
 if not "%~1"=="" set "DIRECTO=1"
 set "TI=%~1"
 set "ACCION=%~2"
+set "IP=%~3"
+set "ARCHIVO_IP=%TEMP%\eurekabank_gr02_ip_servidor.txt"
 
 where mvn >nul 2>nul || set "PATH=%PATH%;%ProgramFiles%\Apache NetBeans\java\maven\bin"
 if not defined ANDROID_HOME if exist "%LOCALAPPDATA%\Android\Sdk" set "ANDROID_HOME=%LOCALAPPDATA%\Android\Sdk"
+call :ip_local
 if /i "%TI%"=="servidores" goto todos_servidores
 if /i "%TI%"=="detener" goto detener_directo
 if defined DIRECTO goto preparar
@@ -80,6 +85,7 @@ REM ------------------------------------------------------------------ todos los
 :todos_servidores
 set "FALLO="
 for %%t in (1.2 1.3 1.4) do call :un_servidor %%t
+call :mostrar_ip 1.2 1.3 1.4
 echo.
 if defined DIRECTO goto terminar
 pause
@@ -120,6 +126,8 @@ echo     6. Todos los clientes
 echo     7. Servidor y todos los clientes
 echo     0. Volver
 echo.
+echo     IP de este equipo: %IPLOCAL%
+echo.
 set "OPCION="
 set /p "OPCION=  Opcion: "
 set "ACCION="
@@ -135,19 +143,42 @@ if not defined ACCION goto menu_accion
 
 :ejecutar
 set "FALLO="
-if /i "%ACCION%"=="servidor" call :servidor
+if /i "%ACCION%"=="servidor" goto ejecutar_servidor
+if /i "%ACCION%"=="todo" goto ejecutar_todo
+REM Clientes: primero la IP del servidor
+if not defined IP if not defined DIRECTO call :pedir_ip
+if not defined IP set "IP=localhost"
+call :limpiar_ip
+call :urls_cliente
+call :verificar_servidor
+if errorlevel 1 goto fin_accion
 if /i "%ACCION%"=="consola" call :consola
 if /i "%ACCION%"=="escritorio" call :escritorio
 if /i "%ACCION%"=="web" call :web
 if /i "%ACCION%"=="movil" call :movil
 if /i "%ACCION%"=="clientes" call :clientes
-if /i "%ACCION%"=="todo" call :servidor
-if /i "%ACCION%"=="todo" call :clientes
+goto fin_accion
+
+:ejecutar_servidor
+call :servidor
+if not defined FALLO call :mostrar_ip %TI%
+goto fin_accion
+
+:ejecutar_todo
+call :servidor
+if defined FALLO goto fin_accion
+call :mostrar_ip %TI%
+set "IP=localhost"
+call :urls_cliente
+call :clientes
+
+:fin_accion
 echo.
 echo Usuario de prueba: MONSTER / Monster9
 if defined DIRECTO goto terminar
 echo.
 pause
+set "IP="
 goto menu_accion
 
 :terminar
@@ -301,33 +332,37 @@ exit /b 0
 REM ------------------------------------------------------------------ clientes
 :consola
 if "%TIPO%"=="java" goto consola_java
-echo Abriendo la consola ...
-start "EurekaBank TI %TI% - Consola" /D "%BASE%\04. CLICON\CLICON_EurekaBank_%SUFIJO%" cmd /k dotnet run
+echo Abriendo la consola ^(servidor %URLCLI%^) ...
+start "EurekaBank TI %TI% - Consola" /D "%BASE%\04. CLICON\CLICON_EurekaBank_%SUFIJO%" cmd /k dotnet run -- %URLCLI%
 exit /b 0
 :consola_java
 call :compilar "%BASE%\04. CLICON\CLICON_EurekaBank_%SUFIJO%" CLICON_EurekaBank_%SUFIJO%.jar
 if errorlevel 1 exit /b 1
-echo Abriendo la consola ...
-start "EurekaBank TI %TI% - Consola" /D "%BASE%\04. CLICON\CLICON_EurekaBank_%SUFIJO%" cmd /k java -Dstdout.encoding=UTF-8 -jar target\CLICON_EurekaBank_%SUFIJO%.jar
+echo Abriendo la consola ^(servidor %URLCLI%^) ...
+start "EurekaBank TI %TI% - Consola" /D "%BASE%\04. CLICON\CLICON_EurekaBank_%SUFIJO%" cmd /k java -Dstdout.encoding=UTF-8 -jar target\CLICON_EurekaBank_%SUFIJO%.jar %URLCLI%
 exit /b 0
 
 :escritorio
 if "%TIPO%"=="java" goto escritorio_java
-echo Abriendo el escritorio ...
-start "EurekaBank TI %TI% - Escritorio" /min /D "%BASE%\04. CLIESC\CLIESC_EurekaBank_%SUFIJO%" cmd /c dotnet run
+echo Abriendo el escritorio ^(servidor %URLCLI%^) ...
+start "EurekaBank TI %TI% - Escritorio" /min /D "%BASE%\04. CLIESC\CLIESC_EurekaBank_%SUFIJO%" cmd /c dotnet run -- %URLCLI%
 exit /b 0
 :escritorio_java
 call :compilar "%BASE%\04. CLIESC\CLIESC_EurekaBank_%SUFIJO%" CLIESC_EurekaBank_%SUFIJO%.jar
 if errorlevel 1 exit /b 1
-echo Abriendo el escritorio ...
-start "EurekaBank TI %TI% - Escritorio" /min /D "%BASE%\04. CLIESC\CLIESC_EurekaBank_%SUFIJO%" cmd /c java -jar target\CLIESC_EurekaBank_%SUFIJO%.jar
+echo Abriendo el escritorio ^(servidor %URLCLI%^) ...
+start "EurekaBank TI %TI% - Escritorio" /min /D "%BASE%\04. CLIESC\CLIESC_EurekaBank_%SUFIJO%" cmd /c java -jar target\CLIESC_EurekaBank_%SUFIJO%.jar %URLCLI%
 exit /b 0
 
 :web
 if "%TIPO%"=="java" goto web_java
-echo Abriendo la web ...
+echo Abriendo la web ^(servidor %URLCLI%^) ...
+REM La web .NET lee "UrlServidor" de su configuracion: la variable de entorno la reemplaza
+set "UrlServidor=%URLCLI%"
 start "EurekaBank TI %TI% - Web" /min /D "%BASE%\04. CLIWEB\CLIWEB_EurekaBank_%SUFIJO%" cmd /k dotnet run --launch-profile http
+set "UrlServidor="
 set "URLWEB=http://localhost:%PUERTO%/Login"
+set "URLABRIR=%URLWEB%"
 goto web_esperar
 :web_java
 call :compilar "%BASE%\04. CLIWEB\CLIWEB_EurekaBank_%SUFIJO%" CLIWEB_EurekaBank_%SUFIJO%.war
@@ -335,6 +370,7 @@ if errorlevel 1 exit /b 1
 call :desplegar "%BASE%\04. CLIWEB\CLIWEB_EurekaBank_%SUFIJO%\target\CLIWEB_EurekaBank_%SUFIJO%.war"
 if errorlevel 1 exit /b 1
 set "URLWEB=http://localhost:%PUERTO%/CLIWEB_EurekaBank_%SUFIJO%/login"
+set "URLABRIR=%URLWEB%?servidor=%URLCLI%"
 :web_esperar
 echo Esperando la web ...
 call :esperar "%URLWEB%"
@@ -344,7 +380,7 @@ if errorlevel 1 (
     exit /b 1
 )
 echo Web lista: %URLWEB%
-start "" "%URLWEB%"
+start "" "%URLABRIR%"
 exit /b 0
 
 :movil
@@ -356,12 +392,20 @@ if not defined CELULAR (
     exit /b 0
 )
 :movil_instalar
-echo Movil: compilando e instalando en una ventana aparte, tarda unos minutos ...
+REM El celular no puede usar "localhost": se usa la IP del PC (o 10.0.2.2 en el emulador)
+set "IPMOVIL=%IP%"
+if /i not "%IP%"=="localhost" if not "%IP%"=="127.0.0.1" goto movil_url
+set "IPMOVIL=%IPLOCAL%"
+if defined EMULADO set "IPMOVIL=10.0.2.2"
+:movil_url
+set "URLMOVIL=http://%IPMOVIL%:%PUERTOSRV%/%RUTA%"
+echo Movil: compilando e instalando con servidor %URLMOVIL% en una ventana aparte, tarda unos minutos ...
+REM La app se abre con la URL en el intent (extra "urlServidor")
 if "%TIPO%"=="java" goto movil_java
-start "EurekaBank TI %TI% - Movil" /D "%BASE%\04. CLIMOV\CLIMOV_EurekaBank_%SUFIJO%" cmd /k dotnet build -t:Run -f net10.0-android
+start "EurekaBank TI %TI% - Movil" /D "%BASE%\04. CLIMOV\CLIMOV_EurekaBank_%SUFIJO%" cmd /k "dotnet build -t:Run -f net10.0-android && "%ADB%" -s %CELULAR% shell am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p %PAQUETE% --es urlServidor %URLMOVIL%"
 exit /b 0
 :movil_java
-start "EurekaBank TI %TI% - Movil" /D "%BASE%\04. CLIMOV\CLIMOV_EurekaBank_%SUFIJO%" cmd /k ".\gradlew.bat installDebug && "%ADB%" shell monkey -p %PAQUETE% -c android.intent.category.LAUNCHER 1"
+start "EurekaBank TI %TI% - Movil" /D "%BASE%\04. CLIMOV\CLIMOV_EurekaBank_%SUFIJO%" cmd /k ".\gradlew.bat installDebug && "%ADB%" -s %CELULAR% shell am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -p %PAQUETE% --es urlServidor %URLMOVIL%"
 exit /b 0
 
 REM ------------------------------------------------------------------ utilidades
@@ -419,8 +463,11 @@ goto esperar_otra
 set "ADB=%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe"
 if not exist "%ADB%" set "ADB=%ProgramFiles(x86)%\Android\android-sdk\platform-tools\adb.exe"
 set "CELULAR="
+set "EMULADO="
 if not exist "%ADB%" exit /b 0
-for /f "skip=1 tokens=2" %%a in ('call "%ADB%" devices') do if "%%a"=="device" set "CELULAR=1"
+for /f "skip=1 tokens=1,2" %%a in ('call "%ADB%" devices') do if "%%b"=="device" if not defined CELULAR set "CELULAR=%%a"
+if not defined CELULAR exit /b 0
+if "%CELULAR:~0,9%"=="emulator-" set "EMULADO=1"
 exit /b 0
 
 REM Abre el primer emulador disponible y espera a que Android termine de arrancar
@@ -444,5 +491,85 @@ if %INTENTOS% geq 80 exit /b 0
 timeout /t 3 /nobreak >nul
 goto emulador_otra
 :emulador_listo
-set "CELULAR=1"
+call :buscar_celular
+exit /b 0
+
+REM ================================================================== IP del servidor
+REM IP de este equipo: la de la tarjeta de red que tiene puerta de enlace
+:ip_local
+set "IPLOCAL="
+for /f "usebackq delims=" %%a in (`powershell -NoProfile -Command "$c=@(Get-NetIPConfiguration).Where({$_.IPv4DefaultGateway -and $_.NetAdapter.Status -eq 'Up'}); if($c){$c[0].IPv4Address[0].IPAddress}"`) do set "IPLOCAL=%%a"
+if not defined IPLOCAL set "IPLOCAL=127.0.0.1"
+exit /b 0
+
+:pedir_ip
+set "IPDEF=localhost"
+if exist "%ARCHIVO_IP%" set /p IPDEF=<"%ARCHIVO_IP%"
+echo.
+echo   Escriba la IP del equipo donde corre el servidor de TI.%TI%.
+echo   - Mismo equipo: localhost
+echo   - Otro equipo: la IP que muestra la opcion 1 en ese equipo
+echo   - Enter: %IPDEF%
+echo.
+set "ENTRADA="
+set /p "ENTRADA=  IP del servidor: "
+if defined ENTRADA (set "IP=%ENTRADA%") else set "IP=%IPDEF%"
+exit /b 0
+
+REM Quita espacios, http://, el puerto y la ruta si los escribieron; recuerda la IP
+:limpiar_ip
+set "IP=%IP: =%"
+set "IP=%IP:http://=%"
+for /f "tokens=1 delims=:/" %%a in ("%IP%") do set "IP=%%a"
+> "%ARCHIVO_IP%" echo %IP%
+exit /b 0
+
+REM URL del servicio de este TI en la IP indicada (URLCLI) y una URL para probarlo
+:urls_cliente
+set "PUERTOSRV=8080"
+if "%TI%"=="1.2" set "PUERTOSRV=5090"
+if "%TI%"=="1.4" set "PUERTOSRV=5080"
+set "URLCLI=http://%IP%:%PUERTOSRV%/%RUTA%"
+set "URLPRUEBA=%URLCLI%?wsdl"
+if "%TI%"=="1.3" set "URLPRUEBA=%URLCLI%/cuentas"
+if "%TI%"=="1.4" set "URLPRUEBA=%URLCLI%/login"
+exit /b 0
+
+:verificar_servidor
+echo.
+echo Probando el servidor %URLCLI% ...
+curl -s -o nul --max-time 5 "%URLPRUEBA%"
+if not errorlevel 1 (
+    echo Servidor encontrado.
+    exit /b 0
+)
+echo.
+echo   ATENCION: el servidor de TI.%TI% no responde en %IP%:%PUERTOSRV%.
+echo   Revise que este encendido ^(opcion 1^), la IP y el Firewall ^(puerto %PUERTOSRV%^).
+if defined DIRECTO exit /b 0
+set "SEGUIR="
+set /p "SEGUIR=  Abrir los clientes de todos modos? (S/N): "
+if /i "%SEGUIR%"=="S" exit /b 0
+exit /b 1
+
+REM Muestra la IP de este equipo y la URL de cada TI indicado
+:mostrar_ip
+echo.
+echo   ==============================================
+echo     IP DEL SERVIDOR: %IPLOCAL%
+echo   ==============================================
+echo     En los clientes de otros equipos escriba: %IPLOCAL%
+echo     En este mismo equipo puede usar:          localhost
+for %%t in (%*) do call :mostrar_url %%t
+echo     Si otro equipo no conecta, permita el puerto en el Firewall de Windows.
+exit /b 0
+
+:mostrar_url
+set "TI=%~1"
+call :cargar_ti
+set "IP_ANTES=%IP%"
+set "IP=%IPLOCAL%"
+call :urls_cliente
+set "IP=%IP_ANTES%"
+echo     TI.%TI%: %URLCLI%
 exit /b 0

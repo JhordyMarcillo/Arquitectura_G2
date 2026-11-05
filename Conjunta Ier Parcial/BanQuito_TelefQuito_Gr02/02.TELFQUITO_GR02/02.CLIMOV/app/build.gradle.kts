@@ -14,6 +14,15 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // IP del servidor TelefQuito: gradlew installDebug -PservidorIp=192.168.x.x
+        // Sin el parametro se usa 10.0.2.2 (el PC visto desde el emulador)
+        val servidorIp = (project.findProperty("servidorIp") as String?) ?: "10.0.2.2"
+        buildConfigField("String", "SERVIDOR_IP", "\"$servidorIp\"")
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {

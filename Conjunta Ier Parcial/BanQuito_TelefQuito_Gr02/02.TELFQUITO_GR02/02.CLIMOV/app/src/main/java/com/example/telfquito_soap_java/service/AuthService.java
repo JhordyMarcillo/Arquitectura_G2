@@ -1,5 +1,7 @@
 package com.example.telfquito_soap_java.service;
 
+import com.example.telfquito_soap_java.BuildConfig;
+
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -19,7 +21,7 @@ public class AuthService {
     private static final String NAMESPACE = "http://ws.monster.edu.ec/";
     private static final String METHOD_NAME = "auth";
     private static final String SOAP_ACTION = "http://ws.monster.edu.ec/WSLogin/authRequest";
-    private static final String URL = "http://192.168.186.83:8080/TELFQUITO_SOAP_JAVA/WSLogin";
+    private static final String URL = "http://" + BuildConfig.SERVIDOR_IP + ":8080/TELFQUITO_SOAP_JAVA/WSLogin";
     private static final int TIMEOUT = 15000;
 
     public interface SoapCallback {

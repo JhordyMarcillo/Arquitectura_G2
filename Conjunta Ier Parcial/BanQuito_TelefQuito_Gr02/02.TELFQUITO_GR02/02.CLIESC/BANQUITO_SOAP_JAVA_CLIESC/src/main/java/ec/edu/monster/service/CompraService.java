@@ -11,7 +11,7 @@ public class CompraService {
 
     public CompraService() {
         // Inicializar el cliente del web service
-        WSCompra_Service servicio = new WSCompra_Service();
+        WSCompra_Service servicio = new WSCompra_Service(Servidor.wsdl("WSCompra"));
         this.port = servicio.getWSCompraPort();
     }
     

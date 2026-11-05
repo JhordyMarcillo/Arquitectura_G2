@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TelefonoServicio {
         
-        WSTelefonos_Service servicio = new WSTelefonos_Service();
+        WSTelefonos_Service servicio = new WSTelefonos_Service(Servidor.wsdl("WSTelefonos"));
         WSTelefonos port = servicio.getWSTelefonosPort();
      public Telefonos getTelefonoById( int id) {
          return port.getTelefonoById(id);

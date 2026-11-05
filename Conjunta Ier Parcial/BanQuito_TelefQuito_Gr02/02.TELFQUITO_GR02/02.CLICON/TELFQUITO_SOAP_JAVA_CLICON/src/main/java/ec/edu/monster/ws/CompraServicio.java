@@ -3,7 +3,7 @@ package ec.edu.monster.ws;
 import java.util.List;
 
 public class CompraServicio {
-    WSCompra_Service servicio = new WSCompra_Service();
+    WSCompra_Service servicio = new WSCompra_Service(Servidor.wsdl("WSCompra"));
     WSCompra port = servicio.getWSCompraPort();
     
     public String comprarEfectivo(int codTelefono,

@@ -1,5 +1,7 @@
 package com.example.telfquito_soap_java.service;
 
+import com.example.telfquito_soap_java.BuildConfig;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
@@ -21,7 +23,7 @@ import java.util.Vector;
 public class CompraService {
     private static final String TAG = "CompraService";
     private static final String NAMESPACE = "http://ws.monster.edu.ec/";
-    private static final String URL = "http://192.168.186.83:8080/TELFQUITO_SOAP_JAVA/WSCompra";
+    private static final String URL = "http://" + BuildConfig.SERVIDOR_IP + ":8080/TELFQUITO_SOAP_JAVA/WSCompra";
     private static final int TIMEOUT = 15000;
 
     public interface SoapCallback<T> {

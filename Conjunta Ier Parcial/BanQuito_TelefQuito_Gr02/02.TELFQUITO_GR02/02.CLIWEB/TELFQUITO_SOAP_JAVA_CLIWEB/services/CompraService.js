@@ -1,8 +1,9 @@
+const servidor = require("./servidor");
 const SoapClient = require("./soapclient");
 
 class CompraService {
   constructor() {
-    this.wsdlUrl = "http://localhost:8080/TELFQUITO_SOAP_JAVA/WSCompra?wsdl";
+    this.wsdlUrl = servidor.wsdl("WSCompra");
     this.namespace = "http://ws.monster.edu.ec/";
   }
 

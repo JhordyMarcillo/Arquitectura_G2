@@ -1,8 +1,9 @@
+const servidor = require("./servidor");
 const SoapClient = require("./soapclient");
 
 class AuthService {
   constructor() {
-    this.wsdlUrl = "http://localhost:8080/TELFQUITO_SOAP_JAVA/WSLogin?wsdl";
+    this.wsdlUrl = servidor.wsdl("WSLogin");
   }
 
   async authenticate(username, password) {

@@ -182,4 +182,5 @@ telefonoController(app);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`Servidor TelefQuito: http://${require("./services/servidor").host}/TELFQUITO_SOAP_JAVA`);
 });

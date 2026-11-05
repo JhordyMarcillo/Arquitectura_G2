@@ -22,6 +22,10 @@ public class Principal {
 
     public static void main(String[] args) {
         SERVICIO.setUrlServidor(PREFERENCIAS.get(CLAVE_URL, SERVICIO.getUrlServidor()));
+        if (args.length > 0) {
+            SERVICIO.setUrlServidor(args[0]);
+            guardarUrlServidor();
+        }
 
         FlatLightLaf.setup();
         UIManager.put("defaultFont", new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));

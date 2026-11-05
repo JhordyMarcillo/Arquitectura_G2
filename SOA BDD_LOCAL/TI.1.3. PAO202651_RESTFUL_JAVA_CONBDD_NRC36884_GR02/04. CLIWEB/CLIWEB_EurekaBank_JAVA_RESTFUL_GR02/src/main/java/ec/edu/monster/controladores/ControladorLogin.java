@@ -25,6 +25,11 @@ public class ControladorLogin extends HttpServlet {
             respuesta.sendRedirect(peticion.getContextPath() + "/cuentas");
             return;
         }
+        // El menu abre /login?servidor=URL para usar el servidor indicado
+        String servidor = valor(peticion, "servidor");
+        if (!servidor.isEmpty()) {
+            SesionWeb.servicio(peticion).setUrlServidor(servidor);
+        }
         peticion.setAttribute("urlServidor", SesionWeb.servicio(peticion).getUrlServidor());
         peticion.setAttribute("aviso", SesionWeb.tomarAviso(peticion));
         peticion.getRequestDispatcher(VISTA).forward(peticion, respuesta);

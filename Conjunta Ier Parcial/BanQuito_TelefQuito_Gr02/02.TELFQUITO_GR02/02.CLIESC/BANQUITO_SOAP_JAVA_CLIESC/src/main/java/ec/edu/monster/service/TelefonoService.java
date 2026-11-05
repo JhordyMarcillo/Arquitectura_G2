@@ -11,7 +11,7 @@ public class TelefonoService {
 
     public TelefonoService() {
         // Inicializar el cliente del web service
-        WSTelefonos_Service servicio = new WSTelefonos_Service();
+        WSTelefonos_Service servicio = new WSTelefonos_Service(Servidor.wsdl("WSTelefonos"));
         this.port = servicio.getWSTelefonosPort();
     }
 

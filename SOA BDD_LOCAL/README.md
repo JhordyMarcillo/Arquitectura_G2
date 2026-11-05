@@ -77,3 +77,11 @@ Los servidores se conectan **siempre con `eureka` / `admin`**. El `.env` tambié
 04. CLIWEB/         cliente web
 05. DOCUMENTACION/  manuales, capturas y pruebas (SoapUI o Postman)
 ```
+
+## Menú para levantar todo (`MENU_EUREKABANK.bat`)
+
+Doble clic, se elige el TI y luego qué levantar. Al encender un **servidor** el menú muestra la **IP de este equipo** y la
+URL del servicio; al abrir un **cliente** pide la **IP del servidor** (`localhost` si está en el mismo equipo; Enter repite
+la última), comprueba que responda y le pasa la URL al cliente: consola y escritorio como argumento, web .NET con la
+variable `UrlServidor`, web JSP con `/login?servidor=URL` y móvil con el extra `urlServidor` del intent (con `localhost`
+el celular usa la IP del PC, o `10.0.2.2` en el emulador). Directo: `MENU_EUREKABANK.bat 1.2 consola 192.168.1.20`.

@@ -1,8 +1,9 @@
+const servidor = require("./servidor");
 const SoapClient = require("./soapclient");
 
 class TelefonoService {
   constructor() {
-    this.wsdlUrl = "http://localhost:8080/TELFQUITO_SOAP_JAVA/WSTelefonos?wsdl";
+    this.wsdlUrl = servidor.wsdl("WSTelefonos");
     this.namespace = "http://ws.monster.edu.ec/";
   }
 

@@ -15,6 +15,8 @@ import ec.edu.monster.controladores.SesionApp;
 public class ActividadLogin extends AppCompatActivity {
 
     public static final String EXTRA_AVISO = "aviso";
+    /** URL del servidor enviada al abrir la app (adb shell am start --es urlServidor ...). */
+    public static final String EXTRA_URL = "urlServidor";
 
     private TextInputEditText campoUsuario;
     private TextInputEditText campoClave;
@@ -35,6 +37,11 @@ public class ActividadLogin extends AppCompatActivity {
         cargando = findViewById(R.id.cargando);
 
         SesionApp.cargarUrl(this);
+        String urlRecibida = getIntent().getStringExtra(EXTRA_URL);
+        if (urlRecibida != null && !urlRecibida.isBlank()) {
+            SesionApp.SERVICIO.setUrlServidor(urlRecibida.trim());
+            SesionApp.guardarUrl(this);
+        }
         campoServidor.setText(SesionApp.SERVICIO.getUrlServidor());
         String aviso = getIntent().getStringExtra(EXTRA_AVISO);
         if (aviso != null) {

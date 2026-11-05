@@ -19,6 +19,11 @@ namespace ec.edu.monster
         {
             DispatcherUnhandledException += ErrorNoControlado;
             Servicio.UrlServidor = Preferencias.LeerUrlServidor(Servicio.UrlServidor);
+            if (e.Args.Length > 0 && !string.IsNullOrWhiteSpace(e.Args[0]))
+            {
+                Servicio.UrlServidor = e.Args[0].Trim();
+                Preferencias.GuardarUrlServidor(Servicio.UrlServidor);
+            }
             base.OnStartup(e);
         }
 

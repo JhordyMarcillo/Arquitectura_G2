@@ -28,7 +28,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class ServicioEurekaBankRest implements IServicioEurekaBank {
 
-    public static final String URL_POR_DEFECTO = "http://localhost:8080/WS_EurekaBank_JAVA_RESTFUL_GR02/api/eurekabank";
+    public static final String URL_POR_DEFECTO = "http://10.40.49.213:8080/WS_EurekaBank_JAVA_RESTFUL_GR02/api/eurekabank";
     private static final int TIEMPO_ESPERA_MS = 15000;
 
     private final Gson gson = new Gson();

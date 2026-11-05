@@ -9,7 +9,7 @@ namespace ec.edu.monster.servicios
     /// </summary>
     public class ServicioEurekaBankSoap : IServicioEurekaBank
     {
-        public const string URL_POR_DEFECTO = "http://localhost:5090/WSEurekaBank.svc";
+        public const string URL_POR_DEFECTO = "http://10.40.49.213:5090/WSEurekaBank.svc";
 
         private string urlServidor = URL_POR_DEFECTO;
         private ChannelFactory<IWSEurekaBank>? fabrica;

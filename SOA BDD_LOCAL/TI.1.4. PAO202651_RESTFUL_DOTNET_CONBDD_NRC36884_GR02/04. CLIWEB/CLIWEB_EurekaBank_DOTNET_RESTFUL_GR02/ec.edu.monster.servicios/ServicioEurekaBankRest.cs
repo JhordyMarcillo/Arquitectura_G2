@@ -9,7 +9,7 @@ namespace ec.edu.monster.servicios
     /// <summary>Proxy del servicio REST EurekaBank (sirve para el servidor .NET y el Java).</summary>
     public class ServicioEurekaBankRest : IServicioEurekaBank
     {
-        public const string URL_POR_DEFECTO = "http://localhost:5080/api/eurekabank";
+        public const string URL_POR_DEFECTO = "http://10.40.49.213:5080/api/eurekabank";
 
         private static readonly JsonSerializerOptions FORMATO_JSON = new(JsonSerializerDefaults.Web);
         private readonly HttpClient clienteHttp = new() { Timeout = TimeSpan.FromSeconds(15) };

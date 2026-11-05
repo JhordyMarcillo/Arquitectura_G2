@@ -2,6 +2,8 @@
 REM Menu de EurekaBank: se elige el proyecto (TI) y luego que levantar.
 REM Uso: doble clic, o directo:  MENU_EUREKABANK.bat 1.2 servidor
 REM      Opciones directas: servidor consola escritorio web movil clientes todo
+REM      Todos los servidores (TI.1.2, TI.1.3 y TI.1.4):  MENU_EUREKABANK.bat servidores
+REM      Detener:  MENU_EUREKABANK.bat detener 1.2   o   MENU_EUREKABANK.bat detener todos
 setlocal
 set "RAIZ=%~dp0"
 set "DIRECTO="
@@ -11,6 +13,8 @@ set "ACCION=%~2"
 
 where mvn >nul 2>nul || set "PATH=%PATH%;%ProgramFiles%\Apache NetBeans\java\maven\bin"
 if not defined ANDROID_HOME if exist "%LOCALAPPDATA%\Android\Sdk" set "ANDROID_HOME=%LOCALAPPDATA%\Android\Sdk"
+if /i "%TI%"=="servidores" goto todos_servidores
+if /i "%TI%"=="detener" goto detener_directo
 if defined DIRECTO goto preparar
 
 REM ------------------------------------------------------------------ menu de proyectos
@@ -24,6 +28,8 @@ echo     1. TI.1.1  SOAP Java      (MySQL, Payara)
 echo     2. TI.1.2  SOAP .NET      (SQL Server)
 echo     3. TI.1.3  RESTful Java   (MySQL, Payara)
 echo     4. TI.1.4  RESTful .NET   (SQL Server)
+echo     5. Todos los servidores (TI.1.2, TI.1.3 y TI.1.4)
+echo     6. Detener servidores
 echo     0. Salir
 echo.
 set "OPCION="
@@ -33,15 +39,63 @@ if "%OPCION%"=="1" set "TI=1.1" & goto preparar
 if "%OPCION%"=="2" set "TI=1.2" & goto preparar
 if "%OPCION%"=="3" set "TI=1.3" & goto preparar
 if "%OPCION%"=="4" set "TI=1.4" & goto preparar
+if "%OPCION%"=="5" goto todos_servidores
+if "%OPCION%"=="6" goto menu_detener
 goto menu_proyecto
+
+REM ------------------------------------------------------------------ detener servidores
+:menu_detener
+cls
+echo.
+echo   ==============================================
+echo     EUREKABANK GR02 - Detener servidores
+echo   ==============================================
+echo     1. Servidor TI.1.1  SOAP Java
+echo     2. Servidor TI.1.2  SOAP .NET
+echo     3. Servidor TI.1.3  RESTful Java
+echo     4. Servidor TI.1.4  RESTful .NET
+echo     5. Detener todos los servidores
+echo     0. Volver
+echo.
+set "OPCION="
+set /p "OPCION=  Opcion: "
+if "%OPCION%"=="0" goto menu_proyecto
+if "%OPCION%"=="1" call :detener_ti 1.1 & goto detener_fin
+if "%OPCION%"=="2" call :detener_ti 1.2 & goto detener_fin
+if "%OPCION%"=="3" call :detener_ti 1.3 & goto detener_fin
+if "%OPCION%"=="4" call :detener_ti 1.4 & goto detener_fin
+if "%OPCION%"=="5" call :detener_todos & goto detener_fin
+goto menu_detener
+:detener_fin
+echo.
+pause
+goto menu_detener
+
+:detener_directo
+set "FALLO="
+if /i "%ACCION%"=="todos" (call :detener_todos) else (call :detener_ti %ACCION%)
+goto terminar
+
+REM ------------------------------------------------------------------ todos los servidores
+:todos_servidores
+set "FALLO="
+for %%t in (1.2 1.3 1.4) do call :un_servidor %%t
+echo.
+if defined DIRECTO goto terminar
+pause
+goto menu_proyecto
+
+:un_servidor
+set "TI=%~1"
+echo.
+echo --- Servidor TI.%TI%
+call :cargar_ti
+call :servidor
+exit /b 0
 
 REM ------------------------------------------------------------------ datos de cada TI
 :preparar
-set "BASE="
-if "%TI%"=="1.1" call :datos "TI.1.1. PAO202651_SOAP_JAVA_CONBDD_NRC36884_GR02" JAVA_SOAP_GR02 java 8080 soapjava eurekabank-mysql "WS_EurekaBank_JAVA_SOAP_GR02/WSEurekaBank"
-if "%TI%"=="1.2" call :datos "TI.1.2. PAO202651_SOAP_DOTNET_CONBDD_NRC36884_GR02" DOTNET_SOAP_GR02 dotnet 5190 soapdotnet eurekabank-sqlserver "WSEurekaBank.svc"
-if "%TI%"=="1.3" call :datos "TI.1.3. PAO202651_RESTFUL_JAVA_CONBDD_NRC36884_GR02" JAVA_RESTFUL_GR02 java 8080 restjava eurekabank-mysql "WS_EurekaBank_JAVA_RESTFUL_GR02/api/eurekabank"
-if "%TI%"=="1.4" call :datos "TI.1.4. PAO202651_RESTFUL_DOTNET_CONBDD_NRC36884_GR02" DOTNET_RESTFUL_GR02 dotnet 5180 restdotnet eurekabank-sqlserver "api/eurekabank"
+call :cargar_ti
 if not defined BASE (
     echo TI no valido: "%TI%". Use 1.1, 1.2, 1.3 o 1.4.
     if defined DIRECTO exit /b 1
@@ -105,6 +159,69 @@ endlocal
 exit /b 0
 
 REM ================================================================== subrutinas
+:detener_todos
+call :detener_ti 1.1
+call :detener_ti 1.2
+call :detener_ti 1.3
+call :detener_ti 1.4
+call :buscar_payara
+if not defined ASADMIN exit /b 0
+curl -s -o nul --max-time 3 http://localhost:4848
+if errorlevel 1 exit /b 0
+echo Apagando Payara, tambien se apagan las webs JSP ...
+call "%ASADMIN%" stop-domain domain1 >nul
+exit /b 0
+
+:detener_ti
+set "TI=%~1"
+call :cargar_ti
+if not defined BASE (
+    echo TI no valido: "%TI%".
+    set "FALLO=1"
+    exit /b 1
+)
+if "%TIPO%"=="java" goto detener_java
+if "%TI%"=="1.2" set "PUERTOSRV=5090"
+if "%TI%"=="1.4" set "PUERTOSRV=5080"
+set "HALLADO="
+for /f "tokens=2,5" %%a in ('netstat -ano -p tcp ^| findstr LISTENING') do if "%%a"=="0.0.0.0:%PUERTOSRV%" (
+    set "HALLADO=1"
+    taskkill /F /T /PID %%b >nul 2>nul
+)
+taskkill /F /T /FI "WINDOWTITLE eq EurekaBank TI %TI% - Servidor*" >nul 2>nul
+if defined HALLADO (echo Servidor TI.%TI% detenido.) else (echo Servidor TI.%TI%: no estaba encendido.)
+exit /b 0
+
+:detener_java
+call :buscar_payara
+if not defined ASADMIN (
+    echo Servidor TI.%TI%: no se encontro Payara.
+    exit /b 0
+)
+curl -s -o nul --max-time 3 http://localhost:4848
+if errorlevel 1 (
+    echo Servidor TI.%TI%: no estaba encendido, Payara esta apagado.
+    exit /b 0
+)
+call "%ASADMIN%" --interactive=false undeploy WS_EurekaBank_%SUFIJO% >nul 2>nul
+if errorlevel 1 (echo Servidor TI.%TI%: no estaba encendido.) else (echo Servidor TI.%TI% detenido.)
+exit /b 0
+
+:buscar_payara
+set "ASADMIN="
+if defined PAYARA_HOME if exist "%PAYARA_HOME%\bin\asadmin.bat" set "ASADMIN=%PAYARA_HOME%\bin\asadmin.bat"
+if not defined ASADMIN if exist "%USERPROFILE%\Payara_Server\bin\asadmin.bat" set "ASADMIN=%USERPROFILE%\Payara_Server\bin\asadmin.bat"
+if not defined ASADMIN if exist "%USERPROFILE%\Documents\payara7\bin\asadmin.bat" set "ASADMIN=%USERPROFILE%\Documents\payara7\bin\asadmin.bat"
+exit /b 0
+
+:cargar_ti
+set "BASE="
+if "%TI%"=="1.1" call :datos "TI.1.1. PAO202651_SOAP_JAVA_CONBDD_NRC36884_GR02" JAVA_SOAP_GR02 java 8080 soapjava eurekabank-mysql "WS_EurekaBank_JAVA_SOAP_GR02/WSEurekaBank"
+if "%TI%"=="1.2" call :datos "TI.1.2. PAO202651_SOAP_DOTNET_CONBDD_NRC36884_GR02" DOTNET_SOAP_GR02 dotnet 5190 soapdotnet eurekabank-sqlserver "WSEurekaBank.svc"
+if "%TI%"=="1.3" call :datos "TI.1.3. PAO202651_RESTFUL_JAVA_CONBDD_NRC36884_GR02" JAVA_RESTFUL_GR02 java 8080 restjava eurekabank-mysql "WS_EurekaBank_JAVA_RESTFUL_GR02/api/eurekabank"
+if "%TI%"=="1.4" call :datos "TI.1.4. PAO202651_RESTFUL_DOTNET_CONBDD_NRC36884_GR02" DOTNET_RESTFUL_GR02 dotnet 5180 restdotnet eurekabank-sqlserver "api/eurekabank"
+exit /b 0
+
 :datos
 set "BASE=%RAIZ%%~1"
 set "SUFIJO=%~2"
@@ -146,21 +263,29 @@ REM ------------------------------------------------------------------ servidor
 :servidor
 call :base_datos
 if errorlevel 1 exit /b 1
+if "%TI%"=="1.1" set "URLSRV=http://localhost:8080/%RUTA%?wsdl"
+if "%TI%"=="1.2" set "URLSRV=http://localhost:5090/%RUTA%?wsdl"
+if "%TI%"=="1.3" set "URLSRV=http://localhost:8080/%RUTA%/cuentas"
+if "%TI%"=="1.4" set "URLSRV=http://localhost:5080/%RUTA%/login"
+REM Si ya responde no se abre otro: chocaria con el puerto
+set "HTTP=000"
+for /f %%c in ('curl -s -o nul -w "%%{http_code}" --max-time 5 "%URLSRV%"') do set "HTTP=%%c"
+if "%HTTP:~0,1%"=="4" if not "%HTTP%"=="404" goto servidor_ya
+if "%HTTP:~0,1%"=="2" goto servidor_ya
 if "%TIPO%"=="java" goto servidor_java
 echo Abriendo el servidor de TI.%TI% ...
 start "EurekaBank TI %TI% - Servidor" /D "%BASE%\04. SERVIDOR\WS_EurekaBank_%SUFIJO%\WS_EurekaBank_%SUFIJO%" cmd /k dotnet run --launch-profile http
-if "%TI%"=="1.2" set "URLSRV=http://localhost:5090/%RUTA%?wsdl"
-if "%TI%"=="1.4" set "URLSRV=http://localhost:5080/%RUTA%/login"
 goto servidor_esperar
+
+:servidor_ya
+echo Servidor de TI.%TI% ya estaba encendido: %URLSRV%
+exit /b 0
 
 :servidor_java
 call :compilar "%BASE%\04. SERVIDOR\WS_EurekaBank_%SUFIJO%" WS_EurekaBank_%SUFIJO%.war
 if errorlevel 1 exit /b 1
 call :desplegar "%BASE%\04. SERVIDOR\WS_EurekaBank_%SUFIJO%\target\WS_EurekaBank_%SUFIJO%.war"
 if errorlevel 1 exit /b 1
-set "URLSRV=http://localhost:8080/%RUTA%"
-if "%TI%"=="1.1" set "URLSRV=%URLSRV%?wsdl"
-if "%TI%"=="1.3" set "URLSRV=%URLSRV%/cuentas"
 
 :servidor_esperar
 echo Esperando el servidor ...
@@ -259,10 +384,7 @@ exit /b %RESULTADO%
 
 REM Enciende Payara si hace falta y despliega el .war indicado
 :desplegar
-set "ASADMIN="
-if defined PAYARA_HOME if exist "%PAYARA_HOME%\bin\asadmin.bat" set "ASADMIN=%PAYARA_HOME%\bin\asadmin.bat"
-if not defined ASADMIN if exist "%USERPROFILE%\Payara_Server\bin\asadmin.bat" set "ASADMIN=%USERPROFILE%\Payara_Server\bin\asadmin.bat"
-if not defined ASADMIN if exist "%USERPROFILE%\Documents\payara7\bin\asadmin.bat" set "ASADMIN=%USERPROFILE%\Documents\payara7\bin\asadmin.bat"
+call :buscar_payara
 if not defined ASADMIN (
     echo No se encontro Payara. Defina PAYARA_HOME con la carpeta de Payara 7.
     set "FALLO=1"

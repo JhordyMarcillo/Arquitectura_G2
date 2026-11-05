@@ -31,7 +31,7 @@
             </goals>
             <configuration>
                 <wsdlUrls>
-                    <wsdlUrl>	http://localhost:8080/TELFQUITO_SOAP_JAVA/WSLogin?wsdl</wsdlUrl>
+                    <wsdlUrl>	http://${servidor.ip}:8080/TELFQUITO_SOAP_JAVA/WSLogin?wsdl</wsdlUrl>
                 </wsdlUrls>
                 <packageName>ec.edu.monster.ws</packageName>
                 <vmArgs>
@@ -49,7 +49,7 @@
             </goals>
             <configuration>
                 <wsdlUrls>
-                    <wsdlUrl>	http://localhost:8080/TELFQUITO_SOAP_JAVA/WSCompra?wsdl</wsdlUrl>
+                    <wsdlUrl>	http://${servidor.ip}:8080/TELFQUITO_SOAP_JAVA/WSCompra?wsdl</wsdlUrl>
                 </wsdlUrls>
                 <packageName>ec.edu.monster.ws</packageName>
                 <vmArgs>
@@ -67,7 +67,7 @@
             </goals>
             <configuration>
                 <wsdlUrls>
-                    <wsdlUrl>http://localhost:8080/TELFQUITO_SOAP_JAVA/WSTelefonos?wsdl</wsdlUrl>
+                    <wsdlUrl>http://${servidor.ip}:8080/TELFQUITO_SOAP_JAVA/WSTelefonos?wsdl</wsdlUrl>
                 </wsdlUrls>
                 <packageName>ec.edu.monster.ws</packageName>
                 <vmArgs>
@@ -113,6 +113,7 @@
         </dependency>
     </dependencies>
     <properties>
+        <servidor.ip>localhost</servidor.ip>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

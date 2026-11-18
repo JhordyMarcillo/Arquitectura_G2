@@ -1,0 +1,14 @@
+@model ApiPaisesMVC_SQLServer.Models.Pais
+@{
+    ViewData["Title"] = "Editar país";
+}
+<h2>Modificar país</h2>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <partial name="_Formulario" model="Model" />
+    <div class="mt-3">
+        <button class="btn btn-primary">Actualizar</button>
+        <a class="btn btn-outline-secondary" asp-action="Lista">Cancelar</a>
+    </div>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

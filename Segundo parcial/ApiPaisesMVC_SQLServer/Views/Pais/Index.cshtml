@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+<h2>Consumo de API REST Countries</h2>
+<p class="text-muted">Países guardados en SQL Server: <strong>@ViewBag.Total</strong></p>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card h-100"><div class="card-body">
+            <h5 class="card-title">Importar información</h5>
+            <p class="card-text">Descarga todos los países desde la API y los guarda (o actualiza) en la base de datos.</p>
+            <form asp-action="Importar" method="post">
+                <button type="submit" class="btn btn-success">Importar Información</button>
+            </form>
+        </div></div>
+    </div>
+    <div class="col-md-6">
+        <div class="card h-100"><div class="card-body">
+            <h5 class="card-title">Consultar un país en la API (Actividad 1)</h5>
+            <form asp-action="Consultar" method="get" class="d-flex gap-2">
+                <input name="nombre" class="form-control" placeholder="ej. ecuador" />
+                <button class="btn btn-primary">Consultar</button>
+            </form>
+        </div></div>
+    </div>
+    <div class="col-md-4"><a class="btn btn-outline-dark w-100" asp-action="Lista">Ver y buscar países</a></div>
+    <div class="col-md-4"><a class="btn btn-outline-dark w-100" asp-action="Reportes">Reportes</a></div>
+    <div class="col-md-4"><a class="btn btn-outline-dark w-100" asp-controller="Universidad" asp-action="Lista">Universidades (actividad avanzada)</a></div>
+</div>

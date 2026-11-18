@@ -1,0 +1,43 @@
+@model IEnumerable<ApiPaisesMVC_SQLServer.Models.Pais>
+@{
+    ViewData["Title"] = "Consultar en la API";
+}
+<h2>Consultar un país en la API</h2>
+<form method="get" class="d-flex gap-2 mb-3" style="max-width:520px">
+    <input name="nombre" value="@ViewBag.Nombre" class="form-control" placeholder="ej. ecuador" />
+    <button class="btn btn-primary">Consultar</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+else if (!string.IsNullOrWhiteSpace((string)ViewBag.Nombre))
+{
+    if (Model.Any())
+    {
+        <p>@Model.Count() resultado(s) de la API para "<strong>@ViewBag.Nombre</strong>".</p>
+        <table class="table table-bordered table-sm">
+            <thead class="table-light">
+                <tr><th>Nombre</th><th>Capital</th><th>Región</th><th>Subregión</th><th class="text-end">Población</th><th class="text-end">Área (km²)</th><th>Moneda</th></tr>
+            </thead>
+            <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Nombre</td><td>@p.Capital</td><td>@p.Region</td><td>@p.SubRegion</td>
+                    <td class="text-end">@p.Poblacion.ToString("N0")</td><td class="text-end">@p.Area.ToString("N0")</td><td>@p.Moneda</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        <form asp-action="GuardarConsulta" method="post">
+            <input type="hidden" name="nombre" value="@ViewBag.Nombre" />
+            <button class="btn btn-success">Guardar en SQL Server</button>
+        </form>
+    }
+    else
+    {
+        <p class="text-muted">La API no devolvió resultados.</p>
+    }
+}

@@ -1,8 +1,12 @@
 @{
     ViewData["Title"] = "Inicio";
 }
-<h2>Consumo de API REST Countries</h2>
-<p class="text-muted">Países guardados en SQL Server: <strong>@ViewBag.Total</strong></p>
+<div class="sulley-hero">
+    <h2>Archivo de Países de Monstruos S.A.</h2>
+    <p>Sullivan revisa los registros: sin gritos, solo datos de la API REST Countries.</p>
+    <span class="contador">Países guardados en SQL Server: @ViewBag.Total</span>
+    <partial name="_SulleyAsoma" />
+</div>
 
 <div class="row g-3">
     <div class="col-md-6">

@@ -20,3 +20,146 @@ html {
 body {
   margin-bottom: 60px;
 }
+/* ===== Tema "Sullivan" (Monsters, Inc.) =====
+   Azul de su pelaje, manchas moradas, cuernos crema y ojos amarillos. */
+:root {
+  --sulley-azul: #5fa8d3;
+  --sulley-azul-oscuro: #1d5f8a;
+  --sulley-noche: #0f2a47;
+  --sulley-mancha: #7b4fa3;
+  --sulley-mancha-claro: #e9ddf5;
+  --sulley-cuerno: #f4e7b7;
+  --sulley-ojo: #ffd43b;
+  --sulley-bg: #eaf4fb;
+}
+
+body {
+  background: var(--sulley-bg);
+  color: #17324d;
+}
+
+/* Barra superior: pelaje azul con manchas moradas */
+.navbar.sulley-nav {
+  background-color: var(--sulley-azul-oscuro) !important;
+  background-image:
+    radial-gradient(circle at 12% 40%, rgba(123, 79, 163, .55) 0 14px, transparent 15px),
+    radial-gradient(circle at 38% 75%, rgba(123, 79, 163, .45) 0 10px, transparent 11px),
+    radial-gradient(circle at 63% 30%, rgba(123, 79, 163, .55) 0 16px, transparent 17px),
+    radial-gradient(circle at 86% 70%, rgba(123, 79, 163, .45) 0 12px, transparent 13px),
+    linear-gradient(90deg, var(--sulley-azul-oscuro), var(--sulley-azul));
+  border-bottom: 4px solid var(--sulley-mancha);
+}
+.sulley-nav .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 800;
+  letter-spacing: .5px;
+  color: var(--sulley-cuerno) !important;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, .25);
+}
+.sulley-nav .navbar-brand svg { width: 38px; height: 38px; }
+.sulley-nav .nav-link { color: #fff !important; font-weight: 600; border-radius: .5rem; }
+.sulley-nav .nav-link:hover { background: rgba(255, 255, 255, .18); }
+
+/* Titulares */
+h2 { color: var(--sulley-noche); font-weight: 800; }
+h5 { color: var(--sulley-azul-oscuro); }
+
+/* Botones con la paleta de Sullivan */
+.btn-primary { background: var(--sulley-azul-oscuro); border-color: var(--sulley-azul-oscuro); }
+.btn-primary:hover { background: var(--sulley-noche); border-color: var(--sulley-noche); }
+.btn-success { background: var(--sulley-mancha); border-color: var(--sulley-mancha); }
+.btn-success:hover { background: #5f3a82; border-color: #5f3a82; }
+.btn-outline-primary { color: var(--sulley-azul-oscuro); border-color: var(--sulley-azul-oscuro); }
+.btn-outline-primary:hover { background: var(--sulley-azul-oscuro); border-color: var(--sulley-azul-oscuro); }
+.btn-outline-dark { color: var(--sulley-noche); border-color: var(--sulley-noche); }
+.btn-outline-dark:hover, .btn-dark { background: var(--sulley-noche); border-color: var(--sulley-noche); color: #fff; }
+.btn:focus, .btn:active:focus, .form-control:focus, .form-select:focus {
+  box-shadow: 0 0 0 .2rem rgba(255, 212, 59, .55);
+  border-color: var(--sulley-ojo);
+}
+
+/* Tarjetas y tablas */
+.card { border: 2px solid var(--sulley-azul); border-radius: 1rem; background: #fff; }
+.card:hover { box-shadow: 0 6px 18px rgba(29, 95, 138, .25); }
+.table { background: #fff; }
+.table thead.table-light th {
+  background: var(--sulley-mancha) !important;
+  color: #fff;
+  border-color: var(--sulley-mancha);
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * { background-color: var(--sulley-mancha-claro); }
+
+/* Avisos */
+.alert-success { background: #e4f6dc; border-color: #9ad47f; color: #2d5a1b; }
+.alert-danger { background: #fde6ea; border-color: #f1a0b0; }
+
+/* Banner de bienvenida */
+.sulley-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  padding: 1.6rem 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  background-color: var(--sulley-azul-oscuro);
+  background-image:
+    radial-gradient(circle at 8% 25%, rgba(123, 79, 163, .6) 0 26px, transparent 27px),
+    radial-gradient(circle at 30% 85%, rgba(123, 79, 163, .5) 0 20px, transparent 21px),
+    radial-gradient(circle at 78% 20%, rgba(123, 79, 163, .6) 0 30px, transparent 31px),
+    radial-gradient(circle at 94% 78%, rgba(123, 79, 163, .5) 0 22px, transparent 23px),
+    linear-gradient(120deg, var(--sulley-azul-oscuro), var(--sulley-azul));
+  border: 3px solid var(--sulley-noche);
+}
+.sulley-hero h2 { color: var(--sulley-cuerno); margin-bottom: .25rem; text-shadow: 0 2px 0 rgba(0, 0, 0, .25); }
+.sulley-hero p { margin: 0; font-size: 1.05rem; }
+.sulley-hero .contador {
+  display: inline-block;
+  margin-top: .75rem;
+  padding: .25rem .8rem;
+  border-radius: 999px;
+  background: var(--sulley-ojo);
+  color: var(--sulley-noche);
+  font-weight: 800;
+}
+.sulley-hero { min-height: 160px; padding-right: 9.5rem; }
+@media (max-width: 575px) {
+  .sulley-hero { padding-right: 1.8rem; }
+  .sulley-hero .sulley-asoma { display: none; }
+}
+.sulley-hero .sulley-asoma {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 0;
+  width: 118px;
+  height: auto;
+  transform-origin: bottom center;
+  animation: sulley-levantar 8s cubic-bezier(.3, 1.4, .5, 1) infinite;
+}
+.sulley-asoma .pupilas { animation: sulley-mirar 8s ease-in-out infinite; }
+
+/* Sullivan se esconde, se levanta, mira a los lados y vuelve a esconderse */
+@keyframes sulley-levantar {
+  0%, 8%   { transform: translateY(105%); }
+  22%, 76% { transform: translateY(0); }
+  90%, 100% { transform: translateY(105%); }
+}
+@keyframes sulley-mirar {
+  0%, 24% { transform: translateX(0); }
+  34%     { transform: translateX(-2.4px); }
+  48%     { transform: translateX(2.4px); }
+  62%     { transform: translateX(-1.6px); }
+  72%, 100% { transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sulley-hero .sulley-asoma, .sulley-asoma .pupilas { animation: none; }
+}
+
+/* Pie de pagina */
+.footer {
+  background: var(--sulley-noche);
+  color: var(--sulley-cuerno) !important;
+  border-top: 4px solid var(--sulley-mancha);
+}
+.footer .text-muted { color: var(--sulley-cuerno) !important; }

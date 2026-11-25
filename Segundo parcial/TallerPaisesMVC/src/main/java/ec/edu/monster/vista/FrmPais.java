@@ -89,10 +89,11 @@ public class FrmPais extends JFrame {
     private final JTextArea txtReporte = new JTextArea(5, 40);
 
     public FrmPais() {
-        super("Taller: Consumo de API pública (REST Countries) + MySQL — MVC");
+        super("Monstruos S.A. — Archivo de Países (REST Countries + MySQL, MVC)");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(980, 680);
         setLocationRelativeTo(null);
+        setIconImage(TemaSullivan.icono());
         armarVista();
         conectarEventos();
         cargarDesdeBD();
@@ -111,8 +112,13 @@ public class FrmPais extends JFrame {
         pestanas.addTab("Países", armarPestanaPaises());
         pestanas.addTab("Reportes", armarPestanaReportes());
 
+        JPanel norte = new JPanel(new BorderLayout());
+        norte.add(TemaSullivan.crearBanner("Monstruos S.A. — Archivo de Países",
+                "Sullivan revisa los registros: sin gritos, solo datos"), BorderLayout.NORTH);
+        norte.add(barra, BorderLayout.CENTER);
+
         setLayout(new BorderLayout());
-        add(barra, BorderLayout.NORTH);
+        add(norte, BorderLayout.NORTH);
         add(pestanas, BorderLayout.CENTER);
     }
 
@@ -144,6 +150,7 @@ public class FrmPais extends JFrame {
 
         tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabla.setAutoCreateRowSorter(true);
+        TemaSullivan.estilizarTabla(tabla);
         tabla.getColumnModel().getColumn(0).setMaxWidth(60);
 
         JPanel form = new JPanel(new GridLayout(2, 5, 6, 2));

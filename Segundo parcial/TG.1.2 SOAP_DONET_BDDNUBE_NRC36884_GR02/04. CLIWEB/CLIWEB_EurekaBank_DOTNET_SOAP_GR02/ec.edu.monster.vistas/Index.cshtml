@@ -1,0 +1,64 @@
+@page
+@model PaginaCuentas
+@{
+    ViewData["Title"] = "Cuentas";
+    ViewData["Subtitulo"] = "Cartera de cuentas de ahorro y su estado actual.";
+}
+@if (Model.MensajeError is not null)
+{
+    <div class="alerta error">@Iconos.Svg("alerta") <span>@Model.MensajeError</span></div>
+}
+
+<div class="rejilla-3">
+    <div class="tarjeta indicador">
+        <div>
+            <div class="etiqueta">Cuentas activas</div>
+            <div class="valor">@Model.Cuentas.Count(c => c.EstaActiva)</div>
+            <div class="nota">de @Model.Cuentas.Count cuentas registradas</div>
+        </div>
+        <span class="icono-caja azul">@Iconos.Svg("banco")</span>
+    </div>
+    <div class="tarjeta indicador">
+        <div>
+            <div class="etiqueta">Saldo total en soles</div>
+            <div class="valor">@Formato.Dinero("Soles", Model.TotalSoles)</div>
+            <div class="nota">Cuentas activas en S/</div>
+        </div>
+        <span class="icono-caja verde">S/</span>
+    </div>
+    <div class="tarjeta indicador">
+        <div>
+            <div class="etiqueta">Saldo total en dolares</div>
+            <div class="valor">@Formato.Dinero("Dolares", Model.TotalDolares)</div>
+            <div class="nota">Cuentas activas en US$</div>
+        </div>
+        <span class="icono-caja ambar">US$</span>
+    </div>
+</div>
+
+<div class="tarjeta sin-relleno">
+    <div class="titulo-tarjeta">
+        <div>
+            <h2>Listado de cuentas</h2>
+            <p>Haga clic en una cuenta para ver sus movimientos.</p>
+        </div>
+        <a asp-page="/Index" class="boton secundario">@Iconos.Svg("actualizar") Actualizar</a>
+    </div>
+    <table class="datos">
+        <thead>
+            <tr><th>CUENTA</th><th>CLIENTE</th><th>MONEDA</th><th class="derecha">SALDO</th><th>ESTADO</th></tr>
+        </thead>
+        <tbody>
+        @foreach (DatosCuenta c in Model.Cuentas)
+        {
+            <tr class="enlace" onclick="location.href='@Url.Page("/Movimientos", new { cuenta = c.Codigo })'">
+                <td class="negrita">@c.Codigo</td>
+                <td>@c.Cliente</td>
+                <td>@c.Moneda</td>
+                <td class="derecha negrita">@Formato.Dinero(c.Moneda, c.Saldo)</td>
+                <td><span class="etiqueta-estado @(c.EstaActiva ? "" : "inactiva")">@c.Estado</span></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

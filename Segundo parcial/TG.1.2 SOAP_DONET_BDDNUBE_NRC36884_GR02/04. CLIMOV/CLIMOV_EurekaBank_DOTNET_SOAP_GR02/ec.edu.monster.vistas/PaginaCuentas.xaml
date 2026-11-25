@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vistas="clr-namespace:ec.edu.monster.vistas"
+             x:Class="ec.edu.monster.vistas.PaginaCuentas"
+             x:DataType="vistas:PaginaCuentas"
+             BackgroundColor="{StaticResource Fondo}">
+    <RefreshView x:Name="Refrescar" Refreshing="Refrescar_Refreshing" RefreshColor="{StaticResource ColorPrimario}">
+        <CollectionView x:Name="ListaCuentas" SelectionMode="Single" SelectionChanged="ListaCuentas_SelectionChanged">
+            <CollectionView.Header>
+                <VerticalStackLayout>
+                    <!-- Encabezado con saldos -->
+                    <Border Background="{StaticResource DegradadoPanel}" StrokeThickness="0" Padding="22,40,22,26"
+                            StrokeShape="RoundRectangle 0,0,28,28">
+                        <VerticalStackLayout Spacing="4">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout>
+                                    <Label Text="Hola," TextColor="#CBD5E1" FontSize="13" />
+                                    <Label x:Name="TextoEmpleado" TextColor="White" FontSize="20" FontFamily="OpenSansSemibold" />
+                                </VerticalStackLayout>
+                                <ImageButton Grid.Column="1" Source="icono_salir_blanco.png" BackgroundColor="#1E293B" CornerRadius="20"
+                                             WidthRequest="40" HeightRequest="40" Padding="10" Clicked="BotonSalir_Clicked" />
+                            </Grid>
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,20,0,0">
+                                <Border BackgroundColor="#1E293B" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="14">
+                                    <VerticalStackLayout>
+                                        <Label Text="Total en soles" TextColor="#94A3B8" FontSize="12" />
+                                        <Label x:Name="TextoSoles" TextColor="White" FontSize="18" FontFamily="OpenSansSemibold" />
+                                    </VerticalStackLayout>
+                                </Border>
+                                <Border Grid.Column="1" BackgroundColor="#1E293B" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="14">
+                                    <VerticalStackLayout>
+                                        <Label Text="Total en dolares" TextColor="#94A3B8" FontSize="12" />
+                                        <Label x:Name="TextoDolares" TextColor="White" FontSize="18" FontFamily="OpenSansSemibold" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                    <Grid ColumnDefinitions="*,Auto" Margin="20,22,20,8">
+                        <Label Text="Cuentas" FontSize="18" FontFamily="OpenSansSemibold" TextColor="{StaticResource Texto}" />
+                        <Label x:Name="TextoActivas" Grid.Column="1" Style="{StaticResource Secundario}" VerticalOptions="Center" />
+                    </Grid>
+                    <Border x:Name="PanelError" BackgroundColor="{StaticResource RojoSuave}" StrokeThickness="0"
+                            StrokeShape="RoundRectangle 10" Padding="12,10" Margin="20,0,20,8" IsVisible="False">
+                        <Label x:Name="TextoError" TextColor="#991B1B" FontSize="13" />
+                    </Border>
+                </VerticalStackLayout>
+            </CollectionView.Header>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vistas:FilaCuenta">
+                    <Border Style="{StaticResource Tarjeta}" Margin="20,6" Padding="16">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border WidthRequest="44" HeightRequest="44" StrokeShape="RoundRectangle 12" StrokeThickness="0"
+                                    BackgroundColor="{StaticResource PrimarioSuave}">
+                                <Image Source="icono_cuenta_azul.png" WidthRequest="20" HeightRequest="20" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="{Binding Codigo}" FontFamily="OpenSansSemibold" FontSize="15" TextColor="{StaticResource Texto}" />
+                                <Label Text="{Binding Cliente}" Style="{StaticResource Secundario}" FontSize="12" LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" Spacing="4">
+                                <Label Text="{Binding Saldo}" FontFamily="OpenSansSemibold" FontSize="15" HorizontalOptions="End"
+                                       TextColor="{StaticResource Texto}" />
+                                <Border Style="{StaticResource Pastilla}" BackgroundColor="{Binding FondoEstado}" HorizontalOptions="End">
+                                    <Label Text="{Binding Estado}" FontSize="10" FontFamily="OpenSansSemibold" TextColor="{Binding ColorEstado}" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.Footer>
+                <Label Text="Toque una cuenta para ver sus movimientos." Style="{StaticResource Secundario}" FontSize="12"
+                       HorizontalOptions="Center" Margin="0,10,0,24" />
+            </CollectionView.Footer>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

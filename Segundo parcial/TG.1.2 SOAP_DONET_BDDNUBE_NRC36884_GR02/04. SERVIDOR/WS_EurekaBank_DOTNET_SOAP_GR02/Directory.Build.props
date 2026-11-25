@@ -1,0 +1,10 @@
+<Project>
+  <!-- La carpeta del TI es muy profunda: con la ruta completa, la DLL nativa del driver de
+       SQL Server (Microsoft.Data.SqlClient.SNI.dll) no carga ("The filename or extension is
+       too long"). Por eso obj y bin se generan en una ruta corta, como en CLIMOV. -->
+  <PropertyGroup>
+    <CarpetaCompilacion>$(LOCALAPPDATA)\EurekaBankGR02\$(MSBuildProjectName)\</CarpetaCompilacion>
+    <BaseIntermediateOutputPath>$(CarpetaCompilacion)obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(CarpetaCompilacion)bin\</BaseOutputPath>
+  </PropertyGroup>
+</Project>

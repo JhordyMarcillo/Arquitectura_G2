@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Paleta EurekaBank -->
+    <Color x:Key="Marino">#0F172A</Color>
+    <Color x:Key="MarinoClaro">#1E293B</Color>
+    <Color x:Key="ColorPrimario">#1D4ED8</Color>
+    <Color x:Key="PrimarioSuave">#DBEAFE</Color>
+    <Color x:Key="Fondo">#F1F5F9</Color>
+    <Color x:Key="Superficie">#FFFFFF</Color>
+    <Color x:Key="Borde">#E2E8F0</Color>
+    <Color x:Key="Texto">#0F172A</Color>
+    <Color x:Key="TextoSecundario">#64748B</Color>
+    <Color x:Key="Verde">#059669</Color>
+    <Color x:Key="VerdeSuave">#D1FAE5</Color>
+    <Color x:Key="Rojo">#DC2626</Color>
+    <Color x:Key="RojoSuave">#FEE2E2</Color>
+
+    <LinearGradientBrush x:Key="DegradadoMarca" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#2563EB" Offset="0" />
+        <GradientStop Color="#1E3A8A" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="DegradadoPanel" StartPoint="0,0" EndPoint="0.4,1">
+        <GradientStop Color="#0F172A" Offset="0" />
+        <GradientStop Color="#1E3A8A" Offset="1" />
+    </LinearGradientBrush>
+
+    <Shadow x:Key="Sombra" Brush="#0F172A" Offset="0,4" Radius="16" Opacity="0.10" />
+
+    <Style x:Key="Tarjeta" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource Superficie}" />
+        <Setter Property="Stroke" Value="{StaticResource Borde}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+        <Setter Property="Padding" Value="18" />
+        <Setter Property="Shadow" Value="{StaticResource Sombra}" />
+    </Style>
+
+    <Style x:Key="Etiqueta" TargetType="Label">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="TextColor" Value="{StaticResource TextoSecundario}" />
+        <Setter Property="Margin" Value="2,0,0,6" />
+    </Style>
+    <Style x:Key="Titulo" TargetType="Label">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="TextColor" Value="{StaticResource Texto}" />
+    </Style>
+    <Style x:Key="Secundario" TargetType="Label">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{StaticResource TextoSecundario}" />
+    </Style>
+
+    <!-- Campo con borde redondeado: el Entry va dentro de un Border -->
+    <Style x:Key="MarcoCampo" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="Stroke" Value="#CBD5E1" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="12,0" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="Margin" Value="0,0,0,14" />
+    </Style>
+    <Style x:Key="Campo" TargetType="Entry">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="{StaticResource Texto}" />
+        <Setter Property="PlaceholderColor" Value="#94A3B8" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="BotonPrimario" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimario}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HeightRequest" Value="50" />
+    </Style>
+    <Style x:Key="BotonSegmento" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource TextoSecundario}" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <Style x:Key="Pastilla" TargetType="Border">
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Padding" Value="10,3" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+    </Style>
+</ResourceDictionary>

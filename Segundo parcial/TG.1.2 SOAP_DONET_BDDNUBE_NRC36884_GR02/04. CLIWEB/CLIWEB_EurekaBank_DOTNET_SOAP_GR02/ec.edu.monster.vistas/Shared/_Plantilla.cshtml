@@ -1,0 +1,63 @@
+@using ec.edu.monster.controladores
+@{
+    var pagina = ViewContext.ViewData.Model as PaginaProtegida;
+    string Activo(string menu) => pagina?.MenuActivo == menu ? "activo" : "";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · EurekaBank</title>
+    <link rel="icon" href="~/img/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/css/eurekabank.css" asp-append-version="true" />
+</head>
+<body>
+@if (pagina is null)
+{
+    @RenderBody()
+}
+else
+{
+    <div class="app">
+        <aside class="lateral">
+            <div class="marca">
+                <img src="~/img/logo.svg" alt="" />
+                <div><strong>EurekaBank</strong><span>Panel de operaciones</span></div>
+            </div>
+            <nav class="menu">
+                <div class="seccion-menu">CONSULTAS</div>
+                <a asp-page="/Index" class="@Activo("cuentas")">@Iconos.Svg("banco") Cuentas</a>
+                <a asp-page="/Movimientos" class="@Activo("movimientos")">@Iconos.Svg("historial") Movimientos</a>
+                <div class="seccion-menu">OPERACIONES</div>
+                <a asp-page="/Operacion" asp-route-tipo="deposito" class="@Activo("deposito")">@Iconos.Svg("deposito") Deposito</a>
+                <a asp-page="/Operacion" asp-route-tipo="retiro" class="@Activo("retiro")">@Iconos.Svg("retiro") Retiro</a>
+                <a asp-page="/Operacion" asp-route-tipo="transferencia" class="@Activo("transferencia")">@Iconos.Svg("transferencia") Transferencia</a>
+            </nav>
+            <div class="usuario">
+                <span class="avatar">@Formato.Iniciales(pagina.Usuario.NombreEmpleado)</span>
+                <div>
+                    <strong>@pagina.Usuario.NombreEmpleado</strong>
+                    <small>Empleado @pagina.Usuario.CodigoEmpleado</small>
+                </div>
+                <form method="post" asp-page="/Login" asp-page-handler="Salir">
+                    <button type="submit" title="Cerrar sesion">@Iconos.Svg("salir")</button>
+                </form>
+            </div>
+        </aside>
+        <main class="contenido">
+            <header class="cabecera">
+                <div>
+                    <h1>@ViewData["Title"]</h1>
+                    <p>@ViewData["Subtitulo"]</p>
+                </div>
+                <span class="insignia" title="@ViewData["Servidor"]">SOAP .NET  ·  GR02</span>
+            </header>
+            <section class="pagina">
+                @RenderBody()
+            </section>
+        </main>
+    </div>
+}
+</body>
+</html>

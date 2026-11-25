@@ -1,0 +1,46 @@
+### Pruebas manuales del servicio SOAP EurekaBank (Visual Studio o REST Client de VS Code)
+### Tambien se puede importar el WSDL en SoapUI: http://localhost:5090/WSEurekaBank.svc?wsdl
+@url = http://localhost:5090/WSEurekaBank.svc
+
+### 1. iniciarSesion (copiar el token de la respuesta)
+POST {{url}}
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://ws.monster.edu.ec/WSEurekaBank/iniciarSesion"
+
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <iniciarSesion xmlns="http://ws.monster.edu.ec/">
+      <usuario>cromero</usuario>
+      <clave>chicho</clave>
+    </iniciarSesion>
+  </s:Body>
+</s:Envelope>
+
+### 2. consultarMovimientos (reemplazar TOKEN)
+POST {{url}}
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://ws.monster.edu.ec/WSEurekaBank/consultarMovimientos"
+
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <consultarMovimientos xmlns="http://ws.monster.edu.ec/">
+      <token>TOKEN</token>
+      <cuenta>00100001</cuenta>
+    </consultarMovimientos>
+  </s:Body>
+</s:Envelope>
+
+### 3. registrarDeposito (reemplazar TOKEN)
+POST {{url}}
+Content-Type: text/xml; charset=utf-8
+SOAPAction: "http://ws.monster.edu.ec/WSEurekaBank/registrarDeposito"
+
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Body>
+    <registrarDeposito xmlns="http://ws.monster.edu.ec/">
+      <token>TOKEN</token>
+      <cuenta>00100001</cuenta>
+      <importe>100.00</importe>
+    </registrarDeposito>
+  </s:Body>
+</s:Envelope>

@@ -1,0 +1,99 @@
+<UserControl x:Class="ec.edu.monster.vistas.PaginaMovimientos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel>
+        <!-- Busqueda -->
+        <Border Style="{StaticResource Tarjeta}" Padding="20" Margin="0,0,0,24">
+            <DockPanel>
+                <Button x:Name="BotonConsultar" DockPanel.Dock="Right" Style="{StaticResource BotonPrimario}" Margin="12,0,0,0" Click="BotonConsultar_Click" IsDefault="True">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,8,0" />
+                        <TextBlock Text="Consultar" />
+                    </StackPanel>
+                </Button>
+                <StackPanel>
+                    <TextBlock Text="NUMERO DE CUENTA" Style="{StaticResource TextoEtiqueta}" />
+                    <TextBox x:Name="CampoCuenta" MaxLength="8" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Estado vacio -->
+        <Border x:Name="PanelVacio" Style="{StaticResource Tarjeta}" Padding="48">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="&#xE81C;" FontFamily="Segoe MDL2 Assets" FontSize="40" Foreground="#CBD5E1" HorizontalAlignment="Center" />
+                <TextBlock Text="Ingrese una cuenta para ver su historial" FontSize="15" FontWeight="SemiBold" Margin="0,14,0,4" HorizontalAlignment="Center" />
+                <TextBlock Text="Por ejemplo 00100001 o 00200001." Style="{StaticResource TextoSubtitulo}" HorizontalAlignment="Center" />
+            </StackPanel>
+        </Border>
+
+        <StackPanel x:Name="PanelResultado" Visibility="Collapsed">
+            <UniformGrid Columns="3" Margin="-8,0,-8,24">
+                <Border Background="{StaticResource DegradadoMarca}" CornerRadius="14" Padding="24" Margin="8,0" Effect="{StaticResource Sombra}">
+                    <StackPanel>
+                        <TextBlock x:Name="TextoCuenta" Foreground="#BFDBFE" FontSize="13" />
+                        <TextBlock x:Name="TextoSaldo" Foreground="White" FontSize="30" FontWeight="SemiBold" Margin="0,6,0,0" />
+                        <TextBlock Text="Saldo disponible" Foreground="#BFDBFE" FontSize="12" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tarjeta}" Margin="8,0">
+                    <StackPanel>
+                        <TextBlock Text="Total ingresos" Style="{StaticResource TextoSubtitulo}" />
+                        <TextBlock x:Name="TextoIngresos" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource Verde}" Margin="0,6,0,0" />
+                        <TextBlock x:Name="TextoCantidadIngresos" Style="{StaticResource TextoSubtitulo}" FontSize="12" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource Tarjeta}" Margin="8,0">
+                    <StackPanel>
+                        <TextBlock Text="Total salidas" Style="{StaticResource TextoSubtitulo}" />
+                        <TextBlock x:Name="TextoSalidas" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource Rojo}" Margin="0,6,0,0" />
+                        <TextBlock x:Name="TextoCantidadSalidas" Style="{StaticResource TextoSubtitulo}" FontSize="12" />
+                    </StackPanel>
+                </Border>
+            </UniformGrid>
+
+            <Border Style="{StaticResource Tarjeta}" Padding="0">
+                <DataGrid x:Name="TablaMovimientos">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="N°" Binding="{Binding Numero}" Width="60" />
+                        <DataGridTextColumn Header="FECHA" Binding="{Binding Fecha}" Width="120" />
+                        <DataGridTemplateColumn Header="DESCRIPCION" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border x:Name="Icono" Width="26" Height="26" CornerRadius="13" Background="{StaticResource VerdeSuave}" Margin="0,0,10,0">
+                                            <TextBlock x:Name="Flecha" Text="&#xE74A;" FontFamily="Segoe MDL2 Assets" FontSize="11"
+                                                       Foreground="{StaticResource Verde}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                        <TextBlock Text="{Binding Descripcion}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding EsIngreso}" Value="False">
+                                            <Setter TargetName="Icono" Property="Background" Value="{StaticResource RojoSuave}" />
+                                            <Setter TargetName="Flecha" Property="Foreground" Value="{StaticResource Rojo}" />
+                                            <Setter TargetName="Flecha" Property="Text" Value="&#xE74B;" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="REFERENCIA" Binding="{Binding Referencia}" Width="130" Foreground="#64748B" />
+                        <DataGridTemplateColumn Header="IMPORTE" Width="160" HeaderStyle="{StaticResource EncabezadoDerecha}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock x:Name="Importe" Text="{Binding ImporteFormateado}" HorizontalAlignment="Right"
+                                               FontWeight="SemiBold" Foreground="{StaticResource Verde}" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding EsIngreso}" Value="False">
+                                            <Setter TargetName="Importe" Property="Foreground" Value="{StaticResource Rojo}" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

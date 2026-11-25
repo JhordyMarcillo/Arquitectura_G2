@@ -1,0 +1,11 @@
+@model ApiPaisesMVC_SQLServer.Models.Pais
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row g-3" style="max-width:760px">
+    <div class="col-md-6"><label asp-for="Nombre" class="form-label"></label><input asp-for="Nombre" class="form-control" /><span asp-validation-for="Nombre" class="text-danger"></span></div>
+    <div class="col-md-6"><label asp-for="Capital" class="form-label"></label><input asp-for="Capital" class="form-control" /><span asp-validation-for="Capital" class="text-danger"></span></div>
+    <div class="col-md-6"><label asp-for="Region" class="form-label"></label><input asp-for="Region" class="form-control" placeholder="Americas, Europe, Asia, Africa, Oceania" /><span asp-validation-for="Region" class="text-danger"></span></div>
+    <div class="col-md-6"><label asp-for="SubRegion" class="form-label"></label><input asp-for="SubRegion" class="form-control" /><span asp-validation-for="SubRegion" class="text-danger"></span></div>
+    <div class="col-md-4"><label asp-for="Poblacion" class="form-label"></label><input asp-for="Poblacion" class="form-control" /><span asp-validation-for="Poblacion" class="text-danger"></span></div>
+    <div class="col-md-4"><label asp-for="Area" class="form-label"></label><input asp-for="Area" class="form-control" /><span asp-validation-for="Area" class="text-danger"></span></div>
+    <div class="col-md-4"><label asp-for="Moneda" class="form-label"></label><input asp-for="Moneda" class="form-control" /><span asp-validation-for="Moneda" class="text-danger"></span></div>
+</div>

@@ -1,0 +1,65 @@
+@model IEnumerable<ApiPaisesMVC_SQLServer.Models.Pais>
+@{
+    ViewData["Title"] = "Países";
+    string regionSel = ViewBag.Region as string;
+}
+<h2>Listado de Países <small class="text-muted fs-6">(@Model.Count())</small></h2>
+
+@* Actividad 3: busquedas por nombre, region y capital *@
+<form method="get" class="row g-2 mb-2">
+    <div class="col-md-3"><input name="nombre" value="@ViewBag.Nombre" class="form-control" placeholder="Nombre" /></div>
+    <div class="col-md-3"><input name="capital" value="@ViewBag.Capital" class="form-control" placeholder="Capital" /></div>
+    <div class="col-md-3">
+        <select name="region" class="form-select" onchange="this.form.submit()">
+            <option value="">Todas las regiones</option>
+            @foreach (var r in (IEnumerable<string>)ViewBag.Regiones)
+            {
+                <option value="@r" selected="@(r == regionSel)">@r</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-3 d-flex gap-2">
+        <button class="btn btn-primary">Buscar</button>
+        <a class="btn btn-outline-secondary" asp-action="Lista">Limpiar</a>
+        <a class="btn btn-success ms-auto" asp-action="Create">Nuevo</a>
+    </div>
+</form>
+
+@* Actividad 4: filtros dinamicos por region *@
+<div class="mb-3 d-flex flex-wrap gap-2">
+    @foreach (var r in (IEnumerable<string>)ViewBag.Regiones)
+    {
+        <a class="btn btn-sm @(r == regionSel ? "btn-dark" : "btn-outline-dark")" asp-action="Lista" asp-route-region="@r">@r</a>
+    }
+</div>
+
+<table class="table table-bordered table-striped table-sm">
+    <thead class="table-light">
+        <tr>
+            <th>Nombre</th><th>Capital</th><th>Región</th><th>Subregión</th>
+            <th class="text-end">Población</th><th class="text-end">Área (km²)</th><th>Moneda</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Capital</td>
+            <td>@item.Region</td>
+            <td>@item.SubRegion</td>
+            <td class="text-end">@item.Poblacion.ToString("N0")</td>
+            <td class="text-end">@item.Area.ToString("N0")</td>
+            <td>@item.Moneda</td>
+            <td class="text-nowrap">
+                <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (!Model.Any())
+{
+    <p class="text-muted">No hay países. Usa "Importar Información" en la página de inicio.</p>
+}

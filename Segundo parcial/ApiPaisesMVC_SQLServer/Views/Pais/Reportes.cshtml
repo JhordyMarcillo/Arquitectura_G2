@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Reportes";
+    var masPoblado = ViewBag.MasPoblado as ApiPaisesMVC_SQLServer.Models.Pais;
+}
+<h2>Reportes estadísticos</h2>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <h5>Reporte 1: cantidad de países por región</h5>
+        <table class="table table-bordered table-sm">
+            <thead class="table-light"><tr><th>Región</th><th class="text-end">Total</th></tr></thead>
+            <tbody>
+            @foreach (var r in ViewBag.PorRegion)
+            {
+                <tr><td>@r.Region</td><td class="text-end">@r.Total</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h5>Reporte 3: promedio poblacional por región</h5>
+        <table class="table table-bordered table-sm">
+            <thead class="table-light"><tr><th>Región</th><th class="text-end">Promedio de población</th></tr></thead>
+            <tbody>
+            @foreach (var r in ViewBag.Promedio)
+            {
+                <tr><td>@r.Region</td><td class="text-end">@(((double)r.Promedio).ToString("N0"))</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12">
+        <h5>Reporte 2: país más poblado</h5>
+        @if (masPoblado != null)
+        {
+            <div class="card" style="max-width:520px"><div class="card-body">
+                <h5 class="card-title">@masPoblado.Nombre</h5>
+                <p class="card-text mb-0">Capital: @masPoblado.Capital · Región: @masPoblado.Region</p>
+                <p class="card-text"><strong>@masPoblado.Poblacion.ToString("N0")</strong> habitantes</p>
+            </div></div>
+        }
+        else
+        {
+            <p class="text-muted">No hay datos. Importa los países primero.</p>
+        }
+    </div>
+</div>

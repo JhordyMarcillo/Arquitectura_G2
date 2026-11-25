@@ -1,0 +1,41 @@
+@model IEnumerable<ApiPaisesMVC_SQLServer.Models.Universidad>
+@{
+    ViewData["Title"] = "Universidades";
+    string paisSel = ViewBag.Pais as string;
+}
+<h2>Universidades (API pública de universidades)</h2>
+
+<form asp-action="Importar" method="post" class="d-flex gap-2 mb-3" style="max-width:560px">
+    <input name="pais" value="@(string.IsNullOrEmpty(paisSel) ? "Ecuador" : paisSel)" class="form-control" placeholder="País en inglés, ej. Ecuador" />
+    <button class="btn btn-success text-nowrap">Importar universidades</button>
+</form>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <select name="pais" class="form-select" onchange="this.form.submit()">
+            <option value="">Todos los países</option>
+            @foreach (var p in (IEnumerable<string>)ViewBag.Paises)
+            {
+                <option value="@p" selected="@(p == paisSel)">@p</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4"><input name="buscar" value="@ViewBag.Buscar" class="form-control" placeholder="Buscar por nombre" /></div>
+    <div class="col-md-4"><button class="btn btn-primary">Buscar</button> <a class="btn btn-outline-secondary" asp-action="Lista">Limpiar</a></div>
+</form>
+
+<p class="text-muted">@Model.Count() universidad(es)</p>
+<table class="table table-bordered table-striped table-sm">
+    <thead class="table-light"><tr><th>Nombre</th><th>Dominio</th><th>Sitio web</th><th>País</th></tr></thead>
+    <tbody>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.Nombre</td>
+            <td>@u.Dominio</td>
+            <td>@if (!string.IsNullOrEmpty(u.SitioWeb)) { <a href="@u.SitioWeb" target="_blank" rel="noopener">@u.SitioWeb</a> }</td>
+            <td>@u.Pais</td>
+        </tr>
+    }
+    </tbody>
+</table>

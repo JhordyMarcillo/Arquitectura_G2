@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Comprar varios productos</title>
+  </head>
+  <body class="login-body">
+    <div class="login-container">
+      <div class="login-card">
+        <h2>Comprar hasta 3 productos</h2>
+        <form id="carritoForm">
+          <p>Seleccione de 1 a 3 teléfonos:</p>
+          <div id="listaTelefonos" style="text-align: left; max-height: 220px; overflow-y: auto"></div>
+          <p id="resumen"><strong>Seleccionados: 0 / 3</strong></p>
+          <select id="tipoCompra" required>
+            <option value="efectivo">Efectivo (42% de descuento)</option>
+            <option value="credito">Crédito</option>
+          </select>
+          <input type="text" id="cedula" placeholder="Cédula" required />
+          <input type="number" id="plazoMeses" placeholder="Plazo en meses (3 a 18)" class="hidden" />
+          <button type="submit" class="btn-primary">Comprar y generar factura</button>
+          <button type="button" class="btn-primary" onclick="window.location.href='/telefonos'">Volver</button>
+        </form>
+        <pre id="factura" style="display:none; text-align:left; margin-top:16px; font-size:12px; overflow-x:auto"></pre>
+        <button id="imprimir" type="button" class="btn-primary" style="display:none" onclick="window.print()">Imprimir factura</button>
+      </div>
+    </div>
+    <div id="modal-container"></div>
+    <script>
+      fetch("/modal.html")
+        .then((response) => response.text())
+        .then((html) => {
+          document.getElementById("modal-container").innerHTML = html;
+          const ok = document.getElementById("modal-ok-button");
+          if (ok) ok.addEventListener("click", closeModal);
+        });
+    </script>
+    <script type="module" src="/controller/modal.js"></script>
+    <script type="module" src="/controller/carritoController.js"></script>
+  </body>
+</html>
